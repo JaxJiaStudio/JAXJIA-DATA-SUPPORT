@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Jax Jia | ERP Data Preparation & Remote Data Support</title>
+
+  <meta
+    name="description"
+    content="Remote ERP data preparation, Excel and CSV processing, data migration, import preparation, field mapping, and lightweight automation support."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        "Microsoft YaHei",
+        sans-serif;
+
+      background: #0b0f14;
+      color: #e8edf3;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-dark {
+      background: #0f151d;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .section-subtitle {
+      max-width: 760px;
+      color: #9aa7b5;
+      font-size: 1.05rem;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #f2b84b;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       Language Switch
+    ========================= */
+
+    .language-switch {
+      position: fixed;
+      top: 22px;
+      right: 28px;
+      z-index: 999;
+
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      padding: 4px;
+
+      border: 1px solid #2b3743;
+      border-radius: 10px;
+
+      background: rgba(11, 15, 20, 0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    .lang-button {
+      border: 0;
+      background: transparent;
+      color: #7f8b97;
+
+      padding: 8px 12px;
+      border-radius: 7px;
+
+      font-size: 0.82rem;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .lang-button:hover {
+      color: #ffffff;
+    }
+
+    .lang-button.active {
+      background: #f2b84b;
+      color: #15100a;
+    }
+
+    /* =========================
+       Hero
+    ========================= */
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(242, 184, 75, 0.14),
+          transparent 34%
+        ),
+        linear-gradient(
+          180deg,
+          #090d12 0%,
+          #0b1017 55%,
+          #0f151d 100%
+        );
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 180px;
+
+      background: linear-gradient(
+        180deg,
+        rgba(15, 21, 29, 0),
+        #0f151d
+      );
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 880px;
+      padding: 100px 0 120px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 span {
+      color: #f2b84b;
+    }
+
+    .hero-lead {
+      max-width: 780px;
+      color: #b2bdc8;
+      font-size: clamp(1.08rem, 2vw, 1.32rem);
+      margin-bottom: 34px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      margin-bottom: 36px;
+      color: #8f9ba7;
+      font-size: 0.95rem;
+    }
+
+    .hero-meta span {
+      padding-right: 18px;
+      border-right: 1px solid #26313d;
+    }
+
+    .hero-meta span:last-child {
+      border-right: 0;
+      padding-right: 0;
+    }
+
+    /* =========================
+       Buttons
+    ========================= */
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 50px;
+      padding: 0 22px;
+
+      border-radius: 10px;
+
+      font-weight: 700;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .button-primary {
+      background: #f2b84b;
+      color: #15100a;
+    }
+
+    .button-primary:hover {
+      transform: translateY(-1px);
+      background: #ffc95d;
+    }
+
+    .button-secondary {
+      border: 1px solid #33404d;
+      color: #d9e1e8;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .button-secondary:hover {
+      border-color: #5b6977;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    /* =========================
+       Cards
+    ========================= */
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid #202b36;
+      background: #121922;
+
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #9eabb7;
+    }
+
+    .service-card {
+      min-height: 220px;
+    }
+
+    .service-number {
+      display: inline-block;
+      margin-bottom: 22px;
+
+      color: #f2b84b;
+
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================
+       Experience
+    ========================= */
+
+    .experience-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .experience-item {
+      padding: 26px 28px;
+
+      border-left: 3px solid #f2b84b;
+      background: #111821;
+
+      border-radius: 0 12px 12px 0;
+    }
+
+    .experience-item h3 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .experience-item p {
+      color: #9eabb7;
+    }
+
+    /* =========================
+       Pricing
+    ========================= */
+
+    .pricing-card {
+      border: 1px solid #313d49;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(242, 184, 75, 0.06),
+          rgba(242, 184, 75, 0.01)
+        ),
+        #121922;
+
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(242, 184, 75, 0.55);
+    }
+
+    .price {
+      margin: 18px 0 8px;
+      font-size: 2.1rem;
+      font-weight: 800;
+    }
+
+    .price-note {
+      color: #8f9ba7;
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+    }
+
+    .pricing-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+
+      color: #b3bec8;
+    }
+
+    .pricing-list li::before {
+      content: "•";
+      color: #f2b84b;
+      margin-right: 10px;
+    }
+
+    /* =========================
+       Security
+    ========================= */
+
+    .security-box {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 38px;
+      align-items: start;
+    }
+
+    .security-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .security-item {
+      padding: 18px 20px;
+
+      border: 1px solid #202b36;
+      background: #111821;
+
+      border-radius: 12px;
+    }
+
+    .security-item strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .security-item span {
+      color: #9eabb7;
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       Contact
+    ========================= */
+
+    .contact-box {
+      max-width: 820px;
+
+      padding: 46px;
+
+      border: 1px solid #293541;
+      border-radius: 18px;
+
+      background:
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(242, 184, 75, 0.11),
+          transparent 35%
+        ),
+        #121922;
+    }
+
+    .contact-box p {
+      color: #9eabb7;
+      margin: 16px 0 26px;
+      max-width: 640px;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 12px;
+
+      color: #f2b84b;
+      font-weight: 700;
+
+      word-break: break-all;
+    }
+
+    /* =========================
+       Footer
+    ========================= */
+
+    footer {
+      padding: 28px 0 36px;
+
+      border-top: 1px solid #1d2731;
+
+      color: #73808d;
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       Mobile
+    ========================= */
+
+    @media (max-width: 820px) {
+
+      .grid-2,
+      .security-box {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding: 100px 0 105px;
+      }
+
+      .hero-meta {
+        display: grid;
+        gap: 8px;
+      }
+
+      .hero-meta span {
+        border-right: 0;
+        padding-right: 0;
+      }
+
+      .contact-box {
+        padding: 30px;
+      }
+
+      .language-switch {
+        top: 14px;
+        right: 14px;
+      }
+    }
+        /* =========================
+   Selected Work / Portfolio
+========================= */
+
+    .portfolio-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 390px;
+    }
+
+    .portfolio-card h3 {
+    margin-bottom: 12px;
+    }
+
+    .portfolio-card p {
+    color: #9eabb7;
+    }
+
+    .portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+
+    .portfolio-tags span {
+    padding: 5px 9px;
+
+    border: 1px solid #2e3945;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: #b7c2cc;
+
+    font-size: 0.74rem;
+    font-weight: 700;
+    }
+
+    .portfolio-preview {
+    margin-top: auto;
+    min-height: 160px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px solid #26313d;
+    border-radius: 10px;
+
+    background:
+        radial-gradient(
+        circle at 70% 20%,
+        rgba(242, 184, 75, 0.09),
+        transparent 40%
+        ),
+        #0d131a;
+
+    color: #667481;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    }
+
+    .portfolio-preview img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    }
+
+    .portfolio-empty {
+    opacity: 0.65;
+    }
+
+    @media (max-width: 820px) {
+    .portfolio-card {
+        min-height: auto;
+    }
+
+    .portfolio-preview {
+        min-height: 150px;
+    }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Language Switch -->
+  <div class="language-switch">
+
+    <button
+      id="lang-en"
+      class="lang-button active"
+      onclick="setLanguage('en')"
+    >
+      EN
+    </button>
+
+    <button
+      id="lang-zh"
+      class="lang-button"
+      onclick="setLanguage('zh')"
+    >
+      ZH
+    </button>
+
+  </div>
+
+
+  <!-- HERO -->
+  <header class="hero">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <span
+          class="eyebrow"
+          data-i18n="heroEyebrow"
+        >
+          Remote ERP & Business Data Support
+        </span>
+
+        <h1 data-i18n-html="heroTitle">
+          Clean data.<br />
+          Better <span>delivery.</span>
+        </h1>
+
+        <p
+          class="hero-lead"
+          data-i18n="heroLead"
+        >
+          I help businesses and ERP implementation teams clean,
+          restructure, migrate, and prepare Excel, CSV, master data,
+          and other business data for system import, daily operations,
+          and project delivery.
+        </p>
+
+        <div class="hero-meta">
+
+          <span data-i18n="experience">
+            5 years of ERP implementation experience
+          </span>
+
+          <span data-i18n="remote">
+            Remote & asynchronous support
+          </span>
+
+          <span data-i18n="location">
+            Based in Tianjin, China
+          </span>
+
+        </div>
+
+        <div class="button-row">
+
+          <a
+            class="button button-primary"
+            href="mailto:jax.xiangjie.jia@gmail.com"
+            data-i18n="contactMe"
+          >
+            Contact Me
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="#services"
+            data-i18n="viewServices"
+          >
+            View Services
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- SERVICES -->
+  <section
+    id="services"
+    class="section section-dark"
+  >
+
+    <div class="container">
+
+      <span
+        class="eyebrow"
+        data-i18n="servicesEyebrow"
+      >
+        Services
+      </span>
+
+      <h2
+        class="section-title"
+        data-i18n="servicesTitle"
+      >
+        Practical support for business data work
+      </h2>
+
+      <p
+        class="section-subtitle"
+        data-i18n="servicesSubtitle"
+      >
+        Support is available on a task-based,
+        project-based, or recurring asynchronous basis.
+      </p>
+
+
+      <div class="grid grid-2">
+
+        <article class="card service-card">
+
+          <span class="service-number">
+            01
+          </span>
+
+          <h3 data-i18n="service1Title">
+            ERP Data Preparation
+          </h3>
+
+          <p data-i18n="service1Text">
+            Cleaning and organising customer, vendor,
+            product, item, BOM, profit center, and other
+            master or business data before migration or
+            system import.
+          </p>
+
+        </article>
+
+
+        <article class="card service-card">
+
+          <span class="service-number">
+            02
+          </span>
+
+          <h3 data-i18n="service2Title">
+            Excel & CSV Processing
+          </h3>
+
+          <p data-i18n="service2Text">
+            Data cleaning, deduplication, merging,
+            splitting, restructuring, field standardisation,
+            format conversion, and batch processing.
+          </p>
+
+        </article>
+
+
+        <article class="card service-card">
+
+          <span class="service-number">
+            03
+          </span>
+
+          <h3 data-i18n="service3Title">
+            Migration & Import Preparation
+          </h3>
+
+          <p data-i18n="service3Text">
+            Legacy-to-target field mapping, import template
+            preparation, historical data migration,
+            exception checking, and pre-import validation.
+          </p>
+
+        </article>
+
+
+        <article class="card service-card">
+
+          <span class="service-number">
+            04
+          </span>
+
+          <h3 data-i18n="service4Title">
+            Lightweight Automation
+          </h3>
+
+          <p data-i18n="service4Text">
+            Small Python utilities, repetitive
+            file-processing workflows, batch-processing
+            scripts, and simple business-data automation.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROJECT EXPERIENCE -->
+  <section class="section">
+
+    <div class="container">
+
+      <span
+        class="eyebrow"
+        data-i18n="projectEyebrow"
+      >
+        Project Experience
+      </span>
+
+      <h2
+        class="section-title"
+        data-i18n="projectTitle"
+      >
+        ERP and core business data delivery experience
+      </h2>
+
+      <p
+        class="section-subtitle"
+        data-i18n="projectSubtitle"
+      >
+        My background includes five years of hands-on ERP
+        implementation and delivery work, primarily with
+        Kingdee ERP products in China.
+      </p>
+
+
+      <div class="experience-list">
+
+        <article class="experience-item">
+
+          <h3 data-i18n="project1Title">
+            ERP Upgrade — German Pump Systems Company
+          </h3>
+
+          <p data-i18n="project1Text">
+            Supported a K3 to K3 Cloud upgrade for the
+            Tianjin subsidiary, including master data,
+            financial opening balances, business opening
+            data preparation, validation, and import.
+          </p>
+
+        </article>
+
+
+        <article class="experience-item">
+
+          <h3 data-i18n="project2Title">
+            Finance Cloud Migration — Japanese Steel Casting Company
+          </h3>
+
+          <p data-i18n="project2Text">
+            Supported the cloud upgrade of the financial
+            system and migrated historical financial voucher
+            data required for continuity after go-live.
+          </p>
+
+        </article>
+
+
+        <article class="experience-item">
+
+          <h3 data-i18n="project3Title">
+            Invoice System Field Mapping — US-owned Musical Instrument Company
+          </h3>
+
+          <p data-i18n="project3Text">
+            Designed and developed field mapping logic
+            between business and invoicing data to support
+            system integration and accurate data exchange.
+          </p>
+
+        </article>
+
+
+        <article class="experience-item">
+
+          <h3 data-i18n="project4Title">
+            Historical Finance Migration — Logistics Industry
+          </h3>
+
+          <p data-i18n="project4Text">
+            Performed large-volume historical financial
+            voucher migration, including projects involving
+            approximately 15 years of accounting records.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- SELECTED WORK -->
+    <section
+    id="portfolio"
+    class="section section-dark"
+    >
+    <div class="container">
+
+        <span
+        class="eyebrow"
+        data-i18n="portfolioEyebrow"
+        >
+        Selected Work
+        </span>
+
+        <h2
+        class="section-title"
+        data-i18n="portfolioTitle"
+        >
+        Selected tools and data projects
+        </h2>
+
+        <p
+        class="section-subtitle"
+        data-i18n="portfolioSubtitle"
+        >
+        A few examples of practical software tools,
+        data-processing utilities, and ERP-related work.
+        </p>
+
+
+        <div class="grid grid-2">
+
+        <!-- 01 EWSI -->
+        <article class="card portfolio-card">
+
+            <span class="service-number">
+            01
+            </span>
+
+            <h3 data-i18n="portfolio1Title">
+            EW SNAP IMAGERS
+            </h3>
+
+            <p data-i18n="portfolio1Text">
+            A Windows desktop utility for offline batch image
+            processing and delivery workflows.
+            </p>
+
+            <div class="portfolio-tags">
+            <span>Desktop App</span>
+            <span>Batch Processing</span>
+            <span>Offline</span>
+            </div>
+
+            <div class="portfolio-preview">
+            EWSI Screenshot
+            </div>
+
+        </article>
+
+
+        <!-- 02 Excel Tool -->
+        <article class="card portfolio-card">
+
+            <span class="service-number">
+            02
+            </span>
+
+            <h3 data-i18n="portfolio2Title">
+            Excel Merged Cell Cleanup
+            </h3>
+
+            <p data-i18n="portfolio2Text">
+            A batch-processing utility for unmerging cells,
+            extracting the first valid value, and filling
+            structured data across the original merged ranges.
+            </p>
+
+            <div class="portfolio-tags">
+            <span>Excel</span>
+            <span>Python</span>
+            <span>Data Cleaning</span>
+            </div>
+
+            <div class="portfolio-preview">
+            Before / After
+            </div>
+
+        </article>
+
+
+        <!-- 03 ERP Migration -->
+        <article class="card portfolio-card">
+
+            <span class="service-number">
+            03
+            </span>
+
+            <h3 data-i18n="portfolio3Title">
+            ERP Data Migration
+            </h3>
+
+            <p data-i18n="portfolio3Text">
+            Master data cleaning, field mapping, historical
+            data migration, validation, and import preparation
+            for ERP upgrade and implementation projects.
+            </p>
+
+            <div class="portfolio-tags">
+            <span>ERP</span>
+            <span>Migration</span>
+            <span>Data</span>
+            </div>
+
+            <div class="portfolio-preview">
+            ERP Migration Case
+            </div>
+
+        </article>
+
+
+        <!-- 04 Placeholder -->
+        <article class="card portfolio-card">
+
+            <span class="service-number">
+            04
+            </span>
+
+            <h3 data-i18n="portfolio4Title">
+            More Work Coming
+            </h3>
+
+            <p data-i18n="portfolio4Text">
+            Additional automation and data-processing examples
+            will be added as more work becomes suitable for
+            public demonstration.
+            </p>
+
+            <div class="portfolio-tags">
+            <span>Automation</span>
+            <span>Python</span>
+            <span>Data Processing</span>
+            </div>
+
+            <div class="portfolio-preview portfolio-empty">
+            More examples soon
+            </div>
+
+        </article>
+
+        </div>
+
+    </div>
+    </section>
+
+  <!-- PRICING -->
+  <section class="section section-dark">
+
+    <div class="container">
+
+      <span
+        class="eyebrow"
+        data-i18n="pricingEyebrow"
+      >
+        Pricing
+      </span>
+
+      <h2
+        class="section-title"
+        data-i18n="pricingTitle"
+      >
+        Flexible ways to work together
+      </h2>
+
+      <p
+        class="section-subtitle"
+        data-i18n="pricingSubtitle"
+      >
+        Small tasks, project work, and recurring support can
+        all be arranged depending on the type and frequency
+        of work.
+      </p>
+
+
+      <div class="grid grid-2">
+
+        <article class="pricing-card">
+
+          <h3 data-i18n="taskSupport">
+            Task / Project Support
+          </h3>
+
+          <div
+            class="price"
+            data-i18n="taskPrice"
+          >
+            From USD 15/hour
+          </div>
+
+          <p
+            class="price-note"
+            data-i18n="taskNote"
+          >
+            Suitable for one-off or occasional data-processing
+            and automation work.
+          </p>
+
+          <ul class="pricing-list">
+
+            <li data-i18n="taskItem1">
+              Excel and CSV processing
+            </li>
+
+            <li data-i18n="taskItem2">
+              ERP data preparation
+            </li>
+
+            <li data-i18n="taskItem3">
+              Field mapping
+            </li>
+
+            <li data-i18n="taskItem4">
+              Import file preparation
+            </li>
+
+            <li data-i18n="taskItem5">
+              Lightweight automation tasks
+            </li>
+
+          </ul>
+
+        </article>
+
+
+        <article class="pricing-card featured">
+
+          <h3 data-i18n="monthlySupport">
+            Monthly Asynchronous Support
+          </h3>
+
+          <div
+            class="price"
+            data-i18n="monthlyPrice"
+          >
+            USD 200/month
+          </div>
+
+          <p
+            class="price-note"
+            data-i18n="monthlyNote"
+          >
+            Introductory rate for the initial service period.
+          </p>
+
+          <ul class="pricing-list">
+
+            <li data-i18n="monthlyItem1">
+              Remote and asynchronous communication
+            </li>
+
+            <li data-i18n="monthlyItem2">
+              Suitable for recurring small data tasks
+            </li>
+
+            <li data-i18n="monthlyItem3">
+              Tasks can be assigned by email or text
+            </li>
+
+            <li data-i18n="monthlyItem4">
+              Initial pricing is based on reasonable use
+            </li>
+
+            <li data-i18n="monthlyItem5">
+              Renewal pricing may be adjusted based on actual workload,
+              complexity, and support requirements
+            </li>
+
+          </ul>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DATA SECURITY -->
+  <section class="section">
+
+    <div class="container">
+
+      <div class="security-box">
+
+        <div>
+
+          <span
+            class="eyebrow"
+            data-i18n="securityEyebrow"
+          >
+            Data Security
+          </span>
+
+          <h2
+            class="section-title"
+            data-i18n="securityTitle"
+          >
+            Your business data stays private
+          </h2>
+
+          <p
+            class="section-subtitle"
+            data-i18n="securitySubtitle"
+          >
+            Data security and confidentiality are treated as
+            part of the work, not as an optional extra.
+          </p>
+
+        </div>
+
+
+        <div class="security-list">
+
+          <div class="security-item">
+
+            <strong data-i18n="localTitle">
+              Local Processing
+            </strong>
+
+            <span data-i18n="localText">
+              Files are processed locally on my computer
+              unless another method is specifically agreed.
+            </span>
+
+          </div>
+
+
+          <div class="security-item">
+
+            <strong data-i18n="aiTitle">
+              No Generative AI Uploads
+            </strong>
+
+            <span data-i18n="aiText">
+              Client files are not uploaded to generative AI
+              services for processing.
+            </span>
+
+          </div>
+
+
+          <div class="security-item">
+
+            <strong data-i18n="reuseTitle">
+              No Data Reuse
+            </strong>
+
+            <span data-i18n="reuseText">
+              Client data is not reused for other projects,
+              training material, public demonstrations, or
+              portfolio content.
+            </span>
+
+          </div>
+
+
+          <div class="security-item">
+
+            <strong data-i18n="ndaTitle">
+              Confidentiality Friendly
+            </strong>
+
+            <span data-i18n="ndaText">
+              Anonymised data, confidentiality requirements,
+              and reasonable NDA arrangements are welcome.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section
+    id="contact"
+    class="section section-dark"
+  >
+
+    <div class="container">
+
+      <div class="contact-box">
+
+        <span
+          class="eyebrow"
+          data-i18n="contactEyebrow"
+        >
+          Contact
+        </span>
+
+        <h2
+          class="section-title"
+          data-i18n="contactTitle"
+        >
+          Have a data task that needs attention?
+        </h2>
+
+        <p data-i18n="contactText">
+          Send me a short description of the task, the type
+          of file or system involved, and the result you need.
+          I will review it and let you know whether I can help.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="mailto:jax.xiangjie.jia@gmail.com"
+          data-i18n="emailMe"
+        >
+          Email Me
+        </a>
+
+        <br />
+
+        <a
+          class="contact-email"
+          href="mailto:jax.xiangjie.jia@gmail.com"
+        >
+          jax.xiangjie.jia@gmail.com
+        </a>
+
+        <p
+          style="margin-top: 20px;"
+          data-i18n-html="signature"
+        >
+          Jax Jia<br />
+          ERP Data Preparation & Migration Support<br />
+          Tianjin, China
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div
+      class="container"
+      data-i18n="footerText"
+    >
+      © 2026 Jax Jia. Remote ERP data preparation and business data support.
+    </div>
+
+  </footer>
+
+
+  <script>
+    const translations = {
+
+      en: {
+
+        heroEyebrow:
+          "Remote ERP & Business Data Support",
+
+        heroTitle:
+          'Clean data.<br>Better <span>delivery.</span>',
+
+        heroLead:
+          "I help businesses and ERP implementation teams clean, restructure, migrate, and prepare Excel, CSV, master data, and other business data for system import, daily operations, and project delivery.",
+
+        experience:
+          "5 years of ERP implementation experience",
+
+        remote:
+          "Remote & asynchronous support",
+
+        location:
+          "Based in Tianjin, China",
+
+        contactMe:
+          "Contact Me",
+
+        viewServices:
+          "View Services",
+
+
+        servicesEyebrow:
+          "Services",
+
+        servicesTitle:
+          "Practical support for business data work",
+
+        servicesSubtitle:
+          "Support is available on a task-based, project-based, or recurring asynchronous basis.",
+
+        service1Title:
+          "ERP Data Preparation",
+
+        service1Text:
+          "Cleaning and organising customer, vendor, product, item, BOM, profit center, and other master or business data before migration or system import.",
+
+        service2Title:
+          "Excel & CSV Processing",
+
+        service2Text:
+          "Data cleaning, deduplication, merging, splitting, restructuring, field standardisation, format conversion, and batch processing.",
+
+        service3Title:
+          "Migration & Import Preparation",
+
+        service3Text:
+          "Legacy-to-target field mapping, import template preparation, historical data migration, exception checking, and pre-import validation.",
+
+        service4Title:
+          "Lightweight Automation",
+
+        service4Text:
+          "Small Python utilities, repetitive file-processing workflows, batch-processing scripts, and simple business-data automation.",
+
+
+        projectEyebrow:
+          "Project Experience",
+
+        projectTitle:
+          "ERP and core business data delivery experience",
+
+        projectSubtitle:
+          "My background includes five years of hands-on ERP implementation and delivery work, primarily with Kingdee ERP products in China.",
+
+        project1Title:
+          "ERP Upgrade — German Pump Systems Company",
+
+        project1Text:
+          "Supported a K3 to K3 Cloud upgrade for the Tianjin subsidiary, including master data, financial opening balances, business opening data preparation, validation, and import.",
+
+        project2Title:
+          "Finance Cloud Migration — Japanese Steel Casting Company",
+
+        project2Text:
+          "Supported the cloud upgrade of the financial system and migrated historical financial voucher data required for continuity after go-live.",
+
+        project3Title:
+          "Invoice System Field Mapping — US-owned Musical Instrument Company",
+
+        project3Text:
+          "Designed and developed field mapping logic between business and invoicing data to support system integration and accurate data exchange.",
+
+        project4Title:
+          "Historical Finance Migration — Logistics Industry",
+
+        project4Text:
+          "Performed large-volume historical financial voucher migration, including projects involving approximately 15 years of accounting records.",
+        portfolioEyebrow:
+          "Selected Work",
+
+        portfolioTitle:
+          "Selected tools and data projects",
+
+        portfolioSubtitle:
+          "A few examples of practical software tools, data-processing utilities, and ERP-related work.",
+
+        portfolio1Title:
+          "EW SNAP IMAGERS",
+
+        portfolio1Text:
+          "A Windows desktop utility for offline batch image processing and delivery workflows.",
+
+        portfolio2Title:
+          "Excel Merged Cell Cleanup",
+
+        portfolio2Text:
+          "A batch-processing utility for unmerging cells, extracting the first valid value, and filling structured data across the original merged ranges.",
+
+        portfolio3Title:
+          "ERP Data Migration",
+
+        portfolio3Text:
+          "Master data cleaning, field mapping, historical data migration, validation, and import preparation for ERP upgrade and implementation projects.",
+
+        portfolio4Title:
+          "More Work Coming",
+
+        portfolio4Text:
+          "Additional automation and data-processing examples will be added as more work becomes suitable for public demonstration.",
+
+        pricingEyebrow:
+          "Pricing",
+
+        pricingTitle:
+          "Flexible ways to work together",
+
+        pricingSubtitle:
+          "Small tasks, project work, and recurring support can all be arranged depending on the type and frequency of work.",
+
+        taskSupport:
+          "Task / Project Support",
+
+        taskPrice:
+          "From USD 15/hour",
+
+        taskNote:
+          "Suitable for one-off or occasional data-processing and automation work.",
+
+        taskItem1:
+          "Excel and CSV processing",
+
+        taskItem2:
+          "ERP data preparation",
+
+        taskItem3:
+          "Field mapping",
+
+        taskItem4:
+          "Import file preparation",
+
+        taskItem5:
+          "Lightweight automation tasks",
+
+        monthlySupport:
+          "Monthly Asynchronous Support",
+
+        monthlyPrice:
+          "USD 200/month",
+
+        monthlyNote:
+          "Introductory rate for the initial service period.",
+
+        monthlyItem1:
+          "Remote and asynchronous communication",
+
+        monthlyItem2:
+          "Suitable for recurring small data tasks",
+
+        monthlyItem3:
+          "Tasks can be assigned by email or text",
+
+        monthlyItem4:
+          "Initial pricing is based on reasonable use",
+
+        monthlyItem5:
+          "Renewal pricing may be adjusted based on actual workload, complexity, and support requirements",
+
+
+        securityEyebrow:
+          "Data Security",
+
+        securityTitle:
+          "Your business data stays private",
+
+        securitySubtitle:
+          "Data security and confidentiality are treated as part of the work, not as an optional extra.",
+
+        localTitle:
+          "Local Processing",
+
+        localText:
+          "Files are processed locally on my computer unless another method is specifically agreed.",
+
+        aiTitle:
+          "No Generative AI Uploads",
+
+        aiText:
+          "Client files are not uploaded to generative AI services for processing.",
+
+        reuseTitle:
+          "No Data Reuse",
+
+        reuseText:
+          "Client data is not reused for other projects, training material, public demonstrations, or portfolio content.",
+
+        ndaTitle:
+          "Confidentiality Friendly",
+
+        ndaText:
+          "Anonymised data, confidentiality requirements, and reasonable NDA arrangements are welcome.",
+
+
+        contactEyebrow:
+          "Contact",
+
+        contactTitle:
+          "Have a data task that needs attention?",
+
+        contactText:
+          "Send me a short description of the task, the type of file or system involved, and the result you need. I will review it and let you know whether I can help.",
+
+        emailMe:
+          "Email Me",
+
+        signature:
+          "Jax Jia<br>ERP Data Preparation & Migration Support<br>Tianjin, China",
+
+        footerText:
+          "© 2026 Jax Jia. Remote ERP data preparation and business data support."
+      },
+
+
+      zh: {
+
+        heroEyebrow:
+          "远程 ERP 与企业数据支持",
+
+        heroTitle:
+          '整理数据。<br>更好地完成<span>交付。</span>',
+
+        heroLead:
+          "我为企业及 ERP 实施团队提供 Excel、CSV、主数据及其他业务数据的清洗、整理、迁移和导入准备支持，用于系统上线、日常运营及项目交付。",
+
+        experience:
+          "5 年 ERP 实施交付经验",
+
+        remote:
+          "远程 · 异步协作",
+
+        location:
+          "中国天津",
+
+        contactMe:
+          "联系我",
+
+        viewServices:
+          "查看服务",
+
+
+        servicesEyebrow:
+          "服务范围",
+
+        servicesTitle:
+          "面向实际业务的数据处理支持",
+
+        servicesSubtitle:
+          "可按任务、按项目或以长期异步支持的方式进行合作。",
+
+        service1Title:
+          "ERP 数据准备",
+
+        service1Text:
+          "协助整理和清洗客户、供应商、物料、BOM、利润中心以及其他主数据或业务数据，为数据迁移和系统导入做好准备。",
+
+        service2Title:
+          "Excel 与 CSV 数据处理",
+
+        service2Text:
+          "包括数据清洗、去重、合并、拆分、结构调整、字段标准化、格式转换以及批量处理。",
+
+        service3Title:
+          "数据迁移与导入准备",
+
+        service3Text:
+          "包括旧系统与目标系统字段映射、导入模板整理、历史数据迁移、异常数据检查及导入前验证。",
+
+        service4Title:
+          "轻量自动化",
+
+        service4Text:
+          "开发小型 Python 工具、批量文件处理脚本，以及用于重复性业务数据处理的简单自动化工具。",
+
+
+        projectEyebrow:
+          "项目经验",
+
+        projectTitle:
+          "ERP 与企业核心数据交付经验",
+
+        projectSubtitle:
+          "拥有 5 年 ERP 一线实施及交付经验，主要参与中国市场的金蝶 ERP 项目。",
+
+        project1Title:
+          "ERP 升级 — 德国背景泵系统企业",
+
+        project1Text:
+          "参与天津公司的 K3 → K3 Cloud 升级，负责主数据、财务期初、业务期初的数据整理、检查及导入。",
+
+        project2Title:
+          "财务系统云端升级 — 日本铸钢企业",
+
+        project2Text:
+          "参与财务系统云端化升级，并完成上线所需的历史财务凭证数据迁移。",
+
+        project3Title:
+          "开票系统字段映射 — 美国背景乐器企业",
+
+        project3Text:
+          "设计并开发业务数据与开票系统之间的字段映射逻辑，用于系统集成及数据准确交换。",
+
+        project4Title:
+          "历史财务数据迁移 — 物流行业",
+
+        project4Text:
+          "参与大规模历史财务凭证迁移，其中部分项目涉及约 15 年的历史会计数据。",
+
+        portfolioEyebrow:
+          "部分作品",
+
+        portfolioTitle:
+          "工具与数据项目案例",
+
+        portfolioSubtitle:
+          "部分软件工具、数据处理工具及 ERP 相关工作的展示。",
+
+        portfolio1Title:
+          "EW SNAP IMAGERS",
+
+        portfolio1Text:
+          "一款用于离线批量图片处理及客户交付流程的 Windows 桌面工具。",
+
+        portfolio2Title:
+          "Excel 合并单元格批量清理工具",
+
+        portfolio2Text:
+          "用于批量解除合并单元格、提取首个有效值，并将数据回填至原合并区域的处理工具。",
+
+        portfolio3Title:
+          "ERP 数据迁移",
+
+        portfolio3Text:
+          "用于 ERP 上线及升级项目中的主数据清洗、字段映射、历史数据迁移、数据校验及导入准备。",
+
+        portfolio4Title:
+          "更多作品",
+
+        portfolio4Text:
+          "后续将继续增加适合公开展示的自动化及数据处理案例。",
+        pricingEyebrow:
+          "合作方式",
+
+        pricingTitle:
+          "灵活的合作模式",
+
+        pricingSubtitle:
+          "无论是一次性任务、项目工作还是长期支持，都可以根据实际需求安排。",
+
+        taskSupport:
+          "按任务 / 按项目",
+
+        taskPrice:
+          "USD 15/小时起",
+
+        taskNote:
+          "适用于一次性或偶发的数据处理及自动化任务。",
+
+        taskItem1:
+          "Excel 和 CSV 数据处理",
+
+        taskItem2:
+          "ERP 数据准备",
+
+        taskItem3:
+          "字段映射",
+
+        taskItem4:
+          "导入文件准备",
+
+        taskItem5:
+          "轻量自动化任务",
+
+        monthlySupport:
+          "包月异步支持",
+
+        monthlyPrice:
+          "USD 200/月",
+
+        monthlyNote:
+          "首次服务周期统一采用该体验价格。",
+
+        monthlyItem1:
+          "远程及异步沟通",
+
+        monthlyItem2:
+          "适合持续出现的小型数据任务",
+
+        monthlyItem3:
+          "可通过邮件或文字方式分配任务",
+
+        monthlyItem4:
+          "首次合作期间按合理使用原则提供支持",
+
+        monthlyItem5:
+          "续约价格将根据实际任务量、复杂度和支持需求重新评估",
+
+
+        securityEyebrow:
+          "数据安全",
+
+        securityTitle:
+          "您的业务数据保持私密",
+
+        securitySubtitle:
+          "数据安全和保密是服务的一部分，而不是额外选项。",
+
+        localTitle:
+          "本地处理",
+
+        localText:
+          "除非双方另有约定，客户文件均在我的本地计算机环境中处理。",
+
+        aiTitle:
+          "不上传生成式 AI",
+
+        aiText:
+          "客户提供的数据文件不会上传至生成式 AI 服务进行处理。",
+
+        reuseTitle:
+          "不复用客户数据",
+
+        reuseText:
+          "客户数据不会用于其他项目、训练资料、公开展示或作品集。",
+
+        ndaTitle:
+          "支持保密要求",
+
+        ndaText:
+          "可以使用脱敏数据，并愿意遵守合理的保密要求及 NDA。",
+
+
+        contactEyebrow:
+          "联系",
+
+        contactTitle:
+          "有数据任务需要处理？",
+
+        contactText:
+          "您可以通过邮件简单说明任务内容、涉及的文件或系统以及需要的最终结果，我会先进行评估并确认是否能够协助。",
+
+        emailMe:
+          "发送邮件",
+
+        signature:
+          "Jax Jia<br>ERP 数据准备与迁移支持<br>中国天津",
+
+        footerText:
+          "© 2026 Jax Jia · 远程 ERP 数据准备与企业数据支持"
+      }
+
+    };
+
+
+    function setLanguage(lang) {
+
+      const langData = translations[lang];
+
+      if (!langData) {
+        return;
+      }
+
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+          const key = element.dataset.i18n;
+
+          if (langData[key] !== undefined) {
+            element.textContent = langData[key];
+          }
+
+        });
+
+
+      document
+        .querySelectorAll("[data-i18n-html]")
+        .forEach(element => {
+
+          const key = element.dataset.i18nHtml;
+
+          if (langData[key] !== undefined) {
+            element.innerHTML = langData[key];
+          }
+
+        });
+
+
+      document
+        .getElementById("lang-en")
+        .classList
+        .toggle(
+          "active",
+          lang === "en"
+        );
+
+
+      document
+        .getElementById("lang-zh")
+        .classList
+        .toggle(
+          "active",
+          lang === "zh"
+        );
+
+
+      document.documentElement.lang =
+        lang === "zh"
+          ? "zh-CN"
+          : "en";
+
+
+      localStorage.setItem(
+        "preferredLanguage",
+        lang
+      );
+
+    }
+
+
+    const savedLanguage =
+      localStorage.getItem("preferredLanguage")
+      || "en";
+
+
+    setLanguage(savedLanguage);
+
+  </script>
+
+</body>
+</html>
