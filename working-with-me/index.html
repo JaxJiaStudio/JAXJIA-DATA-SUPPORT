@@ -1,1 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Working with Jax Jia — one-off technical support, monthly support, pricing, payment, time tracking, after-sales support and project rules."
+  />
+
+  <title>Working With Me | Jax Jia</title>
+
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* =========================================================
+       WORKING WITH ME PAGE ONLY
+    ========================================================= */
+
+    .workwith-hero {
+      position: relative;
+      padding: 96px 0 78px;
+      overflow: hidden;
+    }
+
+    .workwith-hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: -280px;
+      right: -200px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(246, 183, 60, 0.12),
+          rgba(246, 183, 60, 0.025) 42%,
+          transparent 72%
+        );
+      pointer-events: none;
+    }
+
+    .workwith-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+    }
+
+    .workwith-hero-title {
+      margin: 0 0 28px;
+      font-size: clamp(50px, 6vw, 82px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 850;
+    }
+
+    .workwith-hero-title .accent {
+      color: var(--accent);
+    }
+
+    .workwith-hero-lead {
+      max-width: 830px;
+      margin: 0;
+      color: #cad4df;
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.8;
+    }
+
+    /* Mobile / small-screen index.
+       Desktop uses the left fixed navigation from styles.css. */
+    .workwith-index {
+      display: none;
+      padding: 24px 0 38px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.012);
+    }
+
+    .workwith-index-inner {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .workwith-index a {
+      flex: 0 0 auto;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-soft);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .workwith-index a:hover {
+      color: var(--accent);
+      border-color: var(--accent-border);
+      background: var(--accent-soft);
+    }
+
+    .workwith-section {
+      padding: 92px 0;
+    }
+
+    .workwith-section-soft {
+      background: rgba(255, 255, 255, 0.018);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .workwith-copy {
+      max-width: 920px;
+    }
+
+    .workwith-copy p {
+      margin: 0 0 18px;
+      color: var(--text-soft);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .workwith-copy .workwith-lead {
+      color: var(--text);
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .workwith-copy .workwith-highlight {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .workwith-callout {
+      max-width: 960px;
+      margin-top: 34px;
+      padding: 24px 28px;
+      border: 1px solid var(--accent-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(246, 183, 60, 0.08),
+          rgba(255, 255, 255, 0.018)
+        );
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 750;
+      line-height: 1.75;
+    }
+
+    .workwith-offer-card {
+      max-width: 860px;
+      margin-top: 34px;
+      padding: 30px;
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.09),
+          rgba(255, 255, 255, 0.018)
+        );
+    }
+
+    .workwith-offer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 26px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .workwith-offer-row:last-child {
+      border-bottom: 0;
+    }
+
+    .workwith-offer-row span {
+      color: var(--text-soft);
+    }
+
+    .workwith-offer-row strong {
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .workwith-list {
+      display: grid;
+      gap: 11px;
+      max-width: 950px;
+      margin-top: 28px;
+    }
+
+    .workwith-list-item {
+      padding: 15px 18px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.018);
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .workwith-payment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 36px;
+    }
+
+    .workwith-payment-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .workwith-payment-card-featured {
+      border-color: var(--accent-border);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.07),
+          rgba(255, 255, 255, 0.018)
+        );
+    }
+
+    .workwith-card-label,
+    .workwith-comparison-label,
+    .workwith-plan-label {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .workwith-payment-card h3,
+    .workwith-comparison-card h3 {
+      margin: 0 0 18px;
+      font-size: 23px;
+    }
+
+    .workwith-payment-card p {
+      margin: 0 0 14px;
+      color: var(--text-soft);
+      line-height: 1.75;
+    }
+
+    .workwith-equation {
+      margin: 20px 0;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: rgba(0, 0, 0, 0.12);
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .workwith-plan-card {
+      max-width: 820px;
+      margin-top: 36px;
+      padding: clamp(30px, 5vw, 48px);
+      border: 1px solid var(--accent-border);
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.09),
+          rgba(255, 255, 255, 0.018)
+        );
+    }
+
+    .workwith-price {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 12px 0 22px;
+    }
+
+    .workwith-price-currency {
+      color: var(--text-soft);
+      font-weight: 700;
+    }
+
+    .workwith-price-number {
+      font-size: clamp(62px, 8vw, 92px);
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: -0.06em;
+    }
+
+    .workwith-price-period {
+      color: var(--text-soft);
+    }
+
+    .workwith-plan-hours {
+      margin-top: 12px;
+      color: var(--text);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .workwith-comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 38px;
+    }
+
+    .workwith-comparison-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .workwith-comparison-card-featured {
+      border-color: var(--accent-border);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.09),
+          rgba(255, 255, 255, 0.02)
+        );
+    }
+
+    .workwith-comparison-card ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text-soft);
+    }
+
+    .workwith-comparison-card li {
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .workwith-example {
+      max-width: 760px;
+      margin-top: 34px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .workwith-example h3 {
+      margin: 0 0 16px;
+    }
+
+    .workwith-example-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-soft);
+    }
+
+    .workwith-example-row strong {
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .workwith-example-total {
+      margin-top: 15px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .workwith-support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .workwith-support-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .workwith-support-card-featured {
+      border-color: var(--accent-border);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.07),
+          rgba(255, 255, 255, 0.018)
+        );
+    }
+
+    .workwith-support-card h3 {
+      margin: 0 0 14px;
+      font-size: 23px;
+    }
+
+    .workwith-support-card p {
+      margin: 0 0 14px;
+      color: var(--text-soft);
+      line-height: 1.78;
+    }
+
+    .workwith-contact {
+      padding: 90px 0 110px;
+    }
+
+    .workwith-contact-box {
+      padding: clamp(36px, 6vw, 68px);
+      border: 1px solid var(--accent-border);
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          circle at 82% 10%,
+          rgba(246, 183, 60, 0.09),
+          transparent 42%
+        ),
+        rgba(255, 255, 255, 0.018);
+      text-align: center;
+    }
+
+    .workwith-contact-box h2 {
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .workwith-contact-box p {
+      max-width: 720px;
+      margin: 22px auto 30px;
+      color: var(--text-soft);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1180px) {
+      .workwith-index {
+        display: block;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .workwith-payment-grid,
+      .workwith-comparison-grid,
+      .workwith-support-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .workwith-hero {
+        padding: 72px 0 66px;
+      }
+
+      .workwith-section {
+        padding: 72px 0;
+      }
+
+      .workwith-offer-row,
+      .workwith-example-row {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body class="has-side-nav">
+
+  <div id="top"></div>
+
+  <!-- =========================================================
+       NEW CLIENT OFFER
+  ========================================================== -->
+
+  <div class="offer-bar">
+    <a href="#offer" class="offer-link">
+      <div class="offer-track">
+        <span data-i18n="offerBanner">
+          New Client Offer — First data-processing task from USD 5 · Available through December 31, 2026
+        </span>
+
+        <span class="offer-details" data-i18n="offerDetails">
+          View Details →
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================== -->
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <nav class="main-nav">
+        <a href="../index.html#home" data-i18n="navHome">Home</a>
+        <a href="../index.html#services" data-i18n="navServices">What I Can Help With</a>
+        <a href="../index.html#work" data-i18n="navWork">Selected Work</a>
+        <a href="../index.html#pricing" data-i18n="navPricing">How It Works</a>
+        <a href="../working-with-me/index.html" data-i18n="navPricingSupport">Pricing & Support</a>
+        <a href="../index.html#security" data-i18n="navSecurity">Data Security</a>
+        <a href="mailto:jax.xiangjie.jia@gmail.com" data-i18n="navContact">Contact</a>
+        <a href="../about-me/index.html" data-i18n="navAbout">About Me</a>
+      </nav>
+
+      <div class="language-switch">
+        <button class="lang-button active" type="button" data-lang="en">EN</button>
+        <button class="lang-button" type="button" data-lang="zh">ZH</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =========================================================
+       LEFT PAGE NAVIGATION
+  ========================================================== -->
+
+  <aside class="page-side-nav">
+    <div class="page-side-nav-title" data-i18n="sideNavTitle">
+      Working With Me
+    </div>
+
+    <nav class="page-side-nav-links">
+      <a href="#offer" data-i18n="sideOffer">01 · New Client Offer</a>
+      <a href="#one-off" data-i18n="sideOneOff">02 · One-Off Support</a>
+      <a href="#one-off-payment" data-i18n="sidePayment">03 · Payment</a>
+      <a href="#scope-change" data-i18n="sideScope">04 · Scope Changes</a>
+      <a href="#monthly-plan" data-i18n="sideMonthly">05 · Monthly Plan</a>
+      <a href="#value-comparison" data-i18n="sideComparison">06 · Why This Model</a>
+      <a href="#monthly-hours" data-i18n="sideHours">07 · Using 40 Hours</a>
+      <a href="#time-tracking" data-i18n="sideTracking">08 · Time Tracking</a>
+      <a href="#extra-hours" data-i18n="sideExtra">09 · Extra Hours</a>
+      <a href="#unused-hours" data-i18n="sideUnused">10 · Unused Hours</a>
+      <a href="#third-party-costs" data-i18n="sideCosts">11 · Third-Party Costs</a>
+      <a href="#separate-projects" data-i18n="sideProjects">12 · Separate Projects</a>
+      <a href="#security" data-i18n="sideSecurity">13 · Data Security</a>
+      <a href="#working-style" data-i18n="sideStyle">14 · How I Work</a>
+      <a href="#after-sales" data-i18n="sideAfterSales">15 · After-Sales</a>
+      <a href="#contact" data-i18n="sideContact">16 · Contact</a>
+    </nav>
+  </aside>
+
+  <!-- =========================================================
+       RIGHT QUICK ACTIONS
+  ========================================================== -->
+
+  <div class="quick-actions">
+    <a class="quick-action" href="mailto:jax.xiangjie.jia@gmail.com">
+      <span class="quick-action-icon">✉</span>
+      <span data-i18n="quickContact">Contact Me</span>
+    </a>
+
+    <a class="quick-action" href="#top">
+      <span class="quick-action-icon">↑</span>
+      <span data-i18n="quickTop">Back to Top</span>
+    </a>
+  </div>
+
+  <main>
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="workwith-hero">
+      <div class="workwith-hero-glow"></div>
+
+      <div class="container">
+        <div class="workwith-hero-content">
+
+          <div class="eyebrow" data-i18n="heroEyebrow">
+            Working With Me
+          </div>
+
+          <h1 class="workwith-hero-title">
+            <span data-i18n="heroTitle1">Simple ways</span>
+            <br />
+            <span class="accent" data-i18n="heroTitle2">to work together.</span>
+          </h1>
+
+          <p class="workwith-hero-lead" data-i18n="heroLead">
+            You do not need to decide whether your problem belongs to data, automation, Excel, lightweight tools or business-system data. Tell me what is wrong and what result you want.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         MOBILE / SMALL-SCREEN INDEX
+    ========================================================== -->
+
+    <nav class="workwith-index">
+      <div class="container workwith-index-inner">
+        <a href="#offer" data-i18n="indexOffer">New Client Offer</a>
+        <a href="#one-off" data-i18n="indexOneOff">One-Off Support</a>
+        <a href="#one-off-payment" data-i18n="indexPayment">Payment</a>
+        <a href="#scope-change" data-i18n="indexScope">Scope Changes</a>
+        <a href="#monthly-plan" data-i18n="indexMonthly">Monthly Plan</a>
+        <a href="#value-comparison" data-i18n="indexComparison">Why This Model</a>
+        <a href="#monthly-hours" data-i18n="indexHours">40 Hours</a>
+        <a href="#time-tracking" data-i18n="indexTracking">Time Tracking</a>
+        <a href="#extra-hours" data-i18n="indexExtra">Extra Hours</a>
+        <a href="#unused-hours" data-i18n="indexUnused">Unused Hours</a>
+        <a href="#third-party-costs" data-i18n="indexCosts">External Costs</a>
+        <a href="#separate-projects" data-i18n="indexProjects">Separate Projects</a>
+        <a href="#security" data-i18n="indexSecurity">Data Security</a>
+        <a href="#working-style" data-i18n="indexStyle">How I Work</a>
+        <a href="#after-sales" data-i18n="indexAfterSales">After-Sales</a>
+        <a href="#contact" data-i18n="indexContact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- =========================================================
+         01 NEW CLIENT OFFER
+    ========================================================== -->
+
+    <section id="offer" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="offerEyebrow">
+            01 · New Client Offer
+          </div>
+
+          <h2 class="section-title" data-i18n="offerTitle">
+            Start with a small task.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="offerSubtitle">
+            Before December 31, 2026, first-time clients can try a simple data-processing task at a fixed introductory price.
+          </p>
+        </div>
+
+        <div class="workwith-offer-card">
+          <div class="workwith-offer-row">
+            <span data-i18n="offerTier1">Up to 50,000 rows</span>
+            <strong>USD 5</strong>
+          </div>
+
+          <div class="workwith-offer-row">
+            <span data-i18n="offerTier2">50,001–100,000 rows</span>
+            <strong>USD 10</strong>
+          </div>
+
+          <div class="workwith-offer-row">
+            <span data-i18n="offerTier3">Each additional 50,000 rows</span>
+            <strong data-i18n="offerTier3Price">+ USD 5</strong>
+          </div>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 30px;">
+          <p data-i18n="offerP1">
+            This offer is intended for straightforward data-processing work such as Excel, CSV or TXT cleaning, deduplication, merging, splitting, batch formatting, field cleanup, standardisation, information extraction and preparing data to a defined template.
+          </p>
+
+          <p data-i18n="offerP2">
+            The default file limit is 30 files. If you have multiple files, please package them into a ZIP file where practical.
+          </p>
+
+          <p data-i18n="offerP3">
+            If the task is clearly beyond ordinary data processing, I will tell you before starting and we can choose a more suitable way to work.
+          </p>
+        </div>
+
+        <div class="workwith-callout" data-i18n="offerQuote">
+          The idea is simple: start with a small task and see whether working together makes sense.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         02 ONE-OFF SUPPORT
+    ========================================================== -->
+
+    <section id="one-off" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="oneOffEyebrow">
+            02 · One-Off Support
+          </div>
+
+          <h2 class="section-title" data-i18n="oneOffTitle">
+            Occasional task? No monthly commitment required.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="oneOffSubtitle">
+            Standard one-off work is USD 15 per hour.
+          </p>
+        </div>
+
+        <div class="workwith-plan-card">
+          <div class="workwith-plan-label" data-i18n="oneOffLabel">
+            One-Off Support
+          </div>
+
+          <div class="workwith-price">
+            <span class="workwith-price-currency">USD</span>
+            <span class="workwith-price-number">15</span>
+            <span class="workwith-price-period" data-i18n="perHour">/ hour</span>
+          </div>
+        </div>
+
+        <div class="workwith-list">
+          <div class="workwith-list-item" data-i18n="oneOff1">
+            Data processing and Excel automation
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff2">
+            Python batch-processing utilities
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff3">
+            Workflow automation and app integration
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff4">
+            Notion, Google Workspace and Google Apps Script
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff5">
+            APIs, webhooks, browser extensions and lightweight desktop tools
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff6">
+            Static landing pages
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff7">
+            Commercial business-system data preparation and import support
+          </div>
+
+          <div class="workwith-list-item" data-i18n="oneOff8">
+            Other lightweight technical tasks that are not explicitly listed but are reasonably within my capabilities
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         03 PAYMENT
+    ========================================================== -->
+
+    <section id="one-off-payment" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="paymentEyebrow">
+            03 · One-Off Payment
+          </div>
+
+          <h2 class="section-title" data-i18n="paymentTitle">
+            Two ways to handle payment.
+          </h2>
+        </div>
+
+        <div class="workwith-payment-grid">
+
+          <article class="workwith-payment-card workwith-payment-card-featured">
+            <div class="workwith-card-label" data-i18n="paymentALabel">
+              Option A
+            </div>
+
+            <h3 data-i18n="paymentATitle">
+              Pay the full estimated amount upfront
+            </h3>
+
+            <p data-i18n="paymentA1">
+              If I estimate a task at 3 hours, the expected fee is:
+            </p>
+
+            <div class="workwith-equation">
+              3 × USD 15 = USD 45
+            </div>
+
+            <p data-i18n="paymentA2">
+              If the agreed scope does not change, but the task takes longer because my estimate was wrong, you do not pay extra for my estimating mistake.
+            </p>
+
+            <p data-i18n="paymentA3">
+              If you trust my estimate enough to pay the full amount upfront, I should take responsibility for that estimate.
+            </p>
+          </article>
+
+          <article class="workwith-payment-card">
+            <div class="workwith-card-label" data-i18n="paymentBLabel">
+              Option B
+            </div>
+
+            <h3 data-i18n="paymentBTitle">
+              Pay 50% of the estimated amount first
+            </h3>
+
+            <p data-i18n="paymentB1">
+              If a 3-hour task is estimated at USD 45, the initial payment is:
+            </p>
+
+            <div class="workwith-equation">
+              USD 45 × 50% = USD 22.50
+            </div>
+
+            <p data-i18n="paymentB2">
+              With this option, the final fee is based on actual working time.
+            </p>
+
+            <p data-i18n="paymentB3">
+              If the task ultimately takes 5 hours, the total is USD 75. After deducting the USD 22.50 deposit, the remaining balance is USD 52.50.
+            </p>
+
+            <p data-i18n="paymentB4">
+              Final files, source code or other complete deliverables are released after the remaining balance is paid.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="workwith-callout" data-i18n="paymentQuote">
+          Trust works both ways.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         04 SCOPE CHANGES
+    ========================================================== -->
+
+    <section id="scope-change" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="scopeEyebrow">
+            04 · Scope Changes
+          </div>
+
+          <h2 class="section-title" data-i18n="scopeTitle">
+            Estimates are based on the agreed scope.
+          </h2>
+        </div>
+
+        <div class="workwith-copy">
+          <p data-i18n="scopeP1">
+            If the requirements change after work begins, the original estimate may no longer apply.
+          </p>
+        </div>
+
+        <div class="workwith-list">
+          <div class="workwith-list-item" data-i18n="scope1">Adding new functions</div>
+          <div class="workwith-list-item" data-i18n="scope2">Expanding the amount or type of data</div>
+          <div class="workwith-list-item" data-i18n="scope3">Changing the required output format</div>
+          <div class="workwith-list-item" data-i18n="scope4">Adding a new third-party system or integration</div>
+          <div class="workwith-list-item" data-i18n="scope5">Adding workflows that were not part of the original requirement</div>
+          <div class="workwith-list-item" data-i18n="scope6">Expanding a small tool into a much larger system</div>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 28px;">
+          <p data-i18n="scopeP2">
+            I will explain the likely additional work before continuing.
+          </p>
+
+          <p data-i18n="scopeP3">
+            If the requirements have not changed and the problem is simply my own estimate or implementation mistake, I do not treat that as a customer scope change.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         05 MONTHLY PLAN
+    ========================================================== -->
+
+    <section id="monthly-plan" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="monthlyEyebrow">
+            05 · Monthly Technical Support
+          </div>
+
+          <h2 class="section-title" data-i18n="monthlyTitle">
+            For businesses with recurring small technical tasks.
+          </h2>
+        </div>
+
+        <div class="workwith-plan-card">
+          <div class="workwith-plan-label" data-i18n="monthlyLabel">
+            Monthly Technical Support
+          </div>
+
+          <div class="workwith-price">
+            <span class="workwith-price-currency">USD</span>
+            <span class="workwith-price-number">300</span>
+            <span class="workwith-price-period" data-i18n="perMonth">/ month</span>
+          </div>
+
+          <div class="workwith-plan-hours" data-i18n="monthlyHours">
+            Up to 40 task hours per month
+          </div>
+
+          <p
+            style="margin: 20px 0 0; color: var(--text-soft); line-height: 1.8;"
+            data-i18n="monthlyRate"
+          >
+            If all 40 hours are used, the effective rate is USD 7.50 per hour.
+          </p>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 34px;">
+          <p data-i18n="monthlyP1">
+            Your monthly task hours can be used across my service areas. They are not divided into separate service packages.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         06 VALUE COMPARISON
+    ========================================================== -->
+
+    <section id="value-comparison" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="comparisonEyebrow">
+            06 · Why This Model
+          </div>
+
+          <h2 class="section-title" data-i18n="comparisonTitle">
+            Why can this make sense for a small business?
+          </h2>
+
+          <p class="section-subtitle" data-i18n="comparisonSubtitle">
+            These are not equivalent options. The real question is whether your business has enough continuous technical work to justify a full-time position.
+          </p>
+        </div>
+
+        <div class="workwith-comparison-grid">
+
+          <article class="workwith-comparison-card">
+            <div class="workwith-comparison-label" data-i18n="compare1Label">
+              Full-Time Employee
+            </div>
+
+            <h3 data-i18n="compare1Title">
+              Full-time technical role
+            </h3>
+
+            <ul>
+              <li data-i18n="compare1A">Fixed salary and long-term employment costs</li>
+              <li data-i18n="compare1B">Makes sense when there is steady, continuous work</li>
+              <li data-i18n="compare1C">The cost remains even during quieter periods</li>
+              <li data-i18n="compare1D">Better suited to businesses with high-frequency technical needs</li>
+            </ul>
+          </article>
+
+          <article class="workwith-comparison-card">
+            <div class="workwith-comparison-label" data-i18n="compare2Label">
+              One-Off Freelancer
+            </div>
+
+            <h3 data-i18n="compare2Title">
+              Find someone each time
+            </h3>
+
+            <ul>
+              <li data-i18n="compare2A">Search for the right person again</li>
+              <li data-i18n="compare2B">Re-explain your files, workflow and business context</li>
+              <li data-i18n="compare2C">Different people may work and deliver in different ways</li>
+              <li data-i18n="compare2D">Useful for truly occasional, isolated tasks</li>
+            </ul>
+          </article>
+
+          <article class="workwith-comparison-card workwith-comparison-card-featured">
+            <div class="workwith-comparison-label" data-i18n="compare3Label">
+              Monthly Technical Support
+            </div>
+
+            <h3 data-i18n="compare3Title">
+              Keep one technical contact
+            </h3>
+
+            <ul>
+              <li data-i18n="compare3A">USD 300 per month for up to 40 task hours</li>
+              <li data-i18n="compare3B">Data, automation, Excel, lightweight tools and system-data work can share the same hours</li>
+              <li data-i18n="compare3C">The same person gradually learns your tools, files and workflow</li>
+              <li data-i18n="compare3D">Designed for technical work that is recurring but not enough to justify a full-time role</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <div class="workwith-callout" data-i18n="comparisonQuote">
+          Monthly support is not a replacement for a full-time employee. It is for businesses that have recurring technical work, but not necessarily enough of it to justify a full-time technical position.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         07 MONTHLY HOURS
+    ========================================================== -->
+
+    <section id="monthly-hours" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="hoursEyebrow">
+            07 · Using the 40 Hours
+          </div>
+
+          <h2 class="section-title" data-i18n="hoursTitle">
+            Use the hours where you actually need them.
+          </h2>
+        </div>
+
+        <div class="workwith-list">
+          <div class="workwith-list-item" data-i18n="hours1">Data processing and Excel automation</div>
+          <div class="workwith-list-item" data-i18n="hours2">Workflow automation and app integration</div>
+          <div class="workwith-list-item" data-i18n="hours3">Lightweight tools and web development</div>
+          <div class="workwith-list-item" data-i18n="hours4">Commercial business-system data preparation and import support</div>
+          <div class="workwith-list-item" data-i18n="hours5">Other related tasks I can reasonably solve</div>
+        </div>
+
+        <div class="workwith-example">
+          <h3 data-i18n="exampleTitle">Example month</h3>
+
+          <div class="workwith-example-row">
+            <span data-i18n="example1">Excel data cleanup</span>
+            <strong>3h</strong>
+          </div>
+
+          <div class="workwith-example-row">
+            <span data-i18n="example2">Notion → Google Sheets automation</span>
+            <strong>6h</strong>
+          </div>
+
+          <div class="workwith-example-row">
+            <span data-i18n="example3">Small internal tool</span>
+            <strong>8h</strong>
+          </div>
+
+          <div class="workwith-example-row">
+            <span data-i18n="example4">Business-system import data</span>
+            <strong>4h</strong>
+          </div>
+
+          <div class="workwith-example-total" data-i18n="exampleTotal">
+            Total used: 21h · Remaining: 19h
+          </div>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 30px;">
+          <p data-i18n="hoursP1">
+            After each completed task, I will tell you the time used for that task, the total time used during the month and the remaining monthly balance.
+          </p>
+
+          <p data-i18n="hoursP2">
+            If a task is expected to use a significant amount of time, I will estimate it before starting.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         08 TIME TRACKING
+    ========================================================== -->
+
+    <section id="time-tracking" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="trackingEyebrow">
+            08 · Time Tracking
+          </div>
+
+          <h2 class="section-title" data-i18n="trackingTitle">
+            I charge for doing your work, not for learning something new.
+          </h2>
+        </div>
+
+        <div class="workwith-copy">
+          <p data-i18n="trackingP1">
+            Task time is based on the actual time used to complete your work. The minimum time unit is 10 minutes.
+          </p>
+
+          <p data-i18n="trackingP2">
+            Analysis, processing, development, testing and delivery that are directly related to your task count as task time.
+          </p>
+
+          <p data-i18n="trackingP3">
+            Pure waiting time, my own general learning time, and rework caused by my own mistakes are not charged to your task hours.
+          </p>
+        </div>
+
+        <div class="workwith-callout" data-i18n="trackingQuote">
+          You are paying for the time I spend completing your work, not for the time I spend learning something new.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         09 EXTRA HOURS
+    ========================================================== -->
+
+    <section id="extra-hours" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="extraEyebrow">
+            09 · Extra Hours
+          </div>
+
+          <h2 class="section-title" data-i18n="extraTitle">
+            What happens after 40 hours?
+          </h2>
+        </div>
+
+        <div class="workwith-plan-card">
+          <div class="workwith-plan-label" data-i18n="extraLabel">
+            Additional Monthly Task Hours
+          </div>
+
+          <div class="workwith-price">
+            <span class="workwith-price-currency">USD</span>
+            <span class="workwith-price-number">10</span>
+            <span class="workwith-price-period" data-i18n="perHour">/ hour</span>
+          </div>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 32px;">
+          <p data-i18n="extraP1">
+            If an active task only goes slightly beyond the remaining monthly balance, I will normally finish and deliver it first, then provide the task hours, monthly total, overage hours and amount due.
+          </p>
+
+          <p data-i18n="extraP2">
+            You have already shown trust by paying for the monthly plan in advance, so I am comfortable handling small overages this way.
+          </p>
+
+          <p data-i18n="extraP3">
+            If it is obvious before starting that a task will significantly exceed the remaining hours, I will estimate the extra time and confirm it with you first.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         10 UNUSED HOURS
+    ========================================================== -->
+
+    <section id="unused-hours" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="unusedEyebrow">
+            10 · Unused Hours
+          </div>
+
+          <h2 class="section-title" data-i18n="unusedTitle">
+            Unused hours do not roll over.
+          </h2>
+        </div>
+
+        <div class="workwith-copy">
+          <p data-i18n="unusedP1">
+            The 40 task hours belong to the current monthly plan period and do not automatically carry forward into the next month.
+          </p>
+
+          <p data-i18n="unusedP2">
+            The monthly plan is not only about buying a block of hours. It also keeps a stable technical-support point of contact available when something comes up.
+          </p>
+        </div>
+
+        <div class="workwith-callout" data-i18n="unusedQuote">
+          You may not use all 40 hours every month. The real value is that when the next problem appears, you do not need to start searching for someone capable of solving it all over again.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         11 THIRD-PARTY COSTS
+    ========================================================== -->
+
+    <section id="third-party-costs" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="costsEyebrow">
+            11 · Third-Party Costs
+          </div>
+
+          <h2 class="section-title" data-i18n="costsTitle">
+            My fee covers my work. External services are separate.
+          </h2>
+        </div>
+
+        <div class="workwith-list">
+          <div class="workwith-list-item" data-i18n="cost1">Domains</div>
+          <div class="workwith-list-item" data-i18n="cost2">Cloud servers or web hosting</div>
+          <div class="workwith-list-item" data-i18n="cost3">Paid APIs</div>
+          <div class="workwith-list-item" data-i18n="cost4">SaaS subscriptions</div>
+          <div class="workwith-list-item" data-i18n="cost5">Paid Google, Microsoft or other platform features</div>
+          <div class="workwith-list-item" data-i18n="cost6">Third-party software licences</div>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 28px;">
+          <p data-i18n="costsP1">
+            If a task requires an external paid service, I will tell you before using it. I will not purchase something first and then unexpectedly add the cost to your bill.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         12 SEPARATE PROJECTS
+    ========================================================== -->
+
+    <section id="separate-projects" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="projectsEyebrow">
+            12 · Separate Projects
+          </div>
+
+          <h2 class="section-title" data-i18n="projectsTitle">
+            Some work is simply too large for a lightweight support model.
+          </h2>
+        </div>
+
+        <div class="workwith-list">
+          <div class="workwith-list-item" data-i18n="project1">Full front-end and back-end systems</div>
+          <div class="workwith-list-item" data-i18n="project2">Large database applications</div>
+          <div class="workwith-list-item" data-i18n="project3">Long-term software-product development</div>
+          <div class="workwith-list-item" data-i18n="project4">Complex user-permission systems</div>
+          <div class="workwith-list-item" data-i18n="project5">Large-scale server deployment or high-availability infrastructure</div>
+          <div class="workwith-list-item" data-i18n="project6">Complex DevOps or projects requiring a larger development team</div>
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 28px;">
+          <p data-i18n="projectsP1">
+            If a task grows into this type of project, I will explain why it no longer fits ordinary hourly or monthly support and discuss whether a separate quotation makes sense.
+          </p>
+
+          <p data-i18n="projectsP2">
+            If the project is clearly outside what I can responsibly deliver, I will say so directly.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         13 SECURITY
+    ========================================================== -->
+
+    <section id="security" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="securityEyebrow">
+            13 · Data & Files
+          </div>
+
+          <h2 class="section-title" data-i18n="securityTitle">
+            Your data is for your task.
+          </h2>
+        </div>
+
+        <div class="workwith-copy">
+          <p data-i18n="securityP1">
+            When a task can be completed locally, I prefer to process it locally.
+          </p>
+
+          <p data-i18n="securityP2">
+            Customer files and business data are not uploaded to external services merely for convenience.
+          </p>
+
+          <p data-i18n="securityP3">
+            If a task genuinely requires sending data to an API, AI service or another third-party platform, I will explain that before doing so.
+          </p>
+
+          <p data-i18n="securityP4">
+            Your data is not reused as test material or customer data for unrelated projects.
+          </p>
+
+          <p data-i18n="securityP5">
+            If additional confidentiality terms are needed, we can discuss an NDA.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         14 WORKING STYLE
+    ========================================================== -->
+
+    <section id="working-style" class="workwith-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="styleEyebrow">
+            14 · How I Work
+          </div>
+
+          <h2 class="section-title" data-i18n="styleTitle">
+            Remote and asynchronous by default.
+          </h2>
+        </div>
+
+        <div class="workwith-copy">
+          <p data-i18n="styleP1">
+            Most tasks can be handled through email.
+          </p>
+
+          <p data-i18n="styleP2">
+            You can send a problem description, example files, the expected result, your current workflow and any known limitations.
+          </p>
+
+          <p data-i18n="styleP3">
+            If written information and files are enough to explain the task, there is no need to schedule a meeting just for the sake of having one.
+          </p>
+
+          <p data-i18n="styleP4">
+            If the requirement is genuinely complicated and needs further discussion, we can decide on the most practical way to communicate.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         15 AFTER-SALES SUPPORT
+    ========================================================== -->
+
+    <section id="after-sales" class="workwith-section workwith-section-soft">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow" data-i18n="afterSalesEyebrow">
+            15 · After-Sales Support
+          </div>
+
+          <h2 class="section-title" data-i18n="afterSalesTitle">
+            Different types of work need different support.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="afterSalesSubtitle">
+            One-off clients and monthly clients are not treated the same way, because they are buying different kinds of working relationships.
+          </p>
+        </div>
+
+        <div class="workwith-support-grid">
+
+          <article class="workwith-support-card workwith-support-card-featured">
+            <div class="workwith-card-label" data-i18n="afterMonthlyLabel">
+              Monthly Clients
+            </div>
+
+            <h3 data-i18n="afterMonthlyTitle">
+              Ongoing support stays ongoing.
+            </h3>
+
+            <p data-i18n="afterMonthlyP1">
+              Normal adjustments, maintenance, new requests and changes caused by third-party platforms can be handled within the monthly service and use monthly task hours.
+            </p>
+
+            <p data-i18n="afterMonthlyP2">
+              Fixing my own delivery mistakes or bugs does not consume your monthly task hours.
+            </p>
+          </article>
+
+          <article class="workwith-support-card">
+            <div class="workwith-card-label" data-i18n="afterOneOffLabel">
+              One-Off Clients
+            </div>
+
+            <h3 data-i18n="afterOneOffTitle">
+              Clear support periods after delivery.
+            </h3>
+
+            <p data-i18n="afterOneOffP1">
+              For data-processing tasks, if the delivered result does not match the agreed processing rules, I will correct it free of charge within 5 working days after full delivery, provided the requirements have not changed.
+            </p>
+
+            <p data-i18n="afterOneOffP2">
+              For functional deliverables such as Excel automation, Python tools, workflows, app integrations, Google Apps Script, browser extensions and lightweight desktop tools, I provide a 22-working-day defect-fix period after full delivery.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="workwith-copy" style="margin-top: 30px;">
+          <p data-i18n="afterSalesP1">
+            New requirements, customer-side environment changes, customer changes to data structure or configuration, and third-party platform changes are not treated as defects in the original delivery.
+          </p>
+        </div>
+
+        <div class="workwith-callout" data-i18n="afterSalesQuote">
+          Fixing my mistake should not cost you again. New requirements and new external changes are new work.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         16 CONTACT
+    ========================================================== -->
+
+    <section id="contact" class="workwith-contact">
+      <div class="container">
+
+        <div class="workwith-contact-box">
+          <div class="eyebrow" data-i18n="contactEyebrow">
+            Contact
+          </div>
+
+          <h2 data-i18n="contactTitle">
+            Tell me what you are trying to solve.
+          </h2>
+
+          <p data-i18n="contactText">
+            You do not need to know whether you should choose one-off support or the monthly plan, or whether the task belongs to data, automation or tool development. Tell me what is causing trouble and what result you want.
+          </p>
+
+          <a
+            class="button button-primary"
+            href="mailto:jax.xiangjie.jia@gmail.com"
+            data-i18n="contactButton"
+          >
+            Contact Me
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2026 Jax Jia</span>
+      <span data-i18n="footerText">Remote Data, Automation & Technical Support</span>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       LANGUAGE
+  ========================================================== -->
+
+  <script>
+    const translations = {
+
+      en: {
+        offerBanner: "New Client Offer — First data-processing task from USD 5 · Available through December 31, 2026",
+        offerDetails: "View Details →",
+
+        navHome: "Home",
+        navServices: "What I Can Help With",
+        navWork: "Selected Work",
+        navPricing: "How It Works",
+        navPricingSupport:"Pricing & Support",
+        navSecurity: "Data Security",
+        navContact: "Contact",
+        navAbout: "About Me",
+
+        sideNavTitle: "Working With Me",
+        sideOffer: "01 · New Client Offer",
+        sideOneOff: "02 · One-Off Support",
+        sidePayment: "03 · Payment",
+        sideScope: "04 · Scope Changes",
+        sideMonthly: "05 · Monthly Plan",
+        sideComparison: "06 · Why This Model",
+        sideHours: "07 · Using 40 Hours",
+        sideTracking: "08 · Time Tracking",
+        sideExtra: "09 · Extra Hours",
+        sideUnused: "10 · Unused Hours",
+        sideCosts: "11 · Third-Party Costs",
+        sideProjects: "12 · Separate Projects",
+        sideSecurity: "13 · Data Security",
+        sideStyle: "14 · How I Work",
+        sideAfterSales: "15 · After-Sales",
+        sideContact: "16 · Contact",
+
+        quickContact: "Contact Me",
+        quickTop: "Back to Top",
+
+        heroEyebrow: "Working With Me",
+        heroTitle1: "Simple ways",
+        heroTitle2: "to work together.",
+        heroLead: "You do not need to decide whether your problem belongs to data, automation, Excel, lightweight tools or business-system data. Tell me what is wrong and what result you want.",
+
+        indexOffer: "New Client Offer",
+        indexOneOff: "One-Off Support",
+        indexPayment: "Payment",
+        indexScope: "Scope Changes",
+        indexMonthly: "Monthly Plan",
+        indexComparison: "Why This Model",
+        indexHours: "40 Hours",
+        indexTracking: "Time Tracking",
+        indexExtra: "Extra Hours",
+        indexUnused: "Unused Hours",
+        indexCosts: "External Costs",
+        indexProjects: "Separate Projects",
+        indexSecurity: "Data Security",
+        indexStyle: "How I Work",
+        indexAfterSales: "After-Sales",
+        indexContact: "Contact",
+
+        offerEyebrow: "01 · New Client Offer",
+        offerTitle: "Start with a small task.",
+        offerSubtitle: "Before December 31, 2026, first-time clients can try a simple data-processing task at a fixed introductory price.",
+        offerTier1: "Up to 50,000 rows",
+        offerTier2: "50,001–100,000 rows",
+        offerTier3: "Each additional 50,000 rows",
+        offerTier3Price: "+ USD 5",
+        offerP1: "This offer is intended for straightforward data-processing work such as Excel, CSV or TXT cleaning, deduplication, merging, splitting, batch formatting, field cleanup, standardisation, information extraction and preparing data to a defined template.",
+        offerP2: "The default file limit is 30 files. If you have multiple files, please package them into a ZIP file where practical.",
+        offerP3: "If the task is clearly beyond ordinary data processing, I will tell you before starting and we can choose a more suitable way to work.",
+        offerQuote: "The idea is simple: start with a small task and see whether working together makes sense.",
+
+        oneOffEyebrow: "02 · One-Off Support",
+        oneOffTitle: "Occasional task? No monthly commitment required.",
+        oneOffSubtitle: "Standard one-off work is USD 15 per hour.",
+        oneOffLabel: "One-Off Support",
+        perHour: "/ hour",
+        oneOff1: "Data processing and Excel automation",
+        oneOff2: "Python batch-processing utilities",
+        oneOff3: "Workflow automation and app integration",
+        oneOff4: "Notion, Google Workspace and Google Apps Script",
+        oneOff5: "APIs, webhooks, browser extensions and lightweight desktop tools",
+        oneOff6: "Static landing pages",
+        oneOff7: "Commercial business-system data preparation and import support",
+        oneOff8: "Other lightweight technical tasks that are not explicitly listed but are reasonably within my capabilities",
+
+        paymentEyebrow: "03 · One-Off Payment",
+        paymentTitle: "Two ways to handle payment.",
+        paymentALabel: "Option A",
+        paymentATitle: "Pay the full estimated amount upfront",
+        paymentA1: "If I estimate a task at 3 hours, the expected fee is:",
+        paymentA2: "If the agreed scope does not change, but the task takes longer because my estimate was wrong, you do not pay extra for my estimating mistake.",
+        paymentA3: "If you trust my estimate enough to pay the full amount upfront, I should take responsibility for that estimate.",
+        paymentBLabel: "Option B",
+        paymentBTitle: "Pay 50% of the estimated amount first",
+        paymentB1: "If a 3-hour task is estimated at USD 45, the initial payment is:",
+        paymentB2: "With this option, the final fee is based on actual working time.",
+        paymentB3: "If the task ultimately takes 5 hours, the total is USD 75. After deducting the USD 22.50 deposit, the remaining balance is USD 52.50.",
+        paymentB4: "Final files, source code or other complete deliverables are released after the remaining balance is paid.",
+        paymentQuote: "Trust works both ways.",
+
+        scopeEyebrow: "04 · Scope Changes",
+        scopeTitle: "Estimates are based on the agreed scope.",
+        scopeP1: "If the requirements change after work begins, the original estimate may no longer apply.",
+        scope1: "Adding new functions",
+        scope2: "Expanding the amount or type of data",
+        scope3: "Changing the required output format",
+        scope4: "Adding a new third-party system or integration",
+        scope5: "Adding workflows that were not part of the original requirement",
+        scope6: "Expanding a small tool into a much larger system",
+        scopeP2: "I will explain the likely additional work before continuing.",
+        scopeP3: "If the requirements have not changed and the problem is simply my own estimate or implementation mistake, I do not treat that as a customer scope change.",
+
+        monthlyEyebrow: "05 · Monthly Technical Support",
+        monthlyTitle: "For businesses with recurring small technical tasks.",
+        monthlyLabel: "Monthly Technical Support",
+        perMonth: "/ month",
+        monthlyHours: "Up to 40 task hours per month",
+        monthlyRate: "If all 40 hours are used, the effective rate is USD 7.50 per hour.",
+        monthlyP1: "Your monthly task hours can be used across my service areas. They are not divided into separate service packages.",
+
+        comparisonEyebrow: "06 · Why This Model",
+        comparisonTitle: "Why can this make sense for a small business?",
+        comparisonSubtitle: "These are not equivalent options. The real question is whether your business has enough continuous technical work to justify a full-time position.",
+        compare1Label: "Full-Time Employee",
+        compare1Title: "Full-time technical role",
+        compare1A: "Fixed salary and long-term employment costs",
+        compare1B: "Makes sense when there is steady, continuous work",
+        compare1C: "The cost remains even during quieter periods",
+        compare1D: "Better suited to businesses with high-frequency technical needs",
+        compare2Label: "One-Off Freelancer",
+        compare2Title: "Find someone each time",
+        compare2A: "Search for the right person again",
+        compare2B: "Re-explain your files, workflow and business context",
+        compare2C: "Different people may work and deliver in different ways",
+        compare2D: "Useful for truly occasional, isolated tasks",
+        compare3Label: "Monthly Technical Support",
+        compare3Title: "Keep one technical contact",
+        compare3A: "USD 300 per month for up to 40 task hours",
+        compare3B: "Data, automation, Excel, lightweight tools and system-data work can share the same hours",
+        compare3C: "The same person gradually learns your tools, files and workflow",
+        compare3D: "Designed for technical work that is recurring but not enough to justify a full-time role",
+        comparisonQuote: "Monthly support is not a replacement for a full-time employee. It is for businesses that have recurring technical work, but not necessarily enough of it to justify a full-time technical position.",
+
+        hoursEyebrow: "07 · Using the 40 Hours",
+        hoursTitle: "Use the hours where you actually need them.",
+        hours1: "Data processing and Excel automation",
+        hours2: "Workflow automation and app integration",
+        hours3: "Lightweight tools and web development",
+        hours4: "Commercial business-system data preparation and import support",
+        hours5: "Other related tasks I can reasonably solve",
+        exampleTitle: "Example month",
+        example1: "Excel data cleanup",
+        example2: "Notion → Google Sheets automation",
+        example3: "Small internal tool",
+        example4: "Business-system import data",
+        exampleTotal: "Total used: 21h · Remaining: 19h",
+        hoursP1: "After each completed task, I will tell you the time used for that task, the total time used during the month and the remaining monthly balance.",
+        hoursP2: "If a task is expected to use a significant amount of time, I will estimate it before starting.",
+
+        trackingEyebrow: "08 · Time Tracking",
+        trackingTitle: "I charge for doing your work, not for learning something new.",
+        trackingP1: "Task time is based on the actual time used to complete your work. The minimum time unit is 10 minutes.",
+        trackingP2: "Analysis, processing, development, testing and delivery that are directly related to your task count as task time.",
+        trackingP3: "Pure waiting time, my own general learning time, and rework caused by my own mistakes are not charged to your task hours.",
+        trackingQuote: "You are paying for the time I spend completing your work, not for the time I spend learning something new.",
+
+        extraEyebrow: "09 · Extra Hours",
+        extraTitle: "What happens after 40 hours?",
+        extraLabel: "Additional Monthly Task Hours",
+        extraP1: "If an active task only goes slightly beyond the remaining monthly balance, I will normally finish and deliver it first, then provide the task hours, monthly total, overage hours and amount due.",
+        extraP2: "You have already shown trust by paying for the monthly plan in advance, so I am comfortable handling small overages this way.",
+        extraP3: "If it is obvious before starting that a task will significantly exceed the remaining hours, I will estimate the extra time and confirm it with you first.",
+
+        unusedEyebrow: "10 · Unused Hours",
+        unusedTitle: "Unused hours do not roll over.",
+        unusedP1: "The 40 task hours belong to the current monthly plan period and do not automatically carry forward into the next month.",
+        unusedP2: "The monthly plan is not only about buying a block of hours. It also keeps a stable technical-support point of contact available when something comes up.",
+        unusedQuote: "You may not use all 40 hours every month. The real value is that when the next problem appears, you do not need to start searching for someone capable of solving it all over again.",
+
+        costsEyebrow: "11 · Third-Party Costs",
+        costsTitle: "My fee covers my work. External services are separate.",
+        cost1: "Domains",
+        cost2: "Cloud servers or web hosting",
+        cost3: "Paid APIs",
+        cost4: "SaaS subscriptions",
+        cost5: "Paid Google, Microsoft or other platform features",
+        cost6: "Third-party software licences",
+        costsP1: "If a task requires an external paid service, I will tell you before using it. I will not purchase something first and then unexpectedly add the cost to your bill.",
+
+        projectsEyebrow: "12 · Separate Projects",
+        projectsTitle: "Some work is simply too large for a lightweight support model.",
+        project1: "Full front-end and back-end systems",
+        project2: "Large database applications",
+        project3: "Long-term software-product development",
+        project4: "Complex user-permission systems",
+        project5: "Large-scale server deployment or high-availability infrastructure",
+        project6: "Complex DevOps or projects requiring a larger development team",
+        projectsP1: "If a task grows into this type of project, I will explain why it no longer fits ordinary hourly or monthly support and discuss whether a separate quotation makes sense.",
+        projectsP2: "If the project is clearly outside what I can responsibly deliver, I will say so directly.",
+
+        securityEyebrow: "13 · Data & Files",
+        securityTitle: "Your data is for your task.",
+        securityP1: "When a task can be completed locally, I prefer to process it locally.",
+        securityP2: "Customer files and business data are not uploaded to external services merely for convenience.",
+        securityP3: "If a task genuinely requires sending data to an API, AI service or another third-party platform, I will explain that before doing so.",
+        securityP4: "Your data is not reused as test material or customer data for unrelated projects.",
+        securityP5: "If additional confidentiality terms are needed, we can discuss an NDA.",
+
+        styleEyebrow: "14 · How I Work",
+        styleTitle: "Remote and asynchronous by default.",
+        styleP1: "Most tasks can be handled through email.",
+        styleP2: "You can send a problem description, example files, the expected result, your current workflow and any known limitations.",
+        styleP3: "If written information and files are enough to explain the task, there is no need to schedule a meeting just for the sake of having one.",
+        styleP4: "If the requirement is genuinely complicated and needs further discussion, we can decide on the most practical way to communicate.",
+
+        afterSalesEyebrow: "15 · After-Sales Support",
+        afterSalesTitle: "Different types of work need different support.",
+        afterSalesSubtitle: "One-off clients and monthly clients are not treated the same way, because they are buying different kinds of working relationships.",
+        afterMonthlyLabel: "Monthly Clients",
+        afterMonthlyTitle: "Ongoing support stays ongoing.",
+        afterMonthlyP1: "Normal adjustments, maintenance, new requests and changes caused by third-party platforms can be handled within the monthly service and use monthly task hours.",
+        afterMonthlyP2: "Fixing my own delivery mistakes or bugs does not consume your monthly task hours.",
+        afterOneOffLabel: "One-Off Clients",
+        afterOneOffTitle: "Clear support periods after delivery.",
+        afterOneOffP1: "For data-processing tasks, if the delivered result does not match the agreed processing rules, I will correct it free of charge within 5 working days after full delivery, provided the requirements have not changed.",
+        afterOneOffP2: "For functional deliverables such as Excel automation, Python tools, workflows, app integrations, Google Apps Script, browser extensions and lightweight desktop tools, I provide a 22-working-day defect-fix period after full delivery.",
+        afterSalesP1: "New requirements, customer-side environment changes, customer changes to data structure or configuration, and third-party platform changes are not treated as defects in the original delivery.",
+        afterSalesQuote: "Fixing my mistake should not cost you again. New requirements and new external changes are new work.",
+
+        contactEyebrow: "16 · Contact",
+        contactTitle: "Tell me what you are trying to solve.",
+        contactText: "You do not need to know whether you should choose one-off support or the monthly plan, or whether the task belongs to data, automation or tool development. Tell me what is causing trouble and what result you want.",
+        contactButton: "Contact Me",
+
+        footerText: "Remote Data, Automation & Technical Support"
+      },
+
+      zh: {
+        offerBanner: "新客户首单优惠 — 首次数据处理任务 5 美元起 · 有效至 2026 年 12 月 31 日",
+        offerDetails: "查看详情 →",
+
+        navHome: "首页",
+        navServices: "我能为你提供什么",
+        navWork: "客户案例",
+        navPricing: "合作方式",
+        navPricingSupport:"服务定价",
+        navSecurity: "数据安全",
+        navContact: "联系我",
+        navAbout: "关于我",
+
+        sideNavTitle: "合作说明",
+        sideOffer: "01 · 新客户优惠",
+        sideOneOff: "02 · 单次任务",
+        sidePayment: "03 · 单次付款",
+        sideScope: "04 · 需求变更",
+        sideMonthly: "05 · 月度套餐",
+        sideComparison: "06 · 价值对比",
+        sideHours: "07 · 40 小时怎么用",
+        sideTracking: "08 · 工时计算",
+        sideExtra: "09 · 超额工时",
+        sideUnused: "10 · 未使用工时",
+        sideCosts: "11 · 第三方费用",
+        sideProjects: "12 · 独立项目",
+        sideSecurity: "13 · 数据安全",
+        sideStyle: "14 · 工作方式",
+        sideAfterSales: "15 · 售后支持",
+        sideContact: "16 · 联系我",
+
+        quickContact: "联系我",
+        quickTop: "返回顶部",
+
+        heroEyebrow: "合作说明",
+        heroTitle1: "怎么和我",
+        heroTitle2: "一起工作。",
+        heroLead: "你不需要先判断自己的问题属于数据处理、自动化、Excel、轻量工具还是业务系统数据。只要告诉我：你现在有什么问题，以及你希望最后得到什么结果。",
+
+        indexOffer: "新客户优惠",
+        indexOneOff: "单次任务",
+        indexPayment: "单次付款",
+        indexScope: "需求变更",
+        indexMonthly: "月度套餐",
+        indexComparison: "价值对比",
+        indexHours: "40 小时怎么用",
+        indexTracking: "工时计算",
+        indexExtra: "超额工时",
+        indexUnused: "未使用工时",
+        indexCosts: "第三方费用",
+        indexProjects: "独立项目",
+        indexSecurity: "数据安全",
+        indexStyle: "工作方式",
+        indexAfterSales: "售后支持",
+        indexContact: "联系我",
+
+        offerEyebrow: "01 · 新客户首单优惠",
+        offerTitle: "第一次合作，可以先从一个很小的任务开始。",
+        offerSubtitle: "在 2026 年 12 月 31 日之前，首次数据处理任务可以使用固定价格优惠。",
+        offerTier1: "不超过 50,000 行",
+        offerTier2: "50,001–100,000 行",
+        offerTier3: "此后每增加 50,000 行",
+        offerTier3Price: "+ USD 5",
+        offerP1: "首单优惠主要适用于 Excel、CSV、TXT 数据清洗、去重、合并、拆分、批量格式调整、字段整理、数据标准化、信息提取以及按模板整理数据等普通数据处理任务。",
+        offerP2: "首单默认文件数量不超过 30 个。如果有多个文件，请尽量压缩成一个 ZIP 压缩包发送。",
+        offerP3: "如果任务本身已经明显超出普通数据处理范围，我会在开始之前告诉你，并重新确认更适合的合作方式。",
+        offerQuote: "这个优惠的目的很简单：先用一个小任务看看我们是否适合合作。",
+
+        oneOffEyebrow: "02 · 单次任务支持",
+        oneOffTitle: "偶尔有一个任务，不需要订阅套餐。",
+        oneOffSubtitle: "标准单次任务价格：USD 15 / 小时。",
+        oneOffLabel: "单次任务支持",
+        perHour: "/ 小时",
+        oneOff1: "数据处理与 Excel 自动化",
+        oneOff2: "Python 批量处理工具",
+        oneOff3: "工作流自动化与应用集成",
+        oneOff4: "Notion、Google Workspace 与 Google Apps Script",
+        oneOff5: "API、Webhook、浏览器插件及轻量桌面工具",
+        oneOff6: "静态落地页",
+        oneOff7: "商用业务系统的数据准备与导入支持",
+        oneOff8: "其他未明确列出、但我能够合理完成的轻量技术任务",
+
+        paymentEyebrow: "03 · 单次任务付款",
+        paymentTitle: "单次任务可以选择两种付款方式。",
+        paymentALabel: "方案 A",
+        paymentATitle: "按照预计金额全额预付",
+        paymentA1: "例如，我预计任务需要 3 小时，那么预计费用为：",
+        paymentA2: "如果双方已经确认的需求范围没有发生变化，但因为我自己的估时不准确，实际工作从 3 小时变成了 5 小时，你不需要为我的估时错误额外付费。",
+        paymentA3: "既然你愿意按照我的预计金额提前完成全部付款，我也应该为自己的判断负责。",
+        paymentBLabel: "方案 B",
+        paymentBTitle: "先支付预计金额的 50%",
+        paymentB1: "例如预计 3 小时、预计费用 USD 45，那么首次支付：",
+        paymentB2: "这种方式下，最终费用按照实际工时计算。",
+        paymentB3: "如果最终实际用了 5 小时，总费用为 USD 75。扣除已经支付的 USD 22.50 后，剩余 USD 52.50。",
+        paymentB4: "剩余款项结清后，我会交付最终文件、源代码或其他完整交付内容。",
+        paymentQuote: "Trust works both ways. 信任是双向的。",
+
+        scopeEyebrow: "04 · 需求范围变化",
+        scopeTitle: "预计工时建立在已经确认的需求范围上。",
+        scopeP1: "如果任务开始以后需求发生变化，原来的预计工时可能就不再适用。",
+        scope1: "增加新的功能",
+        scope2: "增加新的数据范围或数据类型",
+        scope3: "改变原来的输出格式",
+        scope4: "加入新的第三方系统或集成",
+        scope5: "增加原本没有讨论过的流程",
+        scope6: "把一个简单工具扩展成更完整的系统",
+        scopeP2: "我会先告诉你这些变化可能增加多少工作量，再决定是否继续。",
+        scopeP3: "如果原需求没有变化，只是我自己的估时或实现出现问题，我不会把这部分风险当成客户的需求变更。",
+
+        monthlyEyebrow: "05 · 月度技术支持",
+        monthlyTitle: "适合持续存在、但并不需要全职人员的零散技术任务。",
+        monthlyLabel: "月度技术支持",
+        perMonth: "/ 月",
+        monthlyHours: "每月最多 40 个任务工时",
+        monthlyRate: "如果 40 小时全部使用，相当于 USD 7.50 / 小时。",
+        monthlyP1: "套餐里的工时可以在我的服务范围内自由使用，不需要提前购买某一个固定的服务模块。",
+
+        comparisonEyebrow: "06 · 为什么这种方式适合小企业",
+        comparisonTitle: "如果每周只有几小时或十几小时的技术工作，你真的需要承担一个完整的全职岗位吗？",
+        comparisonSubtitle: "这三种方式并不是同一种东西。真正需要考虑的是，你的企业是否真的有足够持续的工作量来支撑一个完整的全职技术岗位。",
+        compare1Label: "全职岗位",
+        compare1Title: "全职技术人员",
+        compare1A: "固定工资以及长期人力成本",
+        compare1B: "需要持续、稳定的工作量才更合理",
+        compare1C: "即使当月任务较少，岗位成本依然存在",
+        compare1D: "更适合技术需求长期、高频存在的企业",
+        compare2Label: "临时自由职业者",
+        compare2Title: "每次重新找人",
+        compare2A: "每次都需要重新寻找合适的人",
+        compare2B: "反复解释业务、文件结构和工作流程",
+        compare2C: "不同人的工作方式和交付质量可能不同",
+        compare2D: "更适合真正偶发、一次性的孤立任务",
+        compare3Label: "月度技术支持",
+        compare3Title: "保留一个固定的技术入口",
+        compare3A: "USD 300 / 月，最多 40 个任务工时",
+        compare3B: "数据、自动化、Excel、轻量工具和业务系统数据可以混用同一批工时",
+        compare3C: "长期由同一个人逐渐熟悉你的工具、文件和工作方式",
+        compare3D: "适合持续存在，但工作量还不足以支撑全职岗位的技术需求",
+        comparisonQuote: "月度技术支持不是全职员工的替代品。它更适合那些技术任务持续存在，但又未必多到值得承担一个完整全职岗位的小企业。",
+
+        hoursEyebrow: "07 · 40 小时怎么使用",
+        hoursTitle: "把工时用在真正需要的地方。",
+        hours1: "数据处理与 Excel 自动化",
+        hours2: "工作流自动化与应用集成",
+        hours3: "轻量工具与网页开发",
+        hours4: "商用业务系统的数据准备与导入支持",
+        hours5: "其他我能够合理解决的相关任务",
+        exampleTitle: "一个月可能是这样",
+        example1: "Excel 数据整理",
+        example2: "Notion → Google Sheets 自动化",
+        example3: "一个轻量内部工具",
+        example4: "业务系统导入数据准备",
+        exampleTotal: "累计使用：21 小时 · 剩余：19 小时",
+        hoursP1: "每个任务完成后，我都会告诉你本次任务使用了多少工时、当月累计已经使用多少工时，以及当月还剩多少工时。",
+        hoursP2: "如果一个任务预计会占用比较多的时间，我会在开始前先告诉你预计工时。",
+
+        trackingEyebrow: "08 · 工时怎么计算",
+        trackingTitle: "我计算的是完成你任务的时间，而不是我学习新东西的时间。",
+        trackingP1: "工时按照实际用于完成任务的时间计算，以 10 分钟为最小计时单位。",
+        trackingP2: "与任务直接相关的分析、处理、开发、测试和交付都属于任务时间。",
+        trackingP3: "纯等待时间、我个人的通用学习时间，以及因我自身错误产生的返工，不计入客户工时。",
+        trackingQuote: "你购买的是我为你完成工作的时间，而不是我学习新东西的时间。",
+
+        extraEyebrow: "09 · 超出 40 小时",
+        extraTitle: "超过套餐工时以后怎么办？",
+        extraLabel: "套餐额外任务工时",
+        extraP1: "如果只是一个正在进行中的任务最后小幅超过剩余套餐工时，我通常会先把任务完整完成并交付，然后再告诉你本次任务工时、当月累计工时、超出工时以及需要补付的金额。",
+        extraP2: "因为你已经提前购买了月度套餐并表达了信任，所以对于这种小幅超额，我愿意先完成工作，再处理超额费用。",
+        extraP3: "如果一个任务在开始之前就能明显看出会大幅超过剩余工时，我会先告诉你预计需要多少额外时间，并确认之后再继续。",
+
+        unusedEyebrow: "10 · 未使用工时",
+        unusedTitle: "未使用工时不会自动结转。",
+        unusedP1: "套餐的 40 个任务工时只在当前月度套餐周期内有效，不会自动结转到下一个月。",
+        unusedP2: "月度套餐并不只是购买一块工时，同时也是保留一个稳定的技术支持入口。",
+        unusedQuote: "你不一定每个月都会用满 40 小时。真正的价值，是下一次问题出现时，你不需要重新开始寻找一个能解决它的人。",
+
+        costsEyebrow: "11 · 第三方费用",
+        costsTitle: "我的报价主要是我的工作时间，外部服务费用单独承担。",
+        cost1: "域名",
+        cost2: "云服务器或网站托管",
+        cost3: "付费 API",
+        cost4: "SaaS 订阅",
+        cost5: "Google、Microsoft 或其他平台的付费功能",
+        cost6: "第三方软件授权",
+        costsP1: "如果任务需要使用某项外部付费服务，我会在使用之前告诉你。不会先替你购买，然后突然把费用加到账单里。",
+
+        projectsEyebrow: "12 · 需要单独作为项目的情况",
+        projectsTitle: "有些工作已经超出了轻量技术支持的合理范围。",
+        project1: "完整前端与后端系统",
+        project2: "大型数据库应用",
+        project3: "长期持续开发的软件产品",
+        project4: "复杂用户权限体系",
+        project5: "大规模服务器部署或高可用基础设施",
+        project6: "复杂 DevOps 或需要多人长期协作的项目",
+        projectsP1: "如果一个任务逐渐变成这类项目，我会先说明为什么它已经不适合继续按照普通单次或月度工时处理，再讨论是否需要单独报价。",
+        projectsP2: "如果它已经明显超出我能够负责交付的范围，我也会直接告诉你，而不是为了接单硬做。",
+
+        securityEyebrow: "13 · 数据与文件",
+        securityTitle: "你的数据，只用于完成你的任务。",
+        securityP1: "如果任务可以在本地完成，我会优先在本地处理。",
+        securityP2: "客户文件和业务数据不会因为方便而被随意上传到外部服务。",
+        securityP3: "如果某项任务确实需要把数据发送到 API、AI 服务或者其他第三方平台，我会在执行之前说明。",
+        securityP4: "你的数据不会被拿去作为其他项目的测试材料或者其他客户的数据样本。",
+        securityP5: "如果项目存在额外保密要求，可以提前沟通 NDA。",
+
+        styleEyebrow: "14 · 我的工作方式",
+        styleTitle: "默认采用远程和异步沟通。",
+        styleP1: "大多数任务都可以直接通过邮件完成沟通。",
+        styleP2: "你可以把问题描述、示例文件、目标结果、当前工作方式以及已知限制直接发给我。",
+        styleP3: "如果文字和文件已经足够说明问题，就没有必要为了一个简单任务专门安排会议。",
+        styleP4: "如果确实存在复杂需求，需要进一步确认，我们再决定最合适的沟通方式。",
+
+        afterSalesEyebrow: "15 · 售后支持",
+        afterSalesTitle: "不同类型的合作，售后方式也不同。",
+        afterSalesSubtitle: "单次任务客户购买的是一次交付；月度客户购买的是持续可用的技术支持关系。",
+        afterMonthlyLabel: "月度客户",
+        afterMonthlyTitle: "只要仍在月度服务范围内，后续都可以继续处理。",
+        afterMonthlyP1: "正常调整、维护、新需求，以及第三方平台变化带来的处理工作，可以在月度服务中继续完成，并使用当月任务工时。",
+        afterMonthlyP2: "如果是因为我自己的交付错误、Bug 或遗漏产生的修复，不计入你的月度工时。",
+        afterOneOffLabel: "单次任务客户",
+        afterOneOffTitle: "交付以后，有明确的免费调整与缺陷修复期。",
+        afterOneOffP1: "数据处理类任务，如果交付结果与双方确认的处理规则不一致，在完整交付后的 5 个工作日内，我会免费调整，前提是需求范围没有发生变化。",
+        afterOneOffP2: "Excel 自动化、Python 工具、工作流、应用集成、Google Apps Script、浏览器插件、轻量桌面工具等功能性交付，在完整交付后提供 22 个工作日的缺陷修复期。",
+        afterSalesP1: "新增需求、客户侧运行环境变化、客户自行修改数据结构或配置，以及第三方平台变化，不属于原始交付缺陷。",
+        afterSalesQuote: "修复我的错误，不应该让你再次付费。新的需求和新的外部变化，则属于新的工作。",
+
+        contactEyebrow: "16 · 联系我",
+        contactTitle: "告诉我，你现在想解决什么。",
+        contactText: "你不需要先确定应该选择单次任务还是月度套餐，也不需要先判断它到底属于数据、自动化还是工具开发。告诉我哪里让你觉得麻烦，以及你希望最后变成什么样。",
+        contactButton: "联系我",
+
+        footerText: "远程数据处理 · 自动化 · 技术支持"
+      }
+    };
+
+    function setLanguage(lang) {
+      const selected = translations[lang] ? lang : "en";
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          const value = translations[selected][key];
+
+          if (value !== undefined) {
+            element.textContent = value;
+          }
+        });
+
+      document
+        .querySelectorAll(".lang-button")
+        .forEach((button) => {
+          button.classList.toggle(
+            "active",
+            button.dataset.lang === selected
+          );
+        });
+
+      document.documentElement.lang =
+        selected === "zh"
+          ? "zh-CN"
+          : "en";
+
+      localStorage.setItem(
+        "preferredLanguage",
+        selected
+      );
+    }
+
+    document
+      .querySelectorAll(".lang-button")
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => setLanguage(button.dataset.lang)
+        );
+      });
+
+    const savedLanguage =
+      localStorage.getItem("preferredLanguage") || "en";
+
+    setLanguage(savedLanguage);
+  </script>
+
+</body>
+</html>
