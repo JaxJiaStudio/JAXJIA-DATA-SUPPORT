@@ -1,1 +1,2832 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="About Jax Jia — business data, ERP delivery, automation and lightweight technical support."
+  />
+
+  <title>About Me | Jax Jia</title>
+
+  <!-- 主站公共 CSS -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <!-- =========================================================
+       ABOUT ME PAGE ONLY
+       仅用于本页，不修改主站 styles.css
+  ========================================================== -->
+
+  <style>
+
+    /* =========================================================
+       ABOUT HERO
+    ========================================================= */
+
+    .about-hero {
+      position: relative;
+
+      padding:
+        100px
+        0
+        90px;
+
+      overflow: hidden;
+    }
+
+    .about-hero-glow {
+      position: absolute;
+
+      width: 680px;
+      height: 680px;
+
+      top: -260px;
+      right: -180px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(246, 183, 60, 0.11),
+          rgba(246, 183, 60, 0.025) 42%,
+          transparent 72%
+        );
+
+      pointer-events: none;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 1;
+
+      max-width: 950px;
+    }
+
+    .about-hero-title {
+      margin:
+        0
+        0
+        28px;
+
+      font-size:
+        clamp(
+          50px,
+          6vw,
+          82px
+        );
+
+      line-height: 1;
+
+      letter-spacing:
+        -0.05em;
+
+      font-weight: 850;
+    }
+
+    .about-hero-title .accent {
+      color: var(--accent);
+    }
+
+    .about-hero-lead {
+      max-width: 810px;
+
+      margin: 0;
+
+      color: #cad4df;
+
+      font-size:
+        clamp(
+          17px,
+          1.5vw,
+          21px
+        );
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       ABOUT SECTIONS
+    ========================================================= */
+
+    .about-section {
+      padding:
+        96px
+        0;
+    }
+
+    .about-section-soft {
+      background:
+        rgba(255, 255, 255, 0.018);
+
+      border-top:
+        1px solid rgba(255, 255, 255, 0.05);
+
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .about-copy {
+      max-width: 920px;
+    }
+
+    .about-copy p {
+      margin:
+        0
+        0
+        19px;
+
+      color:
+        var(--text-soft);
+
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    .about-copy .about-lead {
+      color:
+        var(--text);
+
+      font-size:
+        19px;
+
+      line-height: 1.8;
+    }
+
+    .about-copy .about-highlight {
+      color:
+        var(--accent);
+
+      font-weight: 800;
+    }
+
+
+    /* =========================================================
+       QUOTES
+    ========================================================= */
+
+    .about-quote {
+      max-width: 900px;
+
+      margin:
+        34px
+        0
+        0;
+
+      padding:
+        22px
+        26px;
+
+      border:
+        1px solid var(--accent-border);
+
+      border-left:
+        3px solid var(--accent);
+
+      border-radius:
+        0
+        14px
+        14px
+        0;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(246, 183, 60, 0.08),
+          rgba(255, 255, 255, 0.018)
+        );
+
+      color:
+        var(--text);
+
+      font-size:
+        18px;
+
+      font-weight:
+        750;
+
+      line-height:
+        1.75;
+    }
+
+
+    /* =========================================================
+       PROJECT CARDS
+    ========================================================= */
+
+    .about-project-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 20px;
+
+      margin-top: 42px;
+    }
+
+    .about-project-card {
+      padding: 28px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(255, 255, 255, 0.015)
+        );
+
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .about-project-card:hover {
+      transform:
+        translateY(-3px);
+
+      border-color:
+        var(--accent-border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.06),
+          rgba(255, 255, 255, 0.02)
+        );
+    }
+
+    .about-project-card-wide {
+      grid-column:
+        1 / -1;
+    }
+
+    .about-card-label {
+      margin-bottom: 13px;
+
+      color:
+        var(--accent);
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing:
+        0.09em;
+
+      text-transform:
+        uppercase;
+    }
+
+    .about-project-card h3 {
+      margin:
+        0
+        0
+        12px;
+
+      font-size: 22px;
+
+      line-height: 1.3;
+    }
+
+    .about-project-card p {
+      margin: 0;
+
+      color:
+        var(--text-soft);
+
+      line-height:
+        1.78;
+    }
+
+
+    /* =========================================================
+       THREE WORDS
+    ========================================================= */
+
+    .about-three {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 36px;
+    }
+
+    .about-three span {
+      padding:
+        10px
+        15px;
+
+      border:
+        1px solid var(--accent-border);
+
+      border-radius:
+        999px;
+
+      background:
+        var(--accent-soft);
+
+      color:
+        var(--accent);
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =========================================================
+       TOOL CARDS
+    ========================================================= */
+
+    .about-tool-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 20px;
+
+      margin-top: 40px;
+    }
+
+    .about-tool-card {
+      padding: 27px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        rgba(255, 255, 255, 0.018);
+    }
+
+    .about-tool-card h3 {
+      margin:
+        0
+        0
+        12px;
+
+      font-size: 21px;
+    }
+
+    .about-tool-card p {
+      margin: 0;
+
+      color:
+        var(--text-soft);
+
+      line-height:
+        1.78;
+    }
+
+
+    /* =========================================================
+       SMALL BUSINESS LIST
+    ========================================================= */
+
+    .about-problem-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 14px;
+
+      max-width: 1050px;
+
+      margin-top: 36px;
+    }
+
+    .about-problem-item {
+      padding:
+        18px
+        20px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        12px;
+
+      background:
+        rgba(255, 255, 255, 0.018);
+
+      color:
+        var(--text-soft);
+
+      line-height:
+        1.7;
+    }
+
+
+    /* =========================================================
+       BIG STATEMENT
+    ========================================================= */
+
+    .about-statement {
+      max-width: 1000px;
+
+      margin-top: 38px;
+
+      padding:
+        30px
+        32px;
+
+      border:
+        1px solid var(--accent-border);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(246, 183, 60, 0.09),
+          rgba(255, 255, 255, 0.018)
+        );
+    }
+
+    .about-statement p {
+      margin: 0;
+
+      color:
+        var(--text);
+
+      font-size:
+        clamp(
+          18px,
+          2vw,
+          22px
+        );
+
+      font-weight:
+        800;
+
+      line-height:
+        1.65;
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .about-contact {
+      padding:
+        90px
+        0
+        110px;
+    }
+
+    .about-contact-box {
+      padding:
+        clamp(
+          34px,
+          6vw,
+          64px
+        );
+
+      border:
+        1px solid var(--accent-border);
+
+      border-radius:
+        24px;
+
+      background:
+        radial-gradient(
+          circle at 82% 10%,
+          rgba(246, 183, 60, 0.09),
+          transparent 42%
+        ),
+        rgba(255, 255, 255, 0.018);
+
+      text-align: center;
+    }
+
+    .about-contact-box h2 {
+      max-width: 840px;
+
+      margin:
+        0
+        auto;
+
+      font-size:
+        clamp(
+          36px,
+          5vw,
+          60px
+        );
+
+      line-height: 1.08;
+
+      letter-spacing:
+        -0.045em;
+    }
+
+    .about-contact-box p {
+      max-width: 720px;
+
+      margin:
+        22px
+        auto
+        30px;
+
+      color:
+        var(--text-soft);
+
+      font-size: 17px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 760px) {
+
+      .about-hero {
+        padding:
+          72px
+          0
+          78px;
+      }
+
+      .about-section {
+        padding:
+          72px
+          0;
+      }
+
+      .about-project-grid,
+      .about-tool-grid,
+      .about-problem-list {
+        grid-template-columns:
+          1fr;
+      }
+
+      .about-project-card-wide {
+        grid-column:
+          auto;
+      }
+
+      .about-quote {
+        font-size: 16px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body class="has-side-nav">
+
+  <div id="top"></div>
+    
+
+  <!-- =========================================================
+       NEW CLIENT OFFER
+  ========================================================== -->
+
+  <div class="offer-bar">
+
+    <a
+      href="../working-with-me/index.html#offer"
+      class="offer-link"
+    >
+
+      <div class="offer-track">
+
+        <span data-i18n="offer">
+          New Client Offer — First data-processing task from USD 5 · Available through December 31, 2026
+        </span>
+
+        <span
+          class="offer-details"
+          data-i18n="offerDetails"
+        >
+          View Details →
+        </span>
+
+      </div>
+
+    </a>
+
+  </div>
+
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================== -->
+
+  <header class="site-header">
+
+    <div class="nav-container">
+
+      <nav class="main-nav">
+
+        <a
+          href="../index.html#home"
+          data-i18n="navHome"
+        >
+          Home
+        </a>
+
+        <a
+          href="../index.html#services"
+          data-i18n="navServices"
+        >
+          What I Can Help With
+        </a>
+
+        <a
+          href="../index.html#work"
+          data-i18n="navWork"
+        >
+          Selected Work
+        </a>
+
+        <a
+          href="../index.html#pricing"
+          data-i18n="navPricing"
+        >
+          How It Works
+        </a>
+        <a
+          href="../working-with-me/index.html"
+          data-i18n="navPricingSupport"
+        >
+          Pricing & Support
+        </a>
+
+        <a
+          href="../index.html#security"
+          data-i18n="navSecurity"
+        >
+          Data Security
+        </a>
+
+        <a
+          href="mailto:jax.xiangjie.jia@gmail.com"
+          data-i18n="navContact"
+        >
+          Contact
+        </a>
+
+        <a
+          href="./index.html"
+          data-i18n="navAbout"
+        >
+          About Me
+        </a>
+
+      </nav>
+
+
+      <div class="language-switch">
+
+        <button
+          class="lang-button active"
+          type="button"
+          data-lang="en"
+        >
+          EN
+        </button>
+
+        <button
+          class="lang-button"
+          type="button"
+          data-lang="zh"
+        >
+          ZH
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+<!-- =========================================================
+     PAGE SIDE NAVIGATION
+========================================================== -->
+
+<aside class="page-side-nav">
+
+  <div
+    class="page-side-nav-title"
+    data-i18n="sideNavTitle"
+  >
+    About Me
+  </div>
+
+  <nav class="page-side-nav-links">
+
+    <a href="#about-top" data-i18n="sideAbout">
+      About
+    </a>
+
+    <a href="#who" data-i18n="sideWho">
+      01 · Who I Am
+    </a>
+
+    <a href="#data-to-erp" data-i18n="sideData">
+      02 · Data → ERP
+    </a>
+
+    <a href="#erp-projects" data-i18n="sideErp">
+      03 · ERP Projects
+    </a>
+
+    <a href="#after-erp" data-i18n="sideAfter">
+      04 · After ERP
+    </a>
+
+    <a href="#small-business-tech" data-i18n="sideSmall">
+      05 · Small Business
+    </a>
+
+    <a href="#continuity" data-i18n="sidePeace">
+      06 · Continuity
+    </a>
+
+    <a href="#one-person" data-i18n="sideOne">
+      07 · One Person
+    </a>
+
+    <a href="#business-systems" data-i18n="sideSystem">
+      08 · Business Systems
+    </a>
+
+    <a href="#working-style" data-i18n="sideStyle">
+      09 · How I Work
+    </a>
+
+    <a href="#contact" data-i18n="sideContact">
+      Contact
+    </a>
+
+  </nav>
+
+</aside>
+
+<!-- =========================================================
+     FIXED QUICK ACTIONS
+========================================================== -->
+
+<div class="quick-actions">
+
+  <a
+    class="quick-action"
+    href="mailto:jax.xiangjie.jia@gmail.com"
+  >
+
+    <span class="quick-action-icon">
+      ✉
+    </span>
+
+    <span data-i18n="quickContact">
+      Contact Me
+    </span>
+
+  </a>
+
+
+  <a
+    class="quick-action"
+    href="../working-with-me/index.html#monthly-plan"
+  >
+
+    <span class="quick-action-icon">
+      ↗
+    </span>
+
+    <span data-i18n="quickMonthly">
+      Monthly Plan
+    </span>
+
+  </a>
+
+
+  <a
+    class="quick-action"
+    href="#top"
+  >
+
+    <span class="quick-action-icon">
+      ↑
+    </span>
+
+    <span data-i18n="quickTop">
+      Back to Top
+    </span>
+
+  </a>
+
+</div>
+  <main>
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section id="about-top" class="about-hero">
+
+      <div class="about-hero-glow"></div>
+
+      <div class="container">
+
+        <div class="about-hero-content">
+
+          <div
+            class="eyebrow"
+            data-i18n="heroEyebrow"
+          >
+            About Me
+          </div>
+
+          <h1 class="about-hero-title">
+
+            <span data-i18n="heroTitle1">
+              A few words
+            </span>
+
+            <br />
+
+            <span
+              class="accent"
+              data-i18n="heroTitle2"
+            >
+              about me.
+            </span>
+
+          </h1>
+
+          <p
+            class="about-hero-lead"
+            data-i18n="heroLead"
+          >
+            This is not really a résumé.
+            It is more about how I went from working with data,
+            to delivering ERP projects,
+            and eventually to solving smaller and more practical technical problems.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         01 WHO I AM
+    ========================================================== -->
+
+    <section id="who" class="about-section about-section-soft">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="whoEyebrow"
+          >
+            01 · Who I Am
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="whoTitle"
+          >
+            Most of what I know came from doing the work.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p
+            class="about-lead"
+            data-i18n="who1"
+          >
+            I’m Jax Jia, from China.
+          </p>
+
+          <p data-i18n="who2">
+            I do not come from a famous university,
+            and I do not have a particularly glamorous career story.
+            Most of what I know came from years of practical work
+            and repeatedly solving real problems.
+          </p>
+
+          <p data-i18n="who3">
+            After graduation, I spent about three years working with data:
+            Excel cleaning, merging, batch adjustments and SQL report development.
+            During those years I saw many kinds of messy data
+            and many different reporting requirements.
+          </p>
+
+          <p data-i18n="who4">
+            I then moved into ERP implementation and delivery,
+            where I spent another five years.
+          </p>
+
+          <p data-i18n="who5">
+            From that point on, I was no longer dealing only with data.
+            I started dealing with the business processes and systems behind it.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         02 DATA → ERP
+    ========================================================== -->
+
+    <section id="data-to-erp" class="about-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="dataEyebrow"
+          >
+            02 · Data → ERP
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="dataTitle"
+          >
+            Data makes more sense when you understand the business behind it.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p data-i18n="data1">
+            Once I started working on ERP projects,
+            I began to understand more clearly how businesses actually operate.
+          </p>
+
+          <p data-i18n="data2">
+            Why can the same type of product master data require completely different classifications in two companies?
+          </p>
+
+          <p data-i18n="data3">
+            Why do finance, purchasing, sales, inventory and invoicing need to connect in a particular way?
+          </p>
+
+          <p data-i18n="data4">
+            Who should maintain a field?
+            How detailed should a piece of master data be?
+          </p>
+
+          <p data-i18n="data5">
+            Quite often, the software itself is not the hardest part.
+            The harder part is understanding how the company actually works,
+            then turning that into data and processes that a system can understand.
+          </p>
+
+        </div>
+
+
+        <div
+          class="about-quote"
+          data-i18n="dataQuote"
+        >
+          First understand the real problem.
+          Then decide what tool should be used.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         03 ERP PROJECTS
+    ========================================================== -->
+
+    <section id="erp-projects" class="about-section about-section-soft">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="erpEyebrow"
+          >
+            03 · ERP Project Experience
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="erpTitle"
+          >
+            Different projects. Different roles.
+          </h2>
+
+          <p
+            class="section-subtitle"
+            data-i18n="erpSubtitle"
+          >
+            I have worked with businesses in dairy distribution,
+            FMCG, logistics, manufacturing, funeral services,
+            chip materials and other industries.
+          </p>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p
+            class="about-lead"
+            data-i18n="erpRole"
+          >
+            My role was not the same in every project.
+            Some projects were led by me from presales through go-live.
+            In some larger projects I focused on data,
+            while in others I took responsibility for specific improvements to an existing system.
+            What matters to me is not presenting every project as something I completed alone,
+            but being clear about what I actually solved in each one.
+          </p>
+
+        </div>
+
+
+        <div class="about-project-grid">
+
+          <!-- 01 -->
+
+          <article class="about-project-card">
+
+            <div
+              class="about-card-label"
+              data-i18n="erp1Label"
+            >
+              End-to-End Delivery
+            </div>
+
+            <h3 data-i18n="erp1Title">
+              Dairy Industry Regional Distributor
+            </h3>
+
+            <p data-i18n="erp1Text">
+              Finance, supply chain and B2B commerce,
+              covering presales requirements, solution design,
+              implementation, delivery, go-live and ongoing support.
+            </p>
+
+          </article>
+
+
+          <!-- 02 -->
+
+          <article class="about-project-card">
+
+            <div
+              class="about-card-label"
+              data-i18n="erp2Label"
+            >
+              End-to-End Delivery
+            </div>
+
+            <h3 data-i18n="erp2Title">
+              FMCG Regional Distributor
+            </h3>
+
+            <p data-i18n="erp2Text">
+              Finance and supply-chain implementation,
+              covering presales, implementation,
+              delivery, go-live and post-delivery support.
+            </p>
+
+          </article>
+
+
+          <!-- 03 -->
+
+          <article class="about-project-card">
+
+            <div
+              class="about-card-label"
+              data-i18n="erp3Label"
+            >
+              End-to-End Delivery
+            </div>
+
+            <h3 data-i18n="erp3Title">
+              Funeral Services Industry
+            </h3>
+
+            <p data-i18n="erp3Text">
+              Business operations, finance and tax-invoicing workflows,
+              including the connection between operational processes,
+              financial data and invoicing.
+            </p>
+
+          </article>
+
+
+          <!-- 04 -->
+
+          <article class="about-project-card">
+
+            <div
+              class="about-card-label"
+              data-i18n="erp4Label"
+            >
+              Migration & Go-Live
+            </div>
+
+            <h3 data-i18n="erp4Title">
+              Japanese Steel Casting & Logistics Projects
+            </h3>
+
+            <p data-i18n="erp4Text">
+              Financial-system implementation and historical voucher migration,
+              including projects started from zero and driven through system go-live.
+            </p>
+
+          </article>
+
+
+          <!-- 05 -->
+
+          <article class="about-project-card about-project-card-wide">
+
+            <div
+              class="about-card-label"
+              data-i18n="erp5Label"
+            >
+              Large ERP Upgrade · Data Role
+            </div>
+
+            <h3 data-i18n="erp5Title">
+              German Pump Systems Company
+            </h3>
+
+            <p data-i18n="erp5Text">
+              A large ERP upgrade delivered by a three-person team.
+              A project lead with around 20 years of ERP experience focused on process optimisation
+              and solution decisions, while a developer with around 10 years of experience handled development.
+              My main responsibility was project data,
+              including master data, opening balances and other migration and preparation work.
+            </p>
+
+          </article>
+
+
+          <!-- 06 -->
+
+          <article class="about-project-card about-project-card-wide">
+
+            <div
+              class="about-card-label"
+              data-i18n="erp6Label"
+            >
+              Existing Systems · Specific Improvements
+            </div>
+
+            <h3 data-i18n="erp6Title">
+              Musical Instrument & Chip Materials Companies
+            </h3>
+
+            <p data-i18n="erp6Text">
+              These ERP systems had already been implemented.
+              I joined later to handle selected module improvements,
+              field mapping and specific system modifications
+              rather than the original implementation.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div class="about-three">
+
+          <span data-i18n="three1">
+            Business
+          </span>
+
+          <span data-i18n="three2">
+            Data
+          </span>
+
+          <span data-i18n="three3">
+            Systems
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         04 AFTER ERP
+    ========================================================== -->
+
+    <section id="after-erp" class="about-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="afterEyebrow"
+          >
+            04 · After ERP
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="afterTitle"
+          >
+            From large systems back to smaller problems.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p data-i18n="after1">
+            After ending the stage of my career focused mainly on ERP delivery,
+            I spent two years applying what I had learned to smaller and lighter problems.
+          </p>
+
+          <p data-i18n="after2">
+            I gradually realised that some small businesses
+            simply do not need one, let alone several, large business systems.
+          </p>
+
+          <p data-i18n="after3">
+            What they often need is something affordable,
+            practical and simple enough to solve the problem in front of them.
+          </p>
+
+          <p data-i18n="after4">
+            That is why many things I built during these two years
+            were not created because I wanted to “make a product”.
+            They started because someone had a specific pain point.
+          </p>
+
+        </div>
+
+
+        <div class="about-tool-grid">
+
+          <article class="about-tool-card">
+
+            <h3>
+              OneSheet CRM
+            </h3>
+
+            <p data-i18n="tool1">
+              Some clients are businesses of only two or three people,
+              including the owner.
+              They still need CRM functions,
+              but may not need or be ready for a commercial CRM platform.
+              I designed OneSheet CRM so they could manage customers,
+              follow-ups and relationships directly in Excel at very low cost.
+            </p>
+
+          </article>
+
+
+          <article class="about-tool-card">
+
+            <h3>
+              Google Apps Script Cold Email Automation
+            </h3>
+
+            <p data-i18n="tool2">
+              One client was an individual freelancer who still needed a repeatable way to reach potential customers.
+              I built an automated workflow using Google Apps Script, Notion and email.
+              It reads customer records from Notion,
+              fills predefined email templates,
+              sends messages,
+              updates customer status
+              and sends a result report after completion.
+            </p>
+
+          </article>
+
+
+          <article class="about-tool-card">
+
+            <h3>
+              EWSI
+            </h3>
+
+            <p data-i18n="tool3">
+              A small photography team needed to process large numbers of images repeatedly,
+              so I built EWSI to batch-convert image formats and dimensions
+              instead of handling the files one by one.
+            </p>
+
+          </article>
+
+
+          <article class="about-tool-card">
+
+            <h3 data-i18n="tool4Title">
+              Excel Merged-Cell Tool
+            </h3>
+
+            <p data-i18n="tool4">
+              A client regularly ran into problems caused by merged cells in Excel,
+              so I created a small tool to split those merged areas
+              and rebuild the data into something easier to process.
+            </p>
+
+          </article>
+
+
+          <article class="about-tool-card">
+
+            <h3 data-i18n="tool5Title">
+              Multi-Country Browser Clock
+            </h3>
+
+            <p data-i18n="tool5">
+              I also built a browser-based multi-country clock
+              for a small cross-border business,
+              making it easier to see the local time
+              of customers in different markets.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div class="about-statement">
+
+          <p data-i18n="afterStatement">
+            Small businesses do not always need a bigger system.
+            Sometimes they just need someone to solve the specific problem in front of them.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         05 SMALL BUSINESS TECHNOLOGY
+    ========================================================== -->
+
+    <section id="small-business-tech" class="about-section about-section-soft">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="changeEyebrow"
+          >
+            05 · Small-Business Technology
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="changeTitle"
+          >
+            Small-business technology needs have changed.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p data-i18n="change1">
+            In the past, companies often needed people to maintain mail servers,
+            file servers, internal applications and other IT infrastructure.
+          </p>
+
+          <p data-i18n="change2">
+            Today, Google Workspace, Microsoft 365,
+            SaaS products, cloud services and managed platforms
+            handle much of that infrastructure.
+          </p>
+
+          <p data-i18n="change3">
+            The technology problems faced by many small businesses
+            have therefore changed as well.
+          </p>
+
+        </div>
+
+
+        <div class="about-problem-list">
+
+          <div
+            class="about-problem-item"
+            data-i18n="problem1"
+          >
+            Excel and CSV files that need to be cleaned and reorganised every week.
+          </div>
+
+          <div
+            class="about-problem-item"
+            data-i18n="problem2"
+          >
+            Data that still has to be copied manually between Notion,
+            email, Google Sheets and other applications.
+          </div>
+
+          <div
+            class="about-problem-item"
+            data-i18n="problem3"
+          >
+            AI tools that have already been purchased,
+            but are not yet connected to the actual workflow.
+          </div>
+
+          <div
+            class="about-problem-item"
+            data-i18n="problem4"
+          >
+            A specific problem where existing software is unsuitable,
+            but building an entire system would be excessive.
+          </div>
+
+        </div>
+
+
+        <div class="about-statement">
+
+          <p data-i18n="changeStatement">
+            Traditional IT focused heavily on keeping systems running.
+            Small businesses today increasingly need their existing tools
+            to do more of the work for them.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         06 PEACE OF MIND
+    ========================================================== -->
+
+    <section id="continuity" class="about-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="peaceEyebrow"
+          >
+            06 · Continuity
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="peaceTitle"
+          >
+            What you are really buying is some technical peace of mind.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p data-i18n="peace1">
+            Many small businesses do not need a technical person sitting there every day.
+          </p>
+
+          <p
+            class="about-lead"
+            data-i18n="peace2"
+          >
+            What matters is knowing who to contact when something comes up.
+          </p>
+
+          <p data-i18n="peace3">
+            Data needs cleaning? Send it to me.
+            A repetitive process should be automated? Send it to me.
+            Notion, Google Workspace or another tool needs connecting?
+            Tell me what you want to happen.
+          </p>
+
+          <p data-i18n="peace4">
+            Need an Excel tool,
+            browser extension,
+            small application or landing page?
+            You can ask me directly.
+          </p>
+
+          <p data-i18n="peace5">
+            You do not need to return to a freelance marketplace every time,
+            find another stranger,
+            and explain your business,
+            files and working methods again from the beginning.
+          </p>
+
+          <p data-i18n="peace6">
+            Once we have worked together,
+            I gradually become familiar with the tools,
+            file structures and workflows you use.
+            The next problem becomes easier to deal with than the first one.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         07 ONE PERSON
+    ========================================================== -->
+
+    <section id="one-person" class="about-section about-section-soft">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="oneEyebrow"
+          >
+            07 · One Person
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="oneTitle"
+          >
+            I’m only one person.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p data-i18n="one1">
+            This is not a large consulting company.
+          </p>
+
+          <p data-i18n="one2">
+            There is no salesperson,
+            project manager,
+            customer-service team
+            or multi-layer handoff.
+          </p>
+
+          <p data-i18n="one3">
+            Your request comes directly to me,
+            and I am also the person who actually does the work.
+          </p>
+
+          <p data-i18n="one4">
+            Because of that,
+            I do not have much interest in turning every small request
+            into another paid add-on
+            or designing a complicated maze of upsells.
+          </p>
+
+          <p
+            class="about-highlight"
+            data-i18n="one5"
+          >
+            If the problem is within my capabilities,
+            I would rather keep the rules simple and solve it.
+          </p>
+
+          <p data-i18n="one6">
+            That is also why I created the monthly technical-support option.
+            You are not only buying up to 40 hours.
+            You are keeping a stable technical-support point of contact.
+          </p>
+
+        </div>
+
+
+        <div
+          class="about-quote"
+          data-i18n="oneQuote"
+        >
+          You may not use all 40 hours every month.
+          The real value is that when the next problem appears,
+          you do not need to start searching
+          for someone capable of solving it all over again.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         08 BUSINESS SYSTEMS
+    ========================================================== -->
+
+    <section id="business-systems" class="about-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="systemEyebrow"
+          >
+            08 · Business Systems
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="systemTitle"
+          >
+            How I think about implementing business systems.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p
+            class="about-lead"
+            data-i18n="systemIntro"
+          >
+            Because I spent years delivering ERP systems,
+            I also want to say something about how I see companies implementing business systems.
+          </p>
+
+          <p data-i18n="system1">
+            When a company starts needing ERP,
+            CRM or another business system,
+            the first thing I usually look at is not the software itself.
+          </p>
+
+          <p
+            class="about-highlight"
+            data-i18n="system2"
+          >
+            It is the data.
+          </p>
+
+          <p data-i18n="system3">
+            I have always thought that implementing an enterprise system
+            is a little like building a house.
+          </p>
+
+          <p data-i18n="system4">
+            The software may be the structure above ground,
+            but customers,
+            vendors,
+            products,
+            BOMs
+            and other master data are the foundation.
+          </p>
+
+          <p data-i18n="system5">
+            Every company manages its business differently.
+            Even the same type of data may require completely different levels of detail,
+            classifications and field structures.
+          </p>
+
+          <p data-i18n="system6">
+            That is why master data often goes through repeated cleaning,
+            confirmation and adjustment before a system can go live.
+          </p>
+
+          <p data-i18n="system7">
+            In ERP projects,
+            this work can consume a great deal of time
+            for both the customer and the implementation team.
+          </p>
+
+          <p data-i18n="system8">
+            If a company is preparing to implement a new system,
+            I would rather help prepare this data properly in advance,
+            so implementation consultants can spend their time on processes,
+            configuration and decisions that actually require their experience,
+            instead of repeatedly reorganising Excel files.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         09 WORKING STYLE
+    ========================================================== -->
+
+    <section id="working-style" class="about-section about-section-soft">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div
+            class="eyebrow"
+            data-i18n="styleEyebrow"
+          >
+            09 · How I Work
+          </div>
+
+          <h2
+            class="section-title"
+            data-i18n="styleTitle"
+          >
+            Remote. Asynchronous. Result-oriented.
+          </h2>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p data-i18n="style1">
+            You can send me the problem and relevant files by email.
+          </p>
+
+          <p data-i18n="style2">
+            If the task is clear,
+            I can start working on it.
+          </p>
+
+          <p data-i18n="style3">
+            If the task is larger,
+            I will estimate the time before starting.
+          </p>
+
+          <p data-i18n="style4">
+            If the task involves an API,
+            tool or feature I have not used directly before,
+            I will read the documentation,
+            build my own test environment
+            and validate the approach.
+          </p>
+
+          <p data-i18n="style5">
+            That self-study,
+            documentation reading
+            and independent testing time
+            is not counted as client task time.
+          </p>
+
+        </div>
+
+
+        <div
+          class="about-quote"
+          data-i18n="styleQuote"
+        >
+          You are paying for the time I spend completing your work,
+          not for the time I spend learning something new.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================== -->
+
+    <section
+      id="contact"
+      class="about-contact"
+    >
+
+      <div class="container">
+
+        <div class="about-contact-box">
+
+          <div
+            class="eyebrow"
+            data-i18n="contactEyebrow"
+          >
+            Contact
+          </div>
+
+          <h2 data-i18n="contactTitle">
+            Tell me what you are trying to solve.
+          </h2>
+
+          <p data-i18n="contactText">
+            If you have a problem but are not sure
+            whether it belongs to data processing,
+            automation,
+            lightweight tool development
+            or business-system data,
+            that is fine.
+            Just tell me what you want to solve.
+          </p>
+
+          <a
+            class="button button-primary"
+            href="mailto:jax.xiangjie.jia@gmail.com"
+            data-i18n="contactButton"
+          >
+            Contact Me
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <span>
+        © 2026 Jax Jia
+      </span>
+
+      <span data-i18n="footerText">
+        Remote Data, Automation & Technical Support
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       LANGUAGE
+  ========================================================== -->
+
+  <script>
+
+    const translations = {
+
+      en: {
+
+        offer:
+          "New Client Offer — First data-processing task from USD 5 · Available through December 31, 2026",
+
+        offerDetails:
+          "View Details →",
+
+        navHome:
+          "Home",
+
+        navServices:
+          "What I Can Help With",
+
+        navWork:
+          "Selected Work",
+
+        navPricing:
+          "How It Works",
+        navPricingSupport:
+          "Pricing & Support",
+
+        navSecurity:
+          "Data Security",
+
+        navContact:
+          "Contact",
+
+        navAbout:
+          "About Me",
+
+        sideNavTitle:
+          "About Me",
+
+        sideAbout:
+          "About",
+
+        sideWho:
+          "01 · Who I Am",
+
+        sideData:
+          "02 · Data → ERP",
+
+        sideErp:
+          "03 · ERP Projects",
+
+        sideAfter:
+          "04 · After ERP",
+
+        sideSmall:
+          "05 · Small-Business Tech",
+
+        sidePeace:
+          "06 · Continuity",
+
+        sideOne:
+          "07 · One Person",
+
+        sideSystem:
+          "08 · Business Systems",
+
+        sideStyle:
+          "09 · How I Work",
+
+        sideContact:
+          "Contact",
+
+        quickContact:
+          "Contact Me",
+
+        quickMonthly:
+          "Monthly Plan",
+
+        quickTop:
+          "Back to Top",
+
+        heroEyebrow:
+          "About Me",
+
+        heroTitle1:
+          "A few words",
+
+        heroTitle2:
+          "about me.",
+
+        heroLead:
+          "This is not really a résumé. It is more about how I went from working with data, to delivering ERP projects, and eventually to solving smaller and more practical technical problems.",
+
+
+        whoEyebrow:
+          "01 · Who I Am",
+
+        whoTitle:
+          "Most of what I know came from doing the work.",
+
+        who1:
+          "I’m Jax Jia, from China.",
+
+        who2:
+          "I do not come from a famous university, and I do not have a particularly glamorous career story. Most of what I know came from years of practical work and repeatedly solving real problems.",
+
+        who3:
+          "After graduation, I spent about three years working with data: Excel cleaning, merging, batch adjustments and SQL report development. During those years I saw many kinds of messy data and many different reporting requirements.",
+
+        who4:
+          "I then moved into ERP implementation and delivery, where I spent another five years.",
+
+        who5:
+          "From that point on, I was no longer dealing only with data. I started dealing with the business processes and systems behind it.",
+
+
+        dataEyebrow:
+          "02 · Data → ERP",
+
+        dataTitle:
+          "Data makes more sense when you understand the business behind it.",
+
+        data1:
+          "Once I started working on ERP projects, I began to understand more clearly how businesses actually operate.",
+
+        data2:
+          "Why can the same type of product master data require completely different classifications in two companies?",
+
+        data3:
+          "Why do finance, purchasing, sales, inventory and invoicing need to connect in a particular way?",
+
+        data4:
+          "Who should maintain a field? How detailed should a piece of master data be?",
+
+        data5:
+          "Quite often, the software itself is not the hardest part. The harder part is understanding how the company actually works, then turning that into data and processes that a system can understand.",
+
+        dataQuote:
+          "First understand the real problem. Then decide what tool should be used.",
+
+
+        erpEyebrow:
+          "03 · ERP Project Experience",
+
+        erpTitle:
+          "Different projects. Different roles.",
+
+        erpSubtitle:
+          "I have worked with businesses in dairy distribution, FMCG, logistics, manufacturing, funeral services, chip materials and other industries.",
+
+        erpRole:
+          "My role was not the same in every project. Some projects were led by me from presales through go-live. In some larger projects I focused on data, while in others I took responsibility for specific improvements to an existing system. What matters to me is not presenting every project as something I completed alone, but being clear about what I actually solved in each one.",
+
+        erp1Label:
+          "End-to-End Delivery",
+
+        erp1Title:
+          "Dairy Industry Regional Distributor",
+
+        erp1Text:
+          "Finance, supply chain and B2B commerce, covering presales requirements, solution design, implementation, delivery, go-live and ongoing support.",
+
+        erp2Label:
+          "End-to-End Delivery",
+
+        erp2Title:
+          "FMCG Regional Distributor",
+
+        erp2Text:
+          "Finance and supply-chain implementation, covering presales, implementation, delivery, go-live and post-delivery support.",
+
+        erp3Label:
+          "End-to-End Delivery",
+
+        erp3Title:
+          "Funeral Services Industry",
+
+        erp3Text:
+          "Business operations, finance and tax-invoicing workflows, including the connection between operational processes, financial data and invoicing.",
+
+        erp4Label:
+          "Migration & Go-Live",
+
+        erp4Title:
+          "Japanese Steel Casting & Logistics Projects",
+
+        erp4Text:
+          "Financial-system implementation and historical voucher migration, including projects started from zero and driven through system go-live.",
+
+        erp5Label:
+          "Large ERP Upgrade · Data Role",
+
+        erp5Title:
+          "German Pump Systems Company",
+
+        erp5Text:
+          "A large ERP upgrade delivered by a three-person team. A project lead with around 20 years of ERP experience focused on process optimisation and solution decisions, while a developer with around 10 years of experience handled development. My main responsibility was project data, including master data, opening balances and other migration and preparation work.",
+
+        erp6Label:
+          "Existing Systems · Specific Improvements",
+
+        erp6Title:
+          "Musical Instrument & Chip Materials Companies",
+
+        erp6Text:
+          "These ERP systems had already been implemented. I joined later to handle selected module improvements, field mapping and specific system modifications rather than the original implementation.",
+
+        three1:
+          "Business",
+
+        three2:
+          "Data",
+
+        three3:
+          "Systems",
+
+
+        afterEyebrow:
+          "04 · After ERP",
+
+        afterTitle:
+          "From large systems back to smaller problems.",
+
+        after1:
+          "After ending the stage of my career focused mainly on ERP delivery, I spent two years applying what I had learned to smaller and lighter problems.",
+
+        after2:
+          "I gradually realised that some small businesses simply do not need one, let alone several, large business systems.",
+
+        after3:
+          "What they often need is something affordable, practical and simple enough to solve the problem in front of them.",
+
+        after4:
+          "That is why many things I built during these two years were not created because I wanted to “make a product”. They started because someone had a specific pain point.",
+
+        tool1:
+          "Some clients are businesses of only two or three people, including the owner. They still need CRM functions, but may not need or be ready for a commercial CRM platform. I designed OneSheet CRM so they could manage customers, follow-ups and relationships directly in Excel at very low cost.",
+
+        tool2:
+          "One client was an individual freelancer who still needed a repeatable way to reach potential customers. I built an automated workflow using Google Apps Script, Notion and email. It reads customer records from Notion, fills predefined email templates, sends messages, updates customer status and sends a result report after completion.",
+
+        tool3:
+          "A small photography team needed to process large numbers of images repeatedly, so I built EWSI to batch-convert image formats and dimensions instead of handling the files one by one.",
+
+        tool4Title:
+          "Excel Merged-Cell Tool",
+
+        tool4:
+          "A client regularly ran into problems caused by merged cells in Excel, so I created a small tool to split those merged areas and rebuild the data into something easier to process.",
+
+        tool5Title:
+          "Multi-Country Browser Clock",
+
+        tool5:
+          "I also built a browser-based multi-country clock for a small cross-border business, making it easier to see the local time of customers in different markets.",
+
+        afterStatement:
+          "Small businesses do not always need a bigger system. Sometimes they just need someone to solve the specific problem in front of them.",
+
+
+        changeEyebrow:
+          "05 · Small-Business Technology",
+
+        changeTitle:
+          "Small-business technology needs have changed.",
+
+        change1:
+          "In the past, companies often needed people to maintain mail servers, file servers, internal applications and other IT infrastructure.",
+
+        change2:
+          "Today, Google Workspace, Microsoft 365, SaaS products, cloud services and managed platforms handle much of that infrastructure.",
+
+        change3:
+          "The technology problems faced by many small businesses have therefore changed as well.",
+
+        problem1:
+          "Excel and CSV files that need to be cleaned and reorganised every week.",
+
+        problem2:
+          "Data that still has to be copied manually between Notion, email, Google Sheets and other applications.",
+
+        problem3:
+          "AI tools that have already been purchased, but are not yet connected to the actual workflow.",
+
+        problem4:
+          "A specific problem where existing software is unsuitable, but building an entire system would be excessive.",
+
+        changeStatement:
+          "Traditional IT focused heavily on keeping systems running. Small businesses today increasingly need their existing tools to do more of the work for them.",
+
+
+        peaceEyebrow:
+          "06 · Continuity",
+
+        peaceTitle:
+          "What you are really buying is some technical peace of mind.",
+
+        peace1:
+          "Many small businesses do not need a technical person sitting there every day.",
+
+        peace2:
+          "What matters is knowing who to contact when something comes up.",
+
+        peace3:
+          "Data needs cleaning? Send it to me. A repetitive process should be automated? Send it to me. Notion, Google Workspace or another tool needs connecting? Tell me what you want to happen.",
+
+        peace4:
+          "Need an Excel tool, browser extension, small application or landing page? You can ask me directly.",
+
+        peace5:
+          "You do not need to return to a freelance marketplace every time, find another stranger, and explain your business, files and working methods again from the beginning.",
+
+        peace6:
+          "Once we have worked together, I gradually become familiar with the tools, file structures and workflows you use. The next problem becomes easier to deal with than the first one.",
+
+
+        oneEyebrow:
+          "07 · One Person",
+
+        oneTitle:
+          "I’m only one person.",
+
+        one1:
+          "This is not a large consulting company.",
+
+        one2:
+          "There is no salesperson, project manager, customer-service team or multi-layer handoff.",
+
+        one3:
+          "Your request comes directly to me, and I am also the person who actually does the work.",
+
+        one4:
+          "Because of that, I do not have much interest in turning every small request into another paid add-on or designing a complicated maze of upsells.",
+
+        one5:
+          "If the problem is within my capabilities, I would rather keep the rules simple and solve it.",
+
+        one6:
+          "That is also why I created the monthly technical-support option. You are not only buying up to 40 hours. You are keeping a stable technical-support point of contact.",
+
+        oneQuote:
+          "You may not use all 40 hours every month. The real value is that when the next problem appears, you do not need to start searching for someone capable of solving it all over again.",
+
+
+        systemEyebrow:
+          "08 · Business Systems",
+
+        systemTitle:
+          "How I think about implementing business systems.",
+
+        systemIntro:
+          "Because I spent years delivering ERP systems, I also want to say something about how I see companies implementing business systems.",
+
+        system1:
+          "When a company starts needing ERP, CRM or another business system, the first thing I usually look at is not the software itself.",
+
+        system2:
+          "It is the data.",
+
+        system3:
+          "I have always thought that implementing an enterprise system is a little like building a house.",
+
+        system4:
+          "The software may be the structure above ground, but customers, vendors, products, BOMs and other master data are the foundation.",
+
+        system5:
+          "Every company manages its business differently. Even the same type of data may require completely different levels of detail, classifications and field structures.",
+
+        system6:
+          "That is why master data often goes through repeated cleaning, confirmation and adjustment before a system can go live.",
+
+        system7:
+          "In ERP projects, this work can consume a great deal of time for both the customer and the implementation team.",
+
+        system8:
+          "If a company is preparing to implement a new system, I would rather help prepare this data properly in advance, so implementation consultants can spend their time on processes, configuration and decisions that actually require their experience, instead of repeatedly reorganising Excel files.",
+
+
+        styleEyebrow:
+          "09 · How I Work",
+
+        styleTitle:
+          "Remote. Asynchronous. Result-oriented.",
+
+        style1:
+          "You can send me the problem and relevant files by email.",
+
+        style2:
+          "If the task is clear, I can start working on it.",
+
+        style3:
+          "If the task is larger, I will estimate the time before starting.",
+
+        style4:
+          "If the task involves an API, tool or feature I have not used directly before, I will read the documentation, build my own test environment and validate the approach.",
+
+        style5:
+          "That self-study, documentation reading and independent testing time is not counted as client task time.",
+
+        styleQuote:
+          "You are paying for the time I spend completing your work, not for the time I spend learning something new.",
+
+
+        contactEyebrow:
+          "Contact",
+
+        contactTitle:
+          "Tell me what you are trying to solve.",
+
+        contactText:
+          "If you have a problem but are not sure whether it belongs to data processing, automation, lightweight tool development or business-system data, that is fine. Just tell me what you want to solve.",
+
+        contactButton:
+          "Contact Me",
+
+        footerText:
+          "Remote Data, Automation & Technical Support"
+
+      },
+
+
+      zh: {
+
+        offer:
+          "新客户首单优惠 — 首次数据处理任务 5 美元起 · 有效至 2026 年 12 月 31 日",
+
+        offerDetails:
+          "查看详情 →",
+
+        navHome:
+          "首页",
+
+        navServices:
+          "我能为你提供什么",
+
+        navWork:
+          "客户案例",
+
+        navPricing:
+          "合作方式",
+        navPricingSupport:
+          "服务定价",
+
+        navSecurity:
+          "数据安全",
+
+        navContact:
+          "联系我",
+
+        navAbout:
+          "关于我",
+
+        sideNavTitle:
+          "关于我",
+
+        sideAbout:
+          "关于我的碎碎念",
+
+        sideWho:
+          "01 · 我是谁",
+
+        sideData:
+          "02 · 从数据到 ERP",
+
+        sideErp:
+          "03 · ERP 项目经历",
+
+        sideAfter:
+          "04 · ERP 之后",
+
+        sideSmall:
+          "05 · 小企业技术需求",
+
+        sidePeace:
+          "06 · 技术上的安心",
+
+        sideOne:
+          "07 · 我只有一个人",
+
+        sideSystem:
+          "08 · 企业上系统",
+
+        sideStyle:
+          "09 · 我的工作方式",
+
+        sideContact:
+          "联系我",
+
+        quickContact:
+          "联系我",
+
+        quickMonthly:
+          "月度套餐",
+
+        quickTop:
+          "返回顶部",
+
+        heroEyebrow:
+          "关于我",
+
+        heroTitle1:
+          "关于我的",
+
+        heroTitle2:
+          "一些碎碎念",
+
+        heroLead:
+          "这不是一份标准简历。我更想说说自己是怎么一路从数据处理、ERP 走到今天，以及为什么现在更喜欢解决一些具体、轻量、真正能派上用场的问题。",
+
+
+        whoEyebrow:
+          "01 · 我是谁",
+
+        whoTitle:
+          "我的能力，大多是工作里一点点磨出来的。",
+
+        who1:
+          "我是 Jax Jia，来自中国。",
+
+        who2:
+          "我不是名校背景，也没有一条特别漂亮的职业履历。我的能力更多来自长期实际工作中的积累，以及一次次把具体问题解决掉。",
+
+        who3:
+          "毕业后，我先做了大约 3 年与数据处理相关的工作，长期接触 Excel 数据清洗、合并、批量调整和 SQL 报表开发。那几年里，我见过很多不同类型的脏数据，也接触过各种各样的报表需求。",
+
+        who4:
+          "后来，我转向 ERP 实施与交付，并持续做了 5 年。",
+
+        who5:
+          "从那以后，我接触的不再只是数据本身，而是数据背后的业务、流程和系统。",
+
+
+        dataEyebrow:
+          "02 · 从数据，到 ERP",
+
+        dataTitle:
+          "理解数据之前，最好先理解数据背后的业务。",
+
+        data1:
+          "做 ERP 之后，我开始真正接触企业是怎么运转的。",
+
+        data2:
+          "为什么同样是一份物料资料，不同企业会要求完全不同的分类方式？",
+
+        data3:
+          "为什么财务、采购、销售、库存、开票之间必须按照某种方式衔接？",
+
+        data4:
+          "一个字段到底应该由谁维护？一份基础数据到底应该细到什么程度？",
+
+        data5:
+          "很多时候，系统本身并不是最难的。真正困难的是先把企业实际怎么做事弄清楚，再把这些东西变成系统能够理解的数据和流程。",
+
+        dataQuote:
+          "先搞清楚真正要解决的问题，再决定该用什么工具。",
+
+
+        erpEyebrow:
+          "03 · ERP 项目经历",
+
+        erpTitle:
+          "不同的项目，我承担过不同的角色。",
+
+        erpSubtitle:
+          "过去几年里，我接触过乳制品、快消、物流、制造、殡葬、芯片材料等不同类型的企业。",
+
+        erpRole:
+          "我做过的项目并不都是同一种角色。有些项目从售前到上线由我独立主导，有些大型项目中我专门负责数据相关工作，也有一些是在既有系统基础上承担专项改造。对我来说，重要的不是把所有项目都包装成“我一个人完成”，而是清楚自己在每个项目里真正解决了什么问题。",
+
+        erp1Label:
+          "从 0 到上线 · 全程交付",
+
+        erp1Title:
+          "乳制品行业地区总代理",
+
+        erp1Text:
+          "财务、供应链及 B2B 商城项目，覆盖售前需求沟通、方案设计、实施、交付、上线以及后续支持。",
+
+        erp2Label:
+          "从 0 到上线 · 全程交付",
+
+        erp2Title:
+          "快消品行业地区总代理",
+
+        erp2Text:
+          "财务与供应链系统项目，覆盖售前、实施、交付、上线和售后支持。",
+
+        erp3Label:
+          "从 0 到上线 · 全程交付",
+
+        erp3Title:
+          "殡葬行业",
+
+        erp3Text:
+          "业务、财务及税务开票相关系统建设与交付，重点处理业务流程、财务数据和开票环节之间的衔接。",
+
+        erp4Label:
+          "数据迁移 · 系统上线",
+
+        erp4Title:
+          "日本铸钢及物流行业项目",
+
+        erp4Text:
+          "财务系统上线及历史凭证迁移，包括从 0 开始推进并最终完成系统上线的项目。",
+
+        erp5Label:
+          "大型 ERP 升级 · 数据角色",
+
+        erp5Title:
+          "德国背景泵系统企业",
+
+        erp5Text:
+          "一个由三人团队完成的大型 ERP 升级项目。一位拥有约 20 年 ERP 经验的负责人主要负责流程优化和方案确认，一位拥有约 10 年经验的开发人员主要负责系统开发，而我主要负责项目中的数据工作，包括基础资料、期初数据以及相关的数据迁移与整理。",
+
+        erp6Label:
+          "既有系统 · 专项改造",
+
+        erp6Title:
+          "美国背景乐器企业与芯片材料企业",
+
+        erp6Text:
+          "这类项目原本已经完成 ERP 实施。我后续进入项目，负责部分模块调整、字段映射和专项系统改造，而不是原始系统的完整实施。",
+
+        three1:
+          "业务",
+
+        three2:
+          "数据",
+
+        three3:
+          "系统",
+
+
+        afterEyebrow:
+          "04 · ERP 之后",
+
+        afterTitle:
+          "从庞大的系统，回到更轻量的问题。",
+
+        after1:
+          "在结束以 ERP 项目交付为主的工作阶段后，我花了两年的时间，开始把过去积累的经验用在更轻量的问题上。",
+
+        after2:
+          "因为我逐渐发现，一些规模很小的企业其实并不需要一套，甚至多套庞大的业务系统。",
+
+        after3:
+          "它们真正需要的，往往只是一个能够解决眼前问题、成本可控、足够简单的工具。",
+
+        after4:
+          "所以这两年，我做的很多东西都不是为了“做产品而做产品”，而是因为先出现了一个具体的需求痛点。",
+
+        tool1:
+          "有些客户，算上老板自己也只有两三个人。他们一样需要 CRM 来维护客户关系，但并不一定有必要，也未必有条件去部署一套商业化 CRM 系统。所以我设计并开发了 OneSheet CRM，让他们只用 Excel，就能以很低的成本管理客户资料、跟进记录和日常客户关系。",
+
+        tool2:
+          "也有一些客户甚至还没有形成真正的公司规模，只是一个人工作的自由职业者。但为了获客，他一样需要持续发送冷邮件并维护潜在客户名单。于是我帮他设计了一套基于 Google Apps Script、Notion 和邮箱的自动化冷邮件系统，从 Notion 获取客户资料，自动替换邮件模板变量并发送邮件，完成后更新客户状态并发送结果报告。",
+
+        tool3:
+          "有小规模摄影团队需要批量调整大量图片的尺寸和格式，所以我为他们开发了 EWSI，让大量重复的图片处理工作可以批量完成。",
+
+        tool4Title:
+          "Excel 合并单元格拆解工具",
+
+        tool4:
+          "有客户在处理 Excel 文件时，经常被合并单元格拆分后的数据问题困扰，所以我为她开发了对应的拆解工具，把这些数据重新整理成更容易继续处理的结构。",
+
+        tool5Title:
+          "浏览器多国家时钟",
+
+        tool5:
+          "我也为从事跨境业务的小企业设计开发过浏览器多国家时钟，让他们能够更方便地确认不同客户群所在地区的当地时间。",
+
+        afterStatement:
+          "小企业需要的，不一定是一套更大的系统。很多时候，它们只是需要一个人，把眼前这个具体问题解决掉。",
+
+
+        changeEyebrow:
+          "05 · 小企业的技术需求",
+
+        changeTitle:
+          "小企业的技术需求，已经变了。",
+
+        change1:
+          "过去，公司经常需要专门的人维护邮件服务器、文件服务器、内部应用和各种基础 IT 环境。",
+
+        change2:
+          "今天，Google Workspace、Microsoft 365、SaaS、云服务和各种托管平台已经承担了大量传统基础设施工作。",
+
+        change3:
+          "于是很多小企业面对的技术问题，也开始发生变化。",
+
+        problem1:
+          "一批 Excel 和 CSV 每周都需要重复清洗和整理。",
+
+        problem2:
+          "Notion、邮箱、Google Sheets 和其他应用之间的数据仍然需要人工复制。",
+
+        problem3:
+          "已经购买了 AI 工具，却不知道怎样真正融入现有工作流程。",
+
+        problem4:
+          "只是一个很具体的问题，现成软件不适合，但为它开发一整套系统又完全没有必要。",
+
+        changeStatement:
+          "过去的 IT，更强调让系统能够运行。今天的小企业，更需要让现有工具真正替人工作。",
+
+
+        peaceEyebrow:
+          "06 · 长期合作",
+
+        peaceTitle:
+          "你购买的，其实是一份技术上的安心。",
+
+        peace1:
+          "很多小企业并不需要每天都有一个技术人员坐在那里。",
+
+        peace2:
+          "真正重要的是：当问题出现时，你知道该找谁。",
+
+        peace3:
+          "数据需要整理，可以发给我。重复流程想自动化，可以发给我。Notion、Google Workspace 或其他工具想连接起来，也可以告诉我你想实现什么。",
+
+        peace4:
+          "需要一个 Excel 工具、浏览器插件、小型程序或者落地页，也可以直接告诉我。",
+
+        peace5:
+          "你不需要每一次遇到问题，都重新去自由职业平台寻找一个陌生人，再重新解释自己的业务、文件和工作方式。",
+
+        peace6:
+          "如果我们已经建立合作关系，我会逐渐熟悉你正在使用的工具、文件结构和流程。下一次处理问题，自然会比第一次简单。",
+
+
+        oneEyebrow:
+          "07 · 一个人",
+
+        oneTitle:
+          "我只有一个人。",
+
+        one1:
+          "这不是一家大型咨询公司。",
+
+        one2:
+          "没有销售、项目经理、客服，也没有多层交接。",
+
+        one3:
+          "你发来的需求，会直接到我这里。真正做这项工作的人，也是我。",
+
+        one4:
+          "所以我没有太多兴趣把每一个小问题都拆成新的收费项目，再不断设计新的加价规则。",
+
+        one5:
+          "只要是我能够解决的问题，我更愿意保持规则简单，然后把它解决。",
+
+        one6:
+          "这也是我设计月度技术支持的原因。你购买的并不只是最多 40 个小时，你同时保留了一个稳定的技术支持入口。",
+
+        oneQuote:
+          "你不一定每个月都会用满 40 小时。真正的价值，是下一次问题出现时，你不需要重新开始寻找一个能解决它的人。",
+
+
+        systemEyebrow:
+          "08 · 企业系统",
+
+        systemTitle:
+          "我怎么看企业上系统这件事",
+
+        systemIntro:
+          "因为我从事了多年的 ERP 系统交付，所以也想谈谈我怎么看待企业上系统这件事。",
+
+        system1:
+          "如果一家企业开始需要 ERP、CRM 或其他业务系统，我通常最先关注的不是软件本身。",
+
+        system2:
+          "而是数据。",
+
+        system3:
+          "我一直觉得，企业系统上线很像盖房子。",
+
+        system4:
+          "软件可以理解成上层建筑，但客户、供应商、物料、BOM 和其他基础数据，就是地基。",
+
+        system5:
+          "每一家企业的管理重点都不同。所以即使是同一种数据，在不同企业里，所需要的颗粒度、分类方式和字段结构也可能完全不同。",
+
+        system6:
+          "这也是为什么系统上线前，基础数据经常需要反复整理、确认和调整。",
+
+        system7:
+          "在过去的 ERP 项目里，这通常也是企业内部人员和实施顾问都需要投入大量时间的部分。",
+
+        system8:
+          "所以如果一家企业准备上线新的业务系统，我更愿意提前把这部分数据工作做好。让实施顾问把时间放在流程、系统配置和真正需要他们经验判断的地方，而不是反复帮客户整理 Excel。",
+
+
+        styleEyebrow:
+          "09 · 我的工作方式",
+
+        styleTitle:
+          "远程、异步、结果导向。",
+
+        style1:
+          "你可以通过邮件把问题和相关文件发给我。",
+
+        style2:
+          "如果任务比较明确，我会直接开始处理。",
+
+        style3:
+          "如果工作量比较大，我会先告诉你预计需要多少时间。",
+
+        style4:
+          "如果任务涉及我没有直接使用过的 API、工具或者功能，我会自己阅读文档、搭建测试环境并验证。",
+
+        style5:
+          "这些自学、查资料和自行测试的时间，不会计入客户工时。",
+
+        styleQuote:
+          "你购买的是我为你完成工作的时间，而不是我学习新东西的时间。",
+
+
+        contactEyebrow:
+          "联系我",
+
+        contactTitle:
+          "告诉我，你现在想解决什么。",
+
+        contactText:
+          "如果你现在有一个问题，但不确定它究竟属于数据处理、自动化、工具开发，还是业务系统数据，也没有关系。直接告诉我你想解决什么。",
+
+        contactButton:
+          "联系我",
+
+        footerText:
+          "远程数据处理 · 自动化 · 技术支持"
+
+      }
+
+    };
+
+
+    function setLanguage(lang) {
+
+      const selected =
+        translations[lang]
+          ? lang
+          : "en";
+
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach((element) => {
+
+          const key =
+            element.getAttribute("data-i18n");
+
+          const value =
+            translations[selected][key];
+
+          if (value !== undefined) {
+            element.textContent = value;
+          }
+
+        });
+
+
+      document
+        .querySelectorAll(".lang-button")
+        .forEach((button) => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.lang === selected
+          );
+
+        });
+
+
+      document.documentElement.lang =
+        selected === "zh"
+          ? "zh-CN"
+          : "en";
+
+
+      localStorage.setItem(
+        "preferredLanguage",
+        selected
+      );
+
+    }
+
+
+    document
+      .querySelectorAll(".lang-button")
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          () => setLanguage(button.dataset.lang)
+        );
+
+      });
+
+
+    const savedLanguage =
+      localStorage.getItem("preferredLanguage") || "en";
+
+
+    setLanguage(savedLanguage);
+
+  </script>
+
+</body>
+</html>
