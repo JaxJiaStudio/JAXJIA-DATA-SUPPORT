@@ -1,693 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Jax Jia | ERP Data Preparation & Remote Data Support</title>
+  <title>Jax Jia | Data, Automation & Technical Support</title>
 
-  <meta
-    name="description"
-    content="Remote ERP data preparation, Excel and CSV processing, data migration, import preparation, field mapping, and lightweight automation support."
-  />
+  <meta name="description"
+    content="Remote data processing, workflow automation, lightweight tools and business system data support for small businesses." />
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        "Microsoft YaHei",
-        sans-serif;
-
-      background: #0b0f14;
-      color: #e8edf3;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 88px 0;
-    }
-
-    .section-dark {
-      background: #0f151d;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.15;
-      margin-bottom: 18px;
-    }
-
-    .section-subtitle {
-      max-width: 760px;
-      color: #9aa7b5;
-      font-size: 1.05rem;
-      margin-bottom: 42px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      color: #f2b84b;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    /* =========================
-       Language Switch
-    ========================= */
-
-    .language-switch {
-      position: fixed;
-      top: 22px;
-      right: 28px;
-      z-index: 999;
-
-      display: flex;
-      align-items: center;
-      gap: 4px;
-
-      padding: 4px;
-
-      border: 1px solid #2b3743;
-      border-radius: 10px;
-
-      background: rgba(11, 15, 20, 0.88);
-      backdrop-filter: blur(12px);
-    }
-
-    .lang-button {
-      border: 0;
-      background: transparent;
-      color: #7f8b97;
-
-      padding: 8px 12px;
-      border-radius: 7px;
-
-      font-size: 0.82rem;
-      font-weight: 700;
-
-      cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        color 0.2s ease;
-    }
-
-    .lang-button:hover {
-      color: #ffffff;
-    }
-
-    .lang-button.active {
-      background: #f2b84b;
-      color: #15100a;
-    }
-
-    /* =========================
-       Hero
-    ========================= */
-
-    .hero {
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 80% 20%,
-          rgba(242, 184, 75, 0.14),
-          transparent 34%
-        ),
-        linear-gradient(
-          180deg,
-          #090d12 0%,
-          #0b1017 55%,
-          #0f151d 100%
-        );
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 180px;
-
-      background: linear-gradient(
-        180deg,
-        rgba(15, 21, 29, 0),
-        #0f151d
-      );
-
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 880px;
-      padding: 100px 0 120px;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 6.2rem);
-      line-height: 0.98;
-      letter-spacing: -0.045em;
-      margin-bottom: 26px;
-    }
-
-    .hero h1 span {
-      color: #f2b84b;
-    }
-
-    .hero-lead {
-      max-width: 780px;
-      color: #b2bdc8;
-      font-size: clamp(1.08rem, 2vw, 1.32rem);
-      margin-bottom: 34px;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 18px;
-      margin-bottom: 36px;
-      color: #8f9ba7;
-      font-size: 0.95rem;
-    }
-
-    .hero-meta span {
-      padding-right: 18px;
-      border-right: 1px solid #26313d;
-    }
-
-    .hero-meta span:last-child {
-      border-right: 0;
-      padding-right: 0;
-    }
-
-    /* =========================
-       Buttons
-    ========================= */
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      min-height: 50px;
-      padding: 0 22px;
-
-      border-radius: 10px;
-
-      font-weight: 700;
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .button-primary {
-      background: #f2b84b;
-      color: #15100a;
-    }
-
-    .button-primary:hover {
-      transform: translateY(-1px);
-      background: #ffc95d;
-    }
-
-    .button-secondary {
-      border: 1px solid #33404d;
-      color: #d9e1e8;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .button-secondary:hover {
-      border-color: #5b6977;
-      background: rgba(255, 255, 255, 0.045);
-    }
-
-    /* =========================
-       Cards
-    ========================= */
-
-    .grid {
-      display: grid;
-      gap: 22px;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card {
-      border: 1px solid #202b36;
-      background: #121922;
-
-      border-radius: 14px;
-      padding: 28px;
-    }
-
-    .card h3 {
-      font-size: 1.18rem;
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: #9eabb7;
-    }
-
-    .service-card {
-      min-height: 220px;
-    }
-
-    .service-number {
-      display: inline-block;
-      margin-bottom: 22px;
-
-      color: #f2b84b;
-
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-    }
-
-    /* =========================
-       Experience
-    ========================= */
-
-    .experience-list {
-      display: grid;
-      gap: 18px;
-    }
-
-    .experience-item {
-      padding: 26px 28px;
-
-      border-left: 3px solid #f2b84b;
-      background: #111821;
-
-      border-radius: 0 12px 12px 0;
-    }
-
-    .experience-item h3 {
-      margin-bottom: 8px;
-      font-size: 1.08rem;
-    }
-
-    .experience-item p {
-      color: #9eabb7;
-    }
-
-    /* =========================
-       Pricing
-    ========================= */
-
-    .pricing-card {
-      border: 1px solid #313d49;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(242, 184, 75, 0.06),
-          rgba(242, 184, 75, 0.01)
-        ),
-        #121922;
-
-      border-radius: 16px;
-      padding: 32px;
-    }
-
-    .pricing-card.featured {
-      border-color: rgba(242, 184, 75, 0.55);
-    }
-
-    .price {
-      margin: 18px 0 8px;
-      font-size: 2.1rem;
-      font-weight: 800;
-    }
-
-    .price-note {
-      color: #8f9ba7;
-      font-size: 0.92rem;
-      margin-bottom: 24px;
-    }
-
-    .pricing-list {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-
-      color: #b3bec8;
-    }
-
-    .pricing-list li::before {
-      content: "•";
-      color: #f2b84b;
-      margin-right: 10px;
-    }
-
-    /* =========================
-       Security
-    ========================= */
-
-    .security-box {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 38px;
-      align-items: start;
-    }
-
-    .security-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .security-item {
-      padding: 18px 20px;
-
-      border: 1px solid #202b36;
-      background: #111821;
-
-      border-radius: 12px;
-    }
-
-    .security-item strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .security-item span {
-      color: #9eabb7;
-      font-size: 0.95rem;
-    }
-
-    /* =========================
-       Contact
-    ========================= */
-
-    .contact-box {
-      max-width: 820px;
-
-      padding: 46px;
-
-      border: 1px solid #293541;
-      border-radius: 18px;
-
-      background:
-        radial-gradient(
-          circle at 85% 15%,
-          rgba(242, 184, 75, 0.11),
-          transparent 35%
-        ),
-        #121922;
-    }
-
-    .contact-box p {
-      color: #9eabb7;
-      margin: 16px 0 26px;
-      max-width: 640px;
-    }
-
-    .contact-email {
-      display: inline-block;
-      margin-top: 12px;
-
-      color: #f2b84b;
-      font-weight: 700;
-
-      word-break: break-all;
-    }
-
-    /* =========================
-       Footer
-    ========================= */
-
-    footer {
-      padding: 28px 0 36px;
-
-      border-top: 1px solid #1d2731;
-
-      color: #73808d;
-      font-size: 0.9rem;
-    }
-
-    /* =========================
-       Mobile
-    ========================= */
-
-    @media (max-width: 820px) {
-
-      .grid-2,
-      .security-box {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 68px 0;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-content {
-        padding: 100px 0 105px;
-      }
-
-      .hero-meta {
-        display: grid;
-        gap: 8px;
-      }
-
-      .hero-meta span {
-        border-right: 0;
-        padding-right: 0;
-      }
-
-      .contact-box {
-        padding: 30px;
-      }
-
-      .language-switch {
-        top: 14px;
-        right: 14px;
-      }
-    }
-        /* =========================
-   Selected Work / Portfolio
-========================= */
-
-    .portfolio-card {
-    display: flex;
-    flex-direction: column;
-    min-height: 390px;
-    }
-
-    .portfolio-card h3 {
-    margin-bottom: 12px;
-    }
-
-    .portfolio-card p {
-    color: #9eabb7;
-    }
-
-    .portfolio-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    margin-top: 20px;
-    margin-bottom: 20px;
-    }
-
-    .portfolio-tags span {
-    padding: 5px 9px;
-
-    border: 1px solid #2e3945;
-    border-radius: 999px;
-
-    background: rgba(255, 255, 255, 0.025);
-
-    color: #b7c2cc;
-
-    font-size: 0.74rem;
-    font-weight: 700;
-    }
-
-    .portfolio-preview {
-    margin-top: auto;
-    min-height: 160px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    border: 1px solid #26313d;
-    border-radius: 10px;
-
-    background:
-        radial-gradient(
-        circle at 70% 20%,
-        rgba(242, 184, 75, 0.09),
-        transparent 40%
-        ),
-        #0d131a;
-
-    color: #667481;
-
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    }
-
-    .portfolio-preview img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    }
-
-    .portfolio-empty {
-    opacity: 0.65;
-    }
-
-    @media (max-width: 820px) {
-    .portfolio-card {
-        min-height: auto;
-    }
-
-    .portfolio-preview {
-        min-height: 150px;
-    }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-  <!-- Language Switch -->
-  <div class="language-switch">
+  <!-- =========================================================
+       0. NEW CLIENT OFFER
+  ========================================================== -->
 
-    <button
-      id="lang-en"
-      class="lang-button active"
-      onclick="setLanguage('en')"
-    >
-      EN
-    </button>
+  <div class="offer-bar">
+    <a href="./working-with-me/index.html#offer" class="offer-link">
 
-    <button
-      id="lang-zh"
-      class="lang-button"
-      onclick="setLanguage('zh')"
-    >
-      ZH
-    </button>
+      <div class="offer-track">
+
+        <span data-i18n="offer">
+          New Client Offer — First data-processing task from USD 5 · Available through December 31, 2026
+        </span>
+
+        <span class="offer-details" data-i18n="offerDetails">
+          View Details →
+        </span>
+
+      </div>
+
+    </a>
+  </div>
+
+
+  <!-- =========================================================
+       1. NAVIGATION
+  ========================================================== -->
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <nav class="main-nav">
+
+        <a href="#home" data-i18n="navHome">
+          Home
+        </a>
+
+        <a href="#services" data-i18n="navServices">
+          What I Can Help With
+        </a>
+
+        <a href="#work" data-i18n="navWork">
+          Selected Work
+        </a>
+
+        <a href="#pricing" data-i18n="navPricing">
+          How It Works
+        </a>
+        <a href="./working-with-me/index.html" data-i18n="navPricingSupport">
+          Pricing & Support
+        </a>
+
+        <a href="#security" data-i18n="navSecurity">
+          Data Security
+        </a>
+
+        <a href="mailto:jax.xiangjie.jia@gmail.com" data-i18n="navContact">
+          Contact
+        </a>
+
+        <a href="./about-me/index.html" data-i18n="navAbout">
+          About Me
+        </a>
+
+      </nav>
+
+
+      <div class="language-switch">
+        <button class="lang-button active" type="button" data-lang="en">
+          EN
+        </button>
+
+        <button class="lang-button" type="button" data-lang="zh">
+          ZH
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       FIXED QUICK ACTIONS
+  ========================================================== -->
+
+  <div class="quick-actions">
+
+    <a class="quick-action" href="mailto:jax.xiangjie.jia@gmail.com">
+      <span class="quick-action-icon">✉</span>
+      <span data-i18n="quickContact">Contact Me</span>
+    </a>
+
+    <a class="quick-action" href="./working-with-me/index.html#monthly-plan">
+      <span class="quick-action-icon">↗</span>
+      <span data-i18n="quickMonthly">Monthly Plan</span>
+    </a>
+
+    <a class="quick-action" href="#home">
+      <span class="quick-action-icon">↑</span>
+      <span data-i18n="quickTop">Back to Top</span>
+    </a>
 
   </div>
 
 
-  <!-- HERO -->
-  <header class="hero">
+  <main>
 
-    <div class="container">
+    <!-- =======================================================
+         2. HOME / HERO
+    ======================================================== -->
 
-      <div class="hero-content">
+    <section id="home" class="hero">
 
-        <span
-          class="eyebrow"
-          data-i18n="heroEyebrow"
-        >
-          Remote ERP & Business Data Support
-        </span>
+      <div class="hero-glow"></div>
 
-        <h1 data-i18n-html="heroTitle">
-          Clean data.<br />
-          Better <span>delivery.</span>
+      <div class="container hero-content">
+
+        <div class="eyebrow" data-i18n="heroEyebrow">
+          Remote Data, Automation & Technical Support
+        </div>
+
+
+        <h1 class="hero-title">
+
+          <span data-i18n="heroTitle1">
+            Better data.
+          </span>
+
+          <br />
+
+          <span class="accent" data-i18n="heroTitle2">
+            Less repetitive work.
+          </span>
+
         </h1>
 
-        <p
-          class="hero-lead"
-          data-i18n="heroLead"
-        >
-          I help businesses and ERP implementation teams clean,
-          restructure, migrate, and prepare Excel, CSV, master data,
-          and other business data for system import, daily operations,
-          and project delivery.
+
+        <p class="hero-lead" data-i18n="heroLead">
+          I help small businesses process data, automate repetitive work,
+          connect everyday tools, and build lightweight solutions for
+          specific problems.
+
+
         </p>
+
+
+        <div class="simple-rules">
+
+          <h2 data-i18n="simpleRulesTitle">
+            Simple rules. No service-menu maze.
+          </h2>
+
+          <p data-i18n="simpleRules1">
+            I’m a one-person service, so I try to keep the rules simple.
+          </p>
+
+          <p data-i18n="simpleRules2">
+            If I know how to do something — or can reasonably figure it
+            out from the documentation — it can usually be handled using
+            your monthly task hours.
+          </p>
+
+          <p data-i18n="simpleRules3">
+            I do not have much interest in turning every small request
+            into another upsell.
+          </p>
+
+          <p class="simple-rules-highlight" data-i18n="simpleRules4">
+            If you have a plan and the task is within my capabilities,
+            I’ll do it.
+          </p>
+
+        </div>
+
 
         <div class="hero-meta">
 
-          <span data-i18n="experience">
-            5 years of ERP implementation experience
+          <span data-i18n="heroMeta1">
+            5 years ERP delivery & business data experience
           </span>
 
-          <span data-i18n="remote">
-            Remote & asynchronous support
+          <span data-i18n="heroMeta2">
+            2 years automation & lightweight tool development
           </span>
 
-          <span data-i18n="location">
-            Based in Tianjin, China
+          <span data-i18n="heroMeta3">
+            Remote · Asynchronous · Tianjin, China
           </span>
 
         </div>
 
-        <div class="button-row">
 
-          <a
-            class="button button-primary"
-            href="mailto:jax.xiangjie.jia@gmail.com"
-            data-i18n="contactMe"
-          >
+        <div class="hero-actions">
+
+          <a class="button button-primary" href="mailto:jax.xiangjie.jia@gmail.com" data-i18n="contactButton">
             Contact Me
           </a>
 
-          <a
-            class="button button-secondary"
-            href="#services"
-            data-i18n="viewServices"
-          >
+          <a class="button button-secondary" href="#services" data-i18n="servicesButton">
             View Services
           </a>
 
@@ -695,600 +220,706 @@
 
       </div>
 
-    </div>
-
-  </header>
-
-
-  <!-- SERVICES -->
-  <section
-    id="services"
-    class="section section-dark"
-  >
-
-    <div class="container">
-
-      <span
-        class="eyebrow"
-        data-i18n="servicesEyebrow"
-      >
-        Services
-      </span>
-
-      <h2
-        class="section-title"
-        data-i18n="servicesTitle"
-      >
-        Practical support for business data work
-      </h2>
-
-      <p
-        class="section-subtitle"
-        data-i18n="servicesSubtitle"
-      >
-        Support is available on a task-based,
-        project-based, or recurring asynchronous basis.
-      </p>
-
-
-      <div class="grid grid-2">
-
-        <article class="card service-card">
-
-          <span class="service-number">
-            01
-          </span>
-
-          <h3 data-i18n="service1Title">
-            ERP Data Preparation
-          </h3>
-
-          <p data-i18n="service1Text">
-            Cleaning and organising customer, vendor,
-            product, item, BOM, profit center, and other
-            master or business data before migration or
-            system import.
-          </p>
-
-        </article>
-
-
-        <article class="card service-card">
-
-          <span class="service-number">
-            02
-          </span>
-
-          <h3 data-i18n="service2Title">
-            Excel & CSV Processing
-          </h3>
-
-          <p data-i18n="service2Text">
-            Data cleaning, deduplication, merging,
-            splitting, restructuring, field standardisation,
-            format conversion, and batch processing.
-          </p>
-
-        </article>
-
-
-        <article class="card service-card">
-
-          <span class="service-number">
-            03
-          </span>
-
-          <h3 data-i18n="service3Title">
-            Migration & Import Preparation
-          </h3>
-
-          <p data-i18n="service3Text">
-            Legacy-to-target field mapping, import template
-            preparation, historical data migration,
-            exception checking, and pre-import validation.
-          </p>
-
-        </article>
-
-
-        <article class="card service-card">
-
-          <span class="service-number">
-            04
-          </span>
-
-          <h3 data-i18n="service4Title">
-            Lightweight Automation
-          </h3>
-
-          <p data-i18n="service4Text">
-            Small Python utilities, repetitive
-            file-processing workflows, batch-processing
-            scripts, and simple business-data automation.
-          </p>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PROJECT EXPERIENCE -->
-  <section class="section">
-
-    <div class="container">
-
-      <span
-        class="eyebrow"
-        data-i18n="projectEyebrow"
-      >
-        Project Experience
-      </span>
-
-      <h2
-        class="section-title"
-        data-i18n="projectTitle"
-      >
-        ERP and core business data delivery experience
-      </h2>
-
-      <p
-        class="section-subtitle"
-        data-i18n="projectSubtitle"
-      >
-        My background includes five years of hands-on ERP
-        implementation and delivery work, primarily with
-        Kingdee ERP products in China.
-      </p>
-
-
-      <div class="experience-list">
-
-        <article class="experience-item">
-
-          <h3 data-i18n="project1Title">
-            ERP Upgrade — German Pump Systems Company
-          </h3>
-
-          <p data-i18n="project1Text">
-            Supported a K3 to K3 Cloud upgrade for the
-            Tianjin subsidiary, including master data,
-            financial opening balances, business opening
-            data preparation, validation, and import.
-          </p>
-
-        </article>
-
-
-        <article class="experience-item">
-
-          <h3 data-i18n="project2Title">
-            Finance Cloud Migration — Japanese Steel Casting Company
-          </h3>
-
-          <p data-i18n="project2Text">
-            Supported the cloud upgrade of the financial
-            system and migrated historical financial voucher
-            data required for continuity after go-live.
-          </p>
-
-        </article>
-
-
-        <article class="experience-item">
-
-          <h3 data-i18n="project3Title">
-            Invoice System Field Mapping — US-owned Musical Instrument Company
-          </h3>
-
-          <p data-i18n="project3Text">
-            Designed and developed field mapping logic
-            between business and invoicing data to support
-            system integration and accurate data exchange.
-          </p>
-
-        </article>
-
-
-        <article class="experience-item">
-
-          <h3 data-i18n="project4Title">
-            Historical Finance Migration — Logistics Industry
-          </h3>
-
-          <p data-i18n="project4Text">
-            Performed large-volume historical financial
-            voucher migration, including projects involving
-            approximately 15 years of accounting records.
-          </p>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-  <!-- SELECTED WORK -->
-    <section
-    id="portfolio"
-    class="section section-dark"
-    >
-    <div class="container">
-
-        <span
-        class="eyebrow"
-        data-i18n="portfolioEyebrow"
-        >
-        Selected Work
-        </span>
-
-        <h2
-        class="section-title"
-        data-i18n="portfolioTitle"
-        >
-        Selected tools and data projects
-        </h2>
-
-        <p
-        class="section-subtitle"
-        data-i18n="portfolioSubtitle"
-        >
-        A few examples of practical software tools,
-        data-processing utilities, and ERP-related work.
-        </p>
-
-
-        <div class="grid grid-2">
-
-        <!-- 01 EWSI -->
-        <article class="card portfolio-card">
-
-            <span class="service-number">
-            01
-            </span>
-
-            <h3 data-i18n="portfolio1Title">
-            EW SNAP IMAGERS
-            </h3>
-
-            <p data-i18n="portfolio1Text">
-            A Windows desktop utility for offline batch image
-            processing and delivery workflows.
-            </p>
-
-            <div class="portfolio-tags">
-            <span>Desktop App</span>
-            <span>Batch Processing</span>
-            <span>Offline</span>
-            </div>
-
-            <div class="portfolio-preview">
-            EWSI Screenshot
-            </div>
-
-        </article>
-
-
-        <!-- 02 Excel Tool -->
-        <article class="card portfolio-card">
-
-            <span class="service-number">
-            02
-            </span>
-
-            <h3 data-i18n="portfolio2Title">
-            Excel Merged Cell Cleanup
-            </h3>
-
-            <p data-i18n="portfolio2Text">
-            A batch-processing utility for unmerging cells,
-            extracting the first valid value, and filling
-            structured data across the original merged ranges.
-            </p>
-
-            <div class="portfolio-tags">
-            <span>Excel</span>
-            <span>Python</span>
-            <span>Data Cleaning</span>
-            </div>
-
-            <div class="portfolio-preview">
-            Before / After
-            </div>
-
-        </article>
-
-
-        <!-- 03 ERP Migration -->
-        <article class="card portfolio-card">
-
-            <span class="service-number">
-            03
-            </span>
-
-            <h3 data-i18n="portfolio3Title">
-            ERP Data Migration
-            </h3>
-
-            <p data-i18n="portfolio3Text">
-            Master data cleaning, field mapping, historical
-            data migration, validation, and import preparation
-            for ERP upgrade and implementation projects.
-            </p>
-
-            <div class="portfolio-tags">
-            <span>ERP</span>
-            <span>Migration</span>
-            <span>Data</span>
-            </div>
-
-            <div class="portfolio-preview">
-            ERP Migration Case
-            </div>
-
-        </article>
-
-
-        <!-- 04 Placeholder -->
-        <article class="card portfolio-card">
-
-            <span class="service-number">
-            04
-            </span>
-
-            <h3 data-i18n="portfolio4Title">
-            More Work Coming
-            </h3>
-
-            <p data-i18n="portfolio4Text">
-            Additional automation and data-processing examples
-            will be added as more work becomes suitable for
-            public demonstration.
-            </p>
-
-            <div class="portfolio-tags">
-            <span>Automation</span>
-            <span>Python</span>
-            <span>Data Processing</span>
-            </div>
-
-            <div class="portfolio-preview portfolio-empty">
-            More examples soon
-            </div>
-
-        </article>
-
-        </div>
-
-    </div>
     </section>
 
-  <!-- PRICING -->
-  <section class="section section-dark">
 
-    <div class="container">
+    <!-- =======================================================
+         3. SERVICES
+    ======================================================== -->
 
-      <span
-        class="eyebrow"
-        data-i18n="pricingEyebrow"
-      >
-        Pricing
-      </span>
+    <section id="services" class="section">
 
-      <h2
-        class="section-title"
-        data-i18n="pricingTitle"
-      >
-        Flexible ways to work together
-      </h2>
+      <div class="container">
 
-      <p
-        class="section-subtitle"
-        data-i18n="pricingSubtitle"
-      >
-        Small tasks, project work, and recurring support can
-        all be arranged depending on the type and frequency
-        of work.
-      </p>
+        <div class="section-heading">
 
-
-      <div class="grid grid-2">
-
-        <article class="pricing-card">
-
-          <h3 data-i18n="taskSupport">
-            Task / Project Support
-          </h3>
-
-          <div
-            class="price"
-            data-i18n="taskPrice"
-          >
-            From USD 15/hour
+          <div class="eyebrow" data-i18n="servicesEyebrow">
+            Services
           </div>
 
-          <p
-            class="price-note"
-            data-i18n="taskNote"
-          >
-            Suitable for one-off or occasional data-processing
-            and automation work.
-          </p>
-
-          <ul class="pricing-list">
-
-            <li data-i18n="taskItem1">
-              Excel and CSV processing
-            </li>
-
-            <li data-i18n="taskItem2">
-              ERP data preparation
-            </li>
-
-            <li data-i18n="taskItem3">
-              Field mapping
-            </li>
-
-            <li data-i18n="taskItem4">
-              Import file preparation
-            </li>
-
-            <li data-i18n="taskItem5">
-              Lightweight automation tasks
-            </li>
-
-          </ul>
-
-        </article>
-
-
-        <article class="pricing-card featured">
-
-          <h3 data-i18n="monthlySupport">
-            Monthly Asynchronous Support
-          </h3>
-
-          <div
-            class="price"
-            data-i18n="monthlyPrice"
-          >
-            USD 200/month
-          </div>
-
-          <p
-            class="price-note"
-            data-i18n="monthlyNote"
-          >
-            Introductory rate for the initial service period.
-          </p>
-
-          <ul class="pricing-list">
-
-            <li data-i18n="monthlyItem1">
-              Remote and asynchronous communication
-            </li>
-
-            <li data-i18n="monthlyItem2">
-              Suitable for recurring small data tasks
-            </li>
-
-            <li data-i18n="monthlyItem3">
-              Tasks can be assigned by email or text
-            </li>
-
-            <li data-i18n="monthlyItem4">
-              Initial pricing is based on reasonable use
-            </li>
-
-            <li data-i18n="monthlyItem5">
-              Renewal pricing may be adjusted based on actual workload,
-              complexity, and support requirements
-            </li>
-
-          </ul>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- DATA SECURITY -->
-  <section class="section">
-
-    <div class="container">
-
-      <div class="security-box">
-
-        <div>
-
-          <span
-            class="eyebrow"
-            data-i18n="securityEyebrow"
-          >
-            Data Security
-          </span>
-
-          <h2
-            class="section-title"
-            data-i18n="securityTitle"
-          >
-            Your business data stays private
+          <h2 class="section-title" data-i18n="servicesTitle">
+            What can I help you with?
           </h2>
 
-          <p
-            class="section-subtitle"
-            data-i18n="securitySubtitle"
-          >
-            Data security and confidentiality are treated as
-            part of the work, not as an optional extra.
+          <p class="section-subtitle" data-i18n="servicesSubtitle">
+            Four broad areas. You do not need to work out which category
+            your problem belongs to before contacting me.
           </p>
 
         </div>
 
 
-        <div class="security-list">
+        <div class="service-grid">
 
-          <div class="security-item">
+          <!-- 01 -->
+          <article class="service-card">
 
-            <strong data-i18n="localTitle">
+            <div class="service-number">
+              01
+            </div>
+
+            <h3 data-i18n="service1Title">
+              Data Processing
+            </h3>
+
+            <p class="service-tagline" data-i18n="service1Tagline">
+              Get, clean, combine and write data.
+            </p>
+
+            <p data-i18n="service1Text">
+              Work with Excel, CSV, TXT, APIs and public web data.
+              Clean messy records, combine files, transform formats,
+              extract information and write processed data into the
+              tools you use.
+            </p>
+
+          </article>
+
+
+          <!-- 02 -->
+          <article class="service-card">
+
+            <div class="service-number">
+              02
+            </div>
+
+            <h3 data-i18n="service2Title">
+              Workflow Automation
+            </h3>
+
+            <p class="service-tagline" data-i18n="service2Tagline">
+              Connect the tools you already use.
+            </p>
+
+            <p data-i18n="service2Text">
+              Connect tools such as Notion, Google Workspace, email,
+              APIs, webhooks and AI services so repetitive workflows
+              can run with less manual work.
+            </p>
+
+          </article>
+
+
+          <!-- 03 -->
+          <article class="service-card">
+
+            <div class="service-number">
+              03
+            </div>
+
+            <h3 data-i18n="service3Title">
+              Lightweight Tool Development
+            </h3>
+
+            <p class="service-tagline" data-i18n="service3Tagline">
+              Small tools for specific problems.
+            </p>
+
+            <p data-i18n="service3Text">
+              Excel utilities, Python tools, browser extensions and
+              lightweight desktop applications built around a clear
+              day-to-day problem.
+            </p>
+
+          </article>
+
+
+          <!-- 04 -->
+          <article class="service-card">
+
+            <div class="service-number">
+              04
+            </div>
+
+            <h3 data-i18n="service4Title">
+              ERP & Business System Data
+            </h3>
+
+            <p class="service-tagline" data-i18n="service4Tagline">
+              Prepare business data before it enters a system.
+            </p>
+
+            <p data-i18n="service4Text">
+              Clean, restructure, map and prepare customer, vendor,
+              product, BOM and other business data for ERP, CRM and
+              other business systems.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         4. EXPERIENCE / CAPABILITY
+    ======================================================== -->
+
+    <section class="section section-dark">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow" data-i18n="experienceEyebrow">
+            Experience
+          </div>
+
+          <h2 class="section-title" data-i18n="experienceTitle">
+            Built around real business work.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="experienceSubtitle">
+            My background combines enterprise data work with practical
+            automation and small-tool development.
+          </p>
+
+        </div>
+
+
+        <div class="experience-grid">
+
+          <article class="experience-card">
+
+            <h3 data-i18n="experience1Title">
+              Business Data
+            </h3>
+
+            <p data-i18n="experience1Text">
+              Experience working with master data, financial data,
+              historical records and large Excel-based datasets for
+              real business operations and system projects.
+            </p>
+
+          </article>
+
+
+          <article class="experience-card">
+
+            <h3 data-i18n="experience2Title">
+              Automation
+            </h3>
+
+            <p data-i18n="experience2Text">
+              Build practical workflows using Python, Google Apps Script,
+              Notion, APIs and other lightweight tools to reduce manual
+              work.
+            </p>
+
+          </article>
+
+
+          <article class="experience-card">
+
+            <h3 data-i18n="experience3Title">
+              Small Tools
+            </h3>
+
+            <p data-i18n="experience3Text">
+              Desktop utilities, browser extensions, Excel helpers and
+              focused scripts designed to solve specific repetitive tasks.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <p class="experience-note" data-i18n="experienceNote">
+          I also have five years of ERP implementation and delivery
+          experience, including data migration and system upgrade work
+          across manufacturing and logistics projects.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         5. SELECTED WORK
+    ======================================================== -->
+
+    <section id="work" class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow" data-i18n="workEyebrow">
+            Selected Work
+          </div>
+
+          <h2 class="section-title" data-i18n="workTitle">
+            A few things I have built.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="workSubtitle">
+            Small examples of how I approach repetitive work:
+            solve the specific problem, then make the solution reusable.
+          </p>
+
+        </div>
+
+
+        <div class="portfolio-grid">
+
+
+          <!-- EWSI -->
+          <article class="portfolio-card">
+
+            <div class="portfolio-preview portfolio-preview-ewsi">
+
+              <div class="ewsi-image-preview">
+
+                <img src="./assets/EWSI-INDEX.png" alt="EW SNAP IMAGERS main interface" loading="lazy" />
+
+                <div class="ewsi-image-popup">
+                  <img src="./assets/EWSI-INDEX.png" alt="EW SNAP IMAGERS main interface enlarged preview" />
+                </div>
+
+              </div>
+
+
+              <div class="ewsi-image-preview">
+
+                <img src="./assets/EWSI-REPORT.png" alt="EW SNAP IMAGERS delivery report interface" loading="lazy" />
+
+                <div class="ewsi-image-popup">
+                  <img src="./assets/EWSI-REPORT.png" alt="EW SNAP IMAGERS delivery report enlarged preview" />
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="portfolio-content">
+
+              <div class="portfolio-number">
+                01
+              </div>
+
+              <h3>
+                EW SNAP IMAGERS
+              </h3>
+
+              <p data-i18n="work1Text">
+                A Windows desktop application for batch image processing,
+                resizing, format conversion and repeatable delivery workflows.
+              </p>
+
+              <div class="tag-row">
+                <span>Desktop</span>
+                <span>Batch Processing</span>
+                <span>Automation</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- OneSheet CRM -->
+          <article class="portfolio-card">
+
+            <div class="portfolio-preview portfolio-preview-crm">
+              <img src="./assets/one-sheet-CRM.GIF" alt="OneSheet CRM built with Excel and VBA" loading="lazy" />
+            </div>
+
+            <div class="portfolio-content">
+
+              <div class="portfolio-number">
+                02
+              </div>
+
+              <h3 data-i18n="work2Title">
+                OneSheet CRM
+              </h3>
+
+              <p data-i18n="work2Text">
+                A lightweight CRM built in Excel with VBA for managing clients,
+                follow-ups, contact reminders and basic business activity in one workbook.
+              </p>
+
+              <div class="tag-row">
+                <span>Excel</span>
+                <span>VBA</span>
+                <span>CRM</span>
+                <span>Business Tool</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- Automation -->
+          <article class="portfolio-card">
+
+            <div class="portfolio-preview portfolio-preview-automation">
+
+              <img class="automation-image automation-image-en" src="./assets/cold-email-EN.png"
+                alt="Cold Email Automation Workflow Blueprint" loading="lazy" />
+
+              <img class="automation-image automation-image-zh" src="./assets/cold-email-ZH.png" alt="冷邮件自动化流程蓝图"
+                loading="lazy" />
+
+            </div>
+
+            <div class="portfolio-content">
+
+              <div class="portfolio-number">
+                03
+              </div>
+
+              <h3 data-i18n="work3Title">
+                Cold Email Automation Workflow
+              </h3>
+
+              <p data-i18n="work3Text">
+                A cloud-based workflow connecting Notion, Google Apps Script
+                and Gmail to read and filter customer records, generate emails
+                from templates, send messages automatically, update status and
+                deliver execution reports.
+              </p>
+
+              <div class="tag-row">
+                <span>Notion</span>
+                <span>Google Apps Script</span>
+                <span>Gmail</span>
+                <span>Automation</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- Excel Merged Cell Data Cleanup -->
+          <article class="portfolio-card">
+
+            <div class="portfolio-preview portfolio-preview-cleanup">
+              <img src="./assets/Excel-Merged-Cell-Data-Cleanup.gif" alt="Excel merged cell data cleanup demo"
+                loading="lazy" />
+            </div>
+
+            <div class="portfolio-content">
+
+              <div class="portfolio-number">
+                04
+              </div>
+
+              <h3 data-i18n="work4Title">
+                Excel Merged Cell Data Cleanup
+              </h3>
+
+              <p data-i18n="work4Text">
+                A lightweight data-cleaning tool that splits merged cells,
+                fills the original values into each row and prepares the result
+                for further filtering, analysis or import.
+              </p>
+
+              <div class="tag-row">
+                <span>Excel</span>
+                <span>Data Cleaning</span>
+                <span>Automation</span>
+                <span>File Processing</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         6. HOW IT WORKS / PRICING
+    ======================================================== -->
+
+    <!-- =======================================================
+     6. HOW IT WORKS / PRICING
+======================================================== -->
+
+    <section id="pricing" class="section section-dark">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow" data-i18n="pricingEyebrow">
+            How It Works
+          </div>
+
+          <h2 class="section-title" data-i18n="pricingTitle">
+            Choose the way you want to work.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="pricingSubtitle">
+            Occasional task? Pay by the hour. Need ongoing support? Use the monthly plan.
+          </p>
+
+        </div>
+
+
+        <div class="pricing-grid">
+
+          <!-- ONE-OFF SUPPORT -->
+          <article class="pricing-card">
+
+            <div class="pricing-label" data-i18n="oneOffLabel">
+              One-off Support
+            </div>
+
+            <div class="price">
+
+              <span class="currency">
+                USD
+              </span>
+
+              <span class="price-number">
+                15
+              </span>
+
+              <span class="price-period" data-i18n="oneOffPeriod">
+                / hour
+              </span>
+
+            </div>
+
+            <div class="pricing-highlight" data-i18n="oneOffHighlight">
+              For occasional tasks with no monthly commitment
+            </div>
+
+            <p class="pricing-description" data-i18n="oneOffDescription">
+              Suitable for one-time data processing, automation, lightweight tool development or business-system data
+              preparation tasks.
+            </p>
+
+            <div class="pricing-actions">
+
+              <a href="mailto:jax.xiangjie.jia@gmail.com" class="button button-primary" data-i18n="contactButton">
+                Contact Me
+              </a>
+
+              <a href="./working-with-me/index.html#one-off" class="button button-secondary"
+                data-i18n="oneOffDetailsButton">
+                View One-Off Details
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- MONTHLY SUPPORT -->
+          <article class="pricing-card pricing-card-featured">
+
+            <div class="pricing-label" data-i18n="pricingLabel">
+              Monthly Technical Support
+            </div>
+
+            <div class="price">
+
+              <span class="currency">
+                USD
+              </span>
+
+              <span class="price-number">
+                300
+              </span>
+
+              <span class="price-period" data-i18n="pricePeriod">
+                / month
+              </span>
+
+            </div>
+
+            <div class="pricing-highlight" data-i18n="pricingHours">
+              Up to 40 task hours per month
+            </div>
+
+            <div class="pricing-services">
+
+              <span data-i18n="pricingItem1">
+                Data Processing
+              </span>
+
+              <span data-i18n="pricingItem2">
+                Workflow Automation
+              </span>
+
+              <span data-i18n="pricingItem3">
+                Lightweight Tools
+              </span>
+
+              <span data-i18n="pricingItem4">
+                ERP & Business System Data
+              </span>
+
+            </div>
+
+            <p class="pricing-extra" data-i18n="pricingExtra">
+              Additional task hours: USD 10/hour
+            </p>
+
+            <p class="pricing-description" data-i18n="pricingDescription">
+              Send me a task by email whenever you need help. After each completed task, I will provide a simple time
+              record showing the hours used and your remaining monthly balance.
+            </p>
+
+            <div class="pricing-actions">
+
+              <a href="mailto:jax.xiangjie.jia@gmail.com" class="button button-primary" data-i18n="contactButton">
+                Contact Me
+              </a>
+
+              <a href="./working-with-me/index.html#monthly-plan" class="button button-secondary"
+                data-i18n="planDetailsButton">
+                View Plan Details
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         7. DATA SECURITY
+    ======================================================== -->
+
+    <section id="security" class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow" data-i18n="securityEyebrow">
+            Data Security
+          </div>
+
+          <h2 class="section-title" data-i18n="securityTitle">
+            Your data is for your task.
+          </h2>
+
+          <p class="section-subtitle" data-i18n="securitySubtitle">
+            I try to keep data handling simple, limited and practical.
+          </p>
+
+        </div>
+
+
+        <div class="security-grid">
+
+          <article class="security-card">
+
+            <h3 data-i18n="security1Title">
               Local Processing
-            </strong>
+            </h3>
 
-            <span data-i18n="localText">
-              Files are processed locally on my computer
-              unless another method is specifically agreed.
-            </span>
+            <p data-i18n="security1Text">
+              When a task can be completed locally, your files do not
+              need to be uploaded to unnecessary third-party services.
+            </p>
 
-          </div>
-
-
-          <div class="security-item">
-
-            <strong data-i18n="aiTitle">
-              No Generative AI Uploads
-            </strong>
-
-            <span data-i18n="aiText">
-              Client files are not uploaded to generative AI
-              services for processing.
-            </span>
-
-          </div>
+          </article>
 
 
-          <div class="security-item">
+          <article class="security-card">
 
-            <strong data-i18n="reuseTitle">
+            <h3 data-i18n="security2Title">
+              No Unnecessary AI Uploads
+            </h3>
+
+            <p data-i18n="security2Text">
+              Customer data is not sent to generative AI services unless
+              the task specifically requires it and we have agreed on it.
+            </p>
+
+          </article>
+
+
+          <article class="security-card">
+
+            <h3 data-i18n="security3Title">
               No Data Reuse
-            </strong>
+            </h3>
 
-            <span data-i18n="reuseText">
-              Client data is not reused for other projects,
-              training material, public demonstrations, or
-              portfolio content.
-            </span>
+            <p data-i18n="security3Text">
+              Your files and business data are used only for completing
+              your requested work.
+            </p>
 
+          </article>
+
+
+          <article class="security-card">
+
+            <h3 data-i18n="security4Title">
+              NDA Friendly
+            </h3>
+
+            <p data-i18n="security4Text">
+              If your work requires additional confidentiality terms,
+              I can work under an agreed NDA.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         8. CONTACT
+    ======================================================== -->
+
+    <section id="contact" class="section contact-section">
+
+      <div class="container">
+
+        <div class="contact-box">
+
+          <div class="eyebrow" data-i18n="contactEyebrow">
+            Contact
           </div>
 
+          <h2 data-i18n="contactTitle">
+            Have a technical task you want off your desk?
+          </h2>
 
-          <div class="security-item">
+          <p data-i18n="contactText">
+            You do not need to decide whether it is data processing,
+            automation or tool development first. Just tell me what
+            problem you are trying to solve.
+          </p>
 
-            <strong data-i18n="ndaTitle">
-              Confidentiality Friendly
-            </strong>
+          <a class="contact-email" href="mailto:jax.xiangjie.jia@gmail.com">
+            jax.xiangjie.jia@gmail.com
+          </a>
 
-            <span data-i18n="ndaText">
-              Anonymised data, confidentiality requirements,
-              and reasonable NDA arrangements are welcome.
-            </span>
+          <div>
+
+            <a class="button button-primary" href="mailto:jax.xiangjie.jia@gmail.com" data-i18n="contactButton">
+              Contact Me
+            </a>
 
           </div>
 
@@ -1296,563 +927,588 @@
 
       </div>
 
-    </div>
+    </section>
 
-  </section>
-
-
-  <!-- CONTACT -->
-  <section
-    id="contact"
-    class="section section-dark"
-  >
-
-    <div class="container">
-
-      <div class="contact-box">
-
-        <span
-          class="eyebrow"
-          data-i18n="contactEyebrow"
-        >
-          Contact
-        </span>
-
-        <h2
-          class="section-title"
-          data-i18n="contactTitle"
-        >
-          Have a data task that needs attention?
-        </h2>
-
-        <p data-i18n="contactText">
-          Send me a short description of the task, the type
-          of file or system involved, and the result you need.
-          I will review it and let you know whether I can help.
-        </p>
-
-        <a
-          class="button button-primary"
-          href="mailto:jax.xiangjie.jia@gmail.com"
-          data-i18n="emailMe"
-        >
-          Email Me
-        </a>
-
-        <br />
-
-        <a
-          class="contact-email"
-          href="mailto:jax.xiangjie.jia@gmail.com"
-        >
-          jax.xiangjie.jia@gmail.com
-        </a>
-
-        <p
-          style="margin-top: 20px;"
-          data-i18n-html="signature"
-        >
-          Jax Jia<br />
-          ERP Data Preparation & Migration Support<br />
-          Tianjin, China
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
+  </main>
 
 
-  <!-- FOOTER -->
-  <footer>
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
 
-    <div
-      class="container"
-      data-i18n="footerText"
-    >
-      © 2026 Jax Jia. Remote ERP data preparation and business data support.
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <span>
+        © 2026 Jax Jia
+      </span>
+
+      <span data-i18n="footerText">
+        Remote Data, Automation & Technical Support
+      </span>
+
     </div>
 
   </footer>
 
 
+  <!-- =========================================================
+       LANGUAGE
+  ========================================================== -->
+
   <script>
+
     const translations = {
 
       en: {
 
-        heroEyebrow:
-          "Remote ERP & Business Data Support",
+        offer:
+          "New Client Offer — First data-processing task from USD 5 · Available through December 31, 2026",
+        offerDetails:
+          "  View Details →",
+        navHome: "Home",
+        navServices: "What I Can Help With",
+        navWork: "Selected Work",
+        navPricing: "How It Works",
+        navPricingSupport: "Pricing & Support",
+        navSecurity: "Data Security",
+        navContact: "Contact",
+        navAbout: "About Me",
 
-        heroTitle:
-          'Clean data.<br>Better <span>delivery.</span>',
-
-        heroLead:
-          "I help businesses and ERP implementation teams clean, restructure, migrate, and prepare Excel, CSV, master data, and other business data for system import, daily operations, and project delivery.",
-
-        experience:
-          "5 years of ERP implementation experience",
-
-        remote:
-          "Remote & asynchronous support",
-
-        location:
-          "Based in Tianjin, China",
-
-        contactMe:
+        quickContact:
           "Contact Me",
 
-        viewServices:
-          "View Services",
+        quickMonthly:
+          "Monthly Plan",
 
+        quickTop:
+          "Back to Top",
+
+        heroEyebrow:
+          "Remote Data, Automation & Technical Support",
+
+        heroTitle1:
+          "Better data.",
+
+        heroTitle2:
+          "Less repetitive work.",
+
+        heroLead:
+          "I help small businesses process data, automate repetitive work, connect everyday tools, and build lightweight solutions for specific problems.Excel and CSV data processing, Notion, Google Workspace, Google Apps Script (GAS), APIs, browser extensions, landing pages, and ERP / CRM import-data preparation — if you have a technical task that needs doing, just email me.",
+
+        simpleRulesTitle:
+          "Simple rules. No service-menu maze.",
+
+        simpleRules1:
+          "I’m a one-person service, so I try to keep the rules simple.",
+
+        simpleRules2:
+          "If I know how to do something — or can reasonably figure it out from the documentation — it can usually be handled using your monthly task hours.",
+
+        simpleRules3:
+          "I do not have much interest in turning every small request into another upsell.",
+
+        simpleRules4:
+          "If you have a plan and the task is within my capabilities, I’ll do it.",
+
+        heroMeta1:
+          "5 years ERP delivery & business data experience",
+
+        heroMeta2:
+          "2 years automation & lightweight tool development",
+
+        heroMeta3:
+          "Remote · Asynchronous ·  China",
+
+        contactButton:
+          "Contact Me",
+
+        servicesButton:
+          "View Services",
 
         servicesEyebrow:
           "Services",
 
         servicesTitle:
-          "Practical support for business data work",
+          "What can I help you with?",
 
         servicesSubtitle:
-          "Support is available on a task-based, project-based, or recurring asynchronous basis.",
+          "Four broad areas. You do not need to work out which category your problem belongs to before contacting me.",
 
         service1Title:
-          "ERP Data Preparation",
+          "Data Processing & Excel Automation",
+
+        service1Tagline:
+          "Get, clean and organise your data — and make Excel do more of the repetitive work.",
 
         service1Text:
-          "Cleaning and organising customer, vendor, product, item, BOM, profit center, and other master or business data before migration or system import.",
+          "I can work with Excel, CSV, TXT, APIs and public web data, including cleaning messy records, removing duplicates, merging multiple files, batch format conversion and extracting the information you need. I can also customise or build Excel automation around your existing files and workflows to make everyday work simpler, faster and less error-prone.",
 
         service2Title:
-          "Excel & CSV Processing",
+          "Workflow Automation & App Integration",
+
+        service2Tagline:
+          "Connect the tools you already use and let repetitive workflows run with less manual intervention.",
 
         service2Text:
-          "Data cleaning, deduplication, merging, splitting, restructuring, field standardisation, format conversion, and batch processing.",
+          "I can connect Notion, Google Workspace, Google Apps Script, email, APIs, webhooks, AI services and other tools to automate repetitive steps such as copying data, checking changes, updating records, sending messages and moving information between applications.",
 
         service3Title:
-          "Migration & Import Preparation",
+          "Lightweight Tools & Web Development",
+
+        service3Tagline:
+          "For a specific problem, build a solution that is just enough to solve it.",
 
         service3Text:
-          "Legacy-to-target field mapping, import template preparation, historical data migration, exception checking, and pre-import validation.",
+          "I can develop Excel / VBA tools, Python utilities, browser extensions, lightweight desktop applications and static landing pages. Instead of building a complex system for a small problem, I prefer to start with the smallest useful deliverable: solve the core problem first, then expand only when there is a real need.",
 
         service4Title:
-          "Lightweight Automation",
+          "Commercial Business System Data Preparation & Import Support",
+
+        service4Tagline:
+          "When your business starts to need systems, build the data foundation first.",
 
         service4Text:
-          "Small Python utilities, repetitive file-processing workflows, batch-processing scripts, and simple business-data automation.",
+          "Before implementing ERP, CRM or other business systems, core data such as customers, vendors, products and BOMs often needs to be reorganised and redefined. Based on your management priorities and the requirements of your implementation team, I can help clean, standardise, structure and prepare the data for import, reducing repeated rework, confirmation and back-and-forth during the implementation process.",
+        experienceEyebrow:
+          "Experience",
 
+        experienceTitle:
+          "Built around real business work.",
 
-        projectEyebrow:
-          "Project Experience",
+        experienceSubtitle:
+          "My background combines enterprise data work with practical automation and small-tool development.",
 
-        projectTitle:
-          "ERP and core business data delivery experience",
+        experience1Title:
+          "Business Data",
 
-        projectSubtitle:
-          "My background includes five years of hands-on ERP implementation and delivery work, primarily with Kingdee ERP products in China.",
+        experience1Text:
+          "Experience working with master data, financial data, historical records and large Excel-based datasets for real business operations and system projects.",
 
-        project1Title:
-          "ERP Upgrade — German Pump Systems Company",
+        experience2Title:
+          "Automation",
 
-        project1Text:
-          "Supported a K3 to K3 Cloud upgrade for the Tianjin subsidiary, including master data, financial opening balances, business opening data preparation, validation, and import.",
+        experience2Text:
+          "Build practical workflows using Python, Google Apps Script, Notion, APIs and other lightweight tools to reduce manual work.",
 
-        project2Title:
-          "Finance Cloud Migration — Japanese Steel Casting Company",
+        experience3Title:
+          "Small Tools",
 
-        project2Text:
-          "Supported the cloud upgrade of the financial system and migrated historical financial voucher data required for continuity after go-live.",
+        experience3Text:
+          "Desktop utilities, browser extensions, Excel helpers and focused scripts designed to solve specific repetitive tasks.",
 
-        project3Title:
-          "Invoice System Field Mapping — US-owned Musical Instrument Company",
+        experienceNote:
+          "My background includes three years of data-processing work, two years of automation and lightweight tool development, and five years of ERP implementation and delivery, including data migration and system upgrade projects across manufacturing, logistics and other industries.",
 
-        project3Text:
-          "Designed and developed field mapping logic between business and invoicing data to support system integration and accurate data exchange.",
-
-        project4Title:
-          "Historical Finance Migration — Logistics Industry",
-
-        project4Text:
-          "Performed large-volume historical financial voucher migration, including projects involving approximately 15 years of accounting records.",
-        portfolioEyebrow:
+        workEyebrow:
           "Selected Work",
 
-        portfolioTitle:
-          "Selected tools and data projects",
+        workTitle:
+          "A few things I have built.",
 
-        portfolioSubtitle:
-          "A few examples of practical software tools, data-processing utilities, and ERP-related work.",
+        workSubtitle:
+          "Small examples of how I approach repetitive work: solve the specific problem, then make the solution reusable.",
 
-        portfolio1Title:
-          "EW SNAP IMAGERS",
+        work1Text:
+          "A Windows desktop application for batch image processing, resizing, format conversion and repeatable delivery workflows.",
 
-        portfolio1Text:
-          "A Windows desktop utility for offline batch image processing and delivery workflows.",
+        work2Text:
+          "A lightweight CRM built in Excel with VBA for managing clients, follow-ups, contact reminders and basic business activity in one workbook.",
+        work3Title:
+          "Cold Email Automation Workflow",
 
-        portfolio2Title:
-          "Excel Merged Cell Cleanup",
+        work3Text:
+          "A cloud-based workflow connecting Notion, Google Apps Script and Gmail to read and filter customer records, generate emails from templates, send them automatically, update status and deliver execution reports.",
 
-        portfolio2Text:
-          "A batch-processing utility for unmerging cells, extracting the first valid value, and filling structured data across the original merged ranges.",
+        work4Title:
+          "Excel Merged Cell Data Cleanup",
 
-        portfolio3Title:
-          "ERP Data Migration",
-
-        portfolio3Text:
-          "Master data cleaning, field mapping, historical data migration, validation, and import preparation for ERP upgrade and implementation projects.",
-
-        portfolio4Title:
-          "More Work Coming",
-
-        portfolio4Text:
-          "Additional automation and data-processing examples will be added as more work becomes suitable for public demonstration.",
+        work4Text:
+          "A lightweight data-cleaning tool that splits merged cells, fills the original values into each row and prepares the result for further filtering, analysis or import.",
 
         pricingEyebrow:
-          "Pricing",
+          "How It Works",
 
         pricingTitle:
-          "Flexible ways to work together",
+          "Choose the way you want to work.",
 
         pricingSubtitle:
-          "Small tasks, project work, and recurring support can all be arranged depending on the type and frequency of work.",
+          "Occasional task? Pay by the hour. Need ongoing support? Use the monthly plan.",
 
-        taskSupport:
-          "Task / Project Support",
+        oneOffLabel:
+          "One-off Support",
 
-        taskPrice:
-          "From USD 15/hour",
+        oneOffPeriod:
+          "/ hour",
 
-        taskNote:
-          "Suitable for one-off or occasional data-processing and automation work.",
+        oneOffHighlight:
+          "For occasional tasks with no monthly commitment",
 
-        taskItem1:
-          "Excel and CSV processing",
+        oneOffDescription:
+          "Suitable for one-time data processing, automation, lightweight tool development or business-system data preparation tasks.",
 
-        taskItem2:
-          "ERP data preparation",
+        pricingLabel:
+          "Monthly Technical Support",
 
-        taskItem3:
-          "Field mapping",
+        pricePeriod:
+          "/ month",
 
-        taskItem4:
-          "Import file preparation",
+        pricingHours:
+          "Up to 40 task hours per month",
 
-        taskItem5:
-          "Lightweight automation tasks",
+        pricingItem1:
+          "Data Processing",
 
-        monthlySupport:
-          "Monthly Asynchronous Support",
+        pricingItem2:
+          "Workflow Automation",
 
-        monthlyPrice:
-          "USD 200/month",
+        pricingItem3:
+          "Lightweight Tools",
 
-        monthlyNote:
-          "Introductory rate for the initial service period.",
+        pricingItem4:
+          "ERP & Business System Data",
 
-        monthlyItem1:
-          "Remote and asynchronous communication",
+        pricingExtra:
+          "Additional task hours: USD 10/hour",
 
-        monthlyItem2:
-          "Suitable for recurring small data tasks",
+        pricingDescription:
+          "Send me a task by email whenever you need help. After each completed task, I will provide a simple time record showing the hours used and your remaining monthly balance.",
 
-        monthlyItem3:
-          "Tasks can be assigned by email or text",
 
-        monthlyItem4:
-          "Initial pricing is based on reasonable use",
+        oneOffDetailsButton:
+          "View One-Off Details",
 
-        monthlyItem5:
-          "Renewal pricing may be adjusted based on actual workload, complexity, and support requirements",
-
+        planDetailsButton:
+          "View Plan Details",
 
         securityEyebrow:
           "Data Security",
 
         securityTitle:
-          "Your business data stays private",
+          "Your data is for your task.",
 
         securitySubtitle:
-          "Data security and confidentiality are treated as part of the work, not as an optional extra.",
+          "I try to keep data handling simple, limited and practical.",
 
-        localTitle:
+        security1Title:
           "Local Processing",
 
-        localText:
-          "Files are processed locally on my computer unless another method is specifically agreed.",
+        security1Text:
+          "When a task can be completed locally, your files do not need to be uploaded to unnecessary third-party services.",
 
-        aiTitle:
-          "No Generative AI Uploads",
+        security2Title:
+          "No Unnecessary AI Uploads",
 
-        aiText:
-          "Client files are not uploaded to generative AI services for processing.",
+        security2Text:
+          "Customer data is not sent to generative AI services unless the task specifically requires it and we have agreed on it.",
 
-        reuseTitle:
+        security3Title:
           "No Data Reuse",
 
-        reuseText:
-          "Client data is not reused for other projects, training material, public demonstrations, or portfolio content.",
+        security3Text:
+          "Your files and business data are used only for completing your requested work.",
 
-        ndaTitle:
-          "Confidentiality Friendly",
+        security4Title:
+          "NDA Friendly",
 
-        ndaText:
-          "Anonymised data, confidentiality requirements, and reasonable NDA arrangements are welcome.",
-
+        security4Text:
+          "If your work requires additional confidentiality terms, I can work under an agreed NDA.",
 
         contactEyebrow:
           "Contact",
 
         contactTitle:
-          "Have a data task that needs attention?",
+          "Have a technical task you want off your desk?",
 
         contactText:
-          "Send me a short description of the task, the type of file or system involved, and the result you need. I will review it and let you know whether I can help.",
-
-        emailMe:
-          "Email Me",
-
-        signature:
-          "Jax Jia<br>ERP Data Preparation & Migration Support<br>Tianjin, China",
+          "You do not need to decide whether it is data processing, automation or tool development first. Just tell me what problem you are trying to solve.",
 
         footerText:
-          "© 2026 Jax Jia. Remote ERP data preparation and business data support."
+          "Remote Data, Automation & Technical Support"
+
       },
 
 
       zh: {
 
-        heroEyebrow:
-          "远程 ERP 与企业数据支持",
+        offer:
+          "新客户首单优惠 — 首次数据处理任务 5 美元起 · 有效至 2026 年 12 月 31 日",
+        offerDetails:
+          "  查看详情 →",
+        navHome:
+          "首页",
 
-        heroTitle:
-          '整理数据。<br>更好地完成<span>交付。</span>',
+        navServices:
+          "我能为你提供什么",
 
-        heroLead:
-          "我为企业及 ERP 实施团队提供 Excel、CSV、主数据及其他业务数据的清洗、整理、迁移和导入准备支持，用于系统上线、日常运营及项目交付。",
+        navWork:
+          "客户案例",
 
-        experience:
-          "5 年 ERP 实施交付经验",
+        navPricing:
+          "合作方式",
 
-        remote:
-          "远程 · 异步协作",
+        navPricingSupport:
+          "服务定价",
 
-        location:
-          "中国天津",
+        navSecurity:
+          "数据安全",
 
-        contactMe:
+        navContact:
           "联系我",
 
-        viewServices:
-          "查看服务",
+        navAbout:
+          "关于我",
 
+        quickContact:
+          "联系我",
+
+        quickMonthly:
+          "月度套餐",
+
+        quickTop:
+          "返回顶部",
+
+        heroEyebrow:
+          "远程数据处理 · 自动化 · 技术支持",
+
+        heroTitle1:
+          "让数据更好用。",
+
+        heroTitle2:
+          "让重复工作少一点。",
+
+        heroLead:
+          "我帮助小型企业处理数据、自动化重复工作，并针对具体问题制作轻量工具。Excel、CSV、Notion、Google Apps Script、Google Workspace、API、浏览器插件、业务系统数据……有技术杂事时，直接发邮件给我。",
+
+        simpleRulesTitle:
+          "规则简单，不玩套餐迷宫。",
+
+        simpleRules1:
+          "我只有一个人，所以套餐规则也尽量简单。",
+
+        simpleRules2:
+          "只要是我会做的，或者我能够通过查阅文档合理解决的事情，通常都可以使用你的月度工时。",
+
+        simpleRules3:
+          "我没有太多精力把服务设计成一套复杂的加价规则。",
+
+        simpleRules4:
+          "你购买了套餐，只要这件事在我的能力范围内，我就会做。",
+
+        heroMeta1:
+          "5 年 ERP 实施交付与业务数据处理经验",
+
+        heroMeta2:
+          "2 年自动化及轻量工具开发经验",
+
+        heroMeta3:
+          "远程 · 异步协作 · 中国",
+
+        contactButton:
+          "联系我",
+
+        servicesButton:
+          "查看服务",
 
         servicesEyebrow:
           "服务范围",
 
         servicesTitle:
-          "面向实际业务的数据处理支持",
+          "我能为你提供什么？",
 
         servicesSubtitle:
-          "可按任务、按项目或以长期异步支持的方式进行合作。",
+          "四个主要方向。你不需要在联系我之前先判断自己的问题究竟属于哪一类。",
 
         service1Title:
-          "ERP 数据准备",
+          "数据处理与 Excel 自动化",
+
+        service1Tagline:
+          "获取、清洗、整合数据，并让 Excel 少一点手工操作。",
 
         service1Text:
-          "协助整理和清洗客户、供应商、物料、BOM、利润中心以及其他主数据或业务数据，为数据迁移和系统导入做好准备。",
+          "处理 Excel、CSV、TXT、API 和公开网页数据，包括清洗、去重、多文件合并、批量格式转换和所需信息提取；也可以根据你现有的文件或想法，定制属于你的 Excel 自动化表格，让日常工作更简单、更快，也更不容易出错。",
 
         service2Title:
-          "Excel 与 CSV 数据处理",
+          "工作流自动化与应用集成",
+
+        service2Tagline:
+          "把你已经在使用的工具连接起来。",
 
         service2Text:
-          "包括数据清洗、去重、合并、拆分、结构调整、字段标准化、格式转换以及批量处理。",
+          "连接 Notion、Google Workspace、Google Apps Script、邮箱、API、Webhook、AI 服务等，让原本需要人工复制、检查、更新、发送和记录的流程尽可能自动运行，减少不必要的人工干预。",
 
         service3Title:
-          "数据迁移与导入准备",
+          "轻量工具与网页开发",
+
+        service3Tagline:
+          "针对具体问题，先做一个刚好够用的解决方案。",
 
         service3Text:
-          "包括旧系统与目标系统字段映射、导入模板整理、历史数据迁移、异常数据检查及导入前验证。",
+          "可以开发 Excel / VBA 工具、Python 小程序、浏览器插件、轻量桌面工具和静态落地页。我的习惯不是为了一个小问题先造一整套复杂系统，而是先把需求压缩成最小可交付版本，先解决核心问题，再根据实际需要考虑后续扩展。",
 
         service4Title:
-          "轻量自动化",
+          "商用业务系统的数据准备与导入支持",
+
+        service4Tagline:
+          "当你的业务开始需要系统时，先把数据地基打好。",
 
         service4Text:
-          "开发小型 Python 工具、批量文件处理脚本，以及用于重复性业务数据处理的简单自动化工具。",
+          "ERP、CRM 或其他业务系统上线前，客户、供应商、物料、BOM 等基础数据通常需要重新整理和定义。根据你的管理重点以及实施团队要求，我可以协助完成数据清洗、标准化、模板化和导入准备，减少反复整理、确认和返工的时间。",
+        experienceEyebrow:
+          "经验与能力",
 
+        experienceTitle:
+          "这些能力来自真实的业务工作。",
 
-        projectEyebrow:
-          "项目经验",
+        experienceSubtitle:
+          "我的经验来自企业数据处理、自动化以及解决具体问题的小型工具开发。",
 
-        projectTitle:
-          "ERP 与企业核心数据交付经验",
+        experience1Title:
+          "业务数据",
 
-        projectSubtitle:
-          "拥有 5 年 ERP 一线实施及交付经验，主要参与中国市场的金蝶 ERP 项目。",
+        experience1Text:
+          "处理过主数据、财务数据、历史业务记录及大量 Excel 数据，用于企业日常运营、系统升级和数据迁移。",
 
-        project1Title:
-          "ERP 升级 — 德国背景泵系统企业",
+        experience2Title:
+          "自动化",
 
-        project1Text:
-          "参与天津公司的 K3 → K3 Cloud 升级，负责主数据、财务期初、业务期初的数据整理、检查及导入。",
+        experience2Text:
+          "使用 Python、Google Apps Script、Notion、API 等工具，将数据处理、状态更新、邮件通知等步骤连接起来，减少重复人工操作。",
 
-        project2Title:
-          "财务系统云端升级 — 日本铸钢企业",
+        experience3Title:
+          "小型工具",
 
-        project2Text:
-          "参与财务系统云端化升级，并完成上线所需的历史财务凭证数据迁移。",
+        experience3Text:
+          "开发过桌面批处理工具、浏览器插件、Excel 辅助工具及针对具体重复任务的脚本。",
 
-        project3Title:
-          "开票系统字段映射 — 美国背景乐器企业",
+        experienceNote:
+          "另外，我拥有3年数据处理经验、2 年自动化及轻量工具开发经验、5 年 ERP 实施与交付经验，并参与过制造、物流等行业的数据迁移及系统升级项目。",
 
-        project3Text:
-          "设计并开发业务数据与开票系统之间的字段映射逻辑，用于系统集成及数据准确交换。",
+        workEyebrow:
+          "客户案例",
 
-        project4Title:
-          "历史财务数据迁移 — 物流行业",
+        workTitle:
+          "一些我做过的东西。",
 
-        project4Text:
-          "参与大规模历史财务凭证迁移，其中部分项目涉及约 15 年的历史会计数据。",
+        workSubtitle:
+          "我的思路通常很简单：先解决一个具体问题，然后尽可能让这个解决方案能够重复使用。",
 
-        portfolioEyebrow:
-          "部分作品",
+        work1Text:
+          "一款 Windows 批量图片处理桌面工具，用于批量调整尺寸、格式转换及重复性的图片交付流程。",
 
-        portfolioTitle:
-          "工具与数据项目案例",
+        work2Text:
+          "一个基于 Excel 和 VBA 制作的轻量 CRM，用于在单个工作簿中管理客户、跟进记录、联系提醒和基础业务信息。",
+        work3Title:
+          "冷邮件自动化工作流",
 
-        portfolioSubtitle:
-          "部分软件工具、数据处理工具及 ERP 相关工作的展示。",
+        work3Text:
+          "连接 Notion、Google Apps Script 与 Gmail，在云端定时读取并筛选客户数据，按照预置模板生成并发送邮件，随后回写状态并自动发送执行结果报告。",
 
-        portfolio1Title:
-          "EW SNAP IMAGERS",
+        work4Title:
+          "Excel 合并单元格数据清理",
 
-        portfolio1Text:
-          "一款用于离线批量图片处理及客户交付流程的 Windows 桌面工具。",
-
-        portfolio2Title:
-          "Excel 合并单元格批量清理工具",
-
-        portfolio2Text:
-          "用于批量解除合并单元格、提取首个有效值，并将数据回填至原合并区域的处理工具。",
-
-        portfolio3Title:
-          "ERP 数据迁移",
-
-        portfolio3Text:
-          "用于 ERP 上线及升级项目中的主数据清洗、字段映射、历史数据迁移、数据校验及导入准备。",
-
-        portfolio4Title:
-          "更多作品",
-
-        portfolio4Text:
-          "后续将继续增加适合公开展示的自动化及数据处理案例。",
+        work4Text:
+          "一个用于处理合并单元格数据的轻量工具，可自动拆分单元格、补齐原始值，并生成便于后续筛选、分析或导入的规范数据。",
         pricingEyebrow:
           "合作方式",
 
         pricingTitle:
-          "灵活的合作模式",
+          "选择适合你的合作方式。",
 
         pricingSubtitle:
-          "无论是一次性任务、项目工作还是长期支持，都可以根据实际需求安排。",
+          "偶尔有一个任务，可以按小时合作；需要持续支持，可以使用月度套餐。",
 
-        taskSupport:
-          "按任务 / 按项目",
+        oneOffLabel:
+          "单次任务支持",
 
-        taskPrice:
-          "USD 15/小时起",
+        oneOffPeriod:
+          "/ 小时",
 
-        taskNote:
-          "适用于一次性或偶发的数据处理及自动化任务。",
+        oneOffHighlight:
+          "适合偶尔发生的任务，无需月度承诺",
 
-        taskItem1:
-          "Excel 和 CSV 数据处理",
+        oneOffDescription:
+          "适用于一次性的数据处理、工作流自动化、轻量工具开发或业务系统数据准备任务。",
 
-        taskItem2:
-          "ERP 数据准备",
+        pricingLabel:
+          "月度技术支持",
 
-        taskItem3:
-          "字段映射",
+        pricePeriod:
+          "/ 月",
 
-        taskItem4:
-          "导入文件准备",
+        pricingHours:
+          "每月最多 40 个任务工时",
 
-        taskItem5:
-          "轻量自动化任务",
+        pricingItem1:
+          "数据处理",
 
-        monthlySupport:
-          "包月异步支持",
+        pricingItem2:
+          "工作流自动化",
 
-        monthlyPrice:
-          "USD 200/月",
+        pricingItem3:
+          "轻量工具开发",
 
-        monthlyNote:
-          "首次服务周期统一采用该体验价格。",
+        pricingItem4:
+          "ERP 与业务系统数据",
 
-        monthlyItem1:
-          "远程及异步沟通",
+        pricingExtra:
+          "超出套餐部分：10 美元 / 小时",
 
-        monthlyItem2:
-          "适合持续出现的小型数据任务",
+        pricingDescription:
+          "需要帮助时直接通过邮件提交任务。每项任务完成后，我都会提供一份简单的工时记录，告诉你本次使用工时以及当月剩余可用工时。",
 
-        monthlyItem3:
-          "可通过邮件或文字方式分配任务",
+        oneOffDetailsButton:
+          "查看单次任务说明",
 
-        monthlyItem4:
-          "首次合作期间按合理使用原则提供支持",
-
-        monthlyItem5:
-          "续约价格将根据实际任务量、复杂度和支持需求重新评估",
-
+        planDetailsButton:
+          "查看套餐说明",
 
         securityEyebrow:
           "数据安全",
 
         securityTitle:
-          "您的业务数据保持私密",
+          "你的数据，只用于完成你的任务。",
 
         securitySubtitle:
-          "数据安全和保密是服务的一部分，而不是额外选项。",
+          "数据处理尽可能保持简单、有限，并减少不必要的数据流转。",
 
-        localTitle:
-          "本地处理",
+        security1Title:
+          "优先本地处理",
 
-        localText:
-          "除非双方另有约定，客户文件均在我的本地计算机环境中处理。",
+        security1Text:
+          "如果任务可以在本地完成，就不会为了方便而把你的文件上传到不必要的第三方服务。",
 
-        aiTitle:
-          "不上传生成式 AI",
+        security2Title:
+          "不随意上传 AI",
 
-        aiText:
-          "客户提供的数据文件不会上传至生成式 AI 服务进行处理。",
+        security2Text:
+          "除非任务本身确实需要，并且双方已经确认，否则客户数据不会被发送到生成式 AI 服务。",
 
-        reuseTitle:
-          "不复用客户数据",
+        security3Title:
+          "不重复利用客户数据",
 
-        reuseText:
-          "客户数据不会用于其他项目、训练资料、公开展示或作品集。",
+        security3Text:
+          "你的文件和业务数据只用于完成你委托的任务，不用于其他用途。",
 
-        ndaTitle:
-          "支持保密要求",
+        security4Title:
+          "支持 NDA",
 
-        ndaText:
-          "可以使用脱敏数据，并愿意遵守合理的保密要求及 NDA。",
-
+        security4Text:
+          "如果你的项目存在额外保密要求，可以按照双方约定的 NDA 开展工作。",
 
         contactEyebrow:
-          "联系",
+          "联系我",
 
         contactTitle:
-          "有数据任务需要处理？",
+          "有件技术杂事想从你的待办列表里拿掉？",
 
         contactText:
-          "您可以通过邮件简单说明任务内容、涉及的文件或系统以及需要的最终结果，我会先进行评估并确认是否能够协助。",
-
-        emailMe:
-          "发送邮件",
-
-        signature:
-          "Jax Jia<br>ERP 数据准备与迁移支持<br>中国天津",
+          "你不需要先判断它究竟属于数据处理、自动化还是工具开发。直接告诉我你现在想解决什么问题就可以。",
 
         footerText:
-          "© 2026 Jax Jia · 远程 ERP 数据准备与企业数据支持"
+          "远程数据处理 · 自动化 · 技术支持"
+
       }
 
     };
@@ -1860,79 +1516,69 @@
 
     function setLanguage(lang) {
 
-      const langData = translations[lang];
-
-      if (!langData) {
-        return;
-      }
-
+      const selected =
+        translations[lang] ? lang : "en";
 
       document
         .querySelectorAll("[data-i18n]")
-        .forEach(element => {
+        .forEach((element) => {
 
-          const key = element.dataset.i18n;
+          const key =
+            element.getAttribute("data-i18n");
 
-          if (langData[key] !== undefined) {
-            element.textContent = langData[key];
+          const value =
+            translations[selected][key];
+
+          if (value !== undefined) {
+            element.textContent = value;
           }
 
         });
 
 
       document
-        .querySelectorAll("[data-i18n-html]")
-        .forEach(element => {
+        .querySelectorAll(".lang-button")
+        .forEach((button) => {
 
-          const key = element.dataset.i18nHtml;
-
-          if (langData[key] !== undefined) {
-            element.innerHTML = langData[key];
-          }
+          button.classList.toggle(
+            "active",
+            button.dataset.lang === selected
+          );
 
         });
-
-
-      document
-        .getElementById("lang-en")
-        .classList
-        .toggle(
-          "active",
-          lang === "en"
-        );
-
-
-      document
-        .getElementById("lang-zh")
-        .classList
-        .toggle(
-          "active",
-          lang === "zh"
-        );
 
 
       document.documentElement.lang =
-        lang === "zh"
-          ? "zh-CN"
-          : "en";
+        selected === "zh" ? "zh-CN" : "en";
 
 
       localStorage.setItem(
         "preferredLanguage",
-        lang
+        selected
       );
 
     }
 
 
-    const savedLanguage =
-      localStorage.getItem("preferredLanguage")
-      || "en";
+    document
+      .querySelectorAll(".lang-button")
+      .forEach((button) => {
 
+        button.addEventListener(
+          "click",
+          () => setLanguage(button.dataset.lang)
+        );
+
+      });
+
+
+    const savedLanguage =
+      localStorage.getItem("preferredLanguage") || "en";
 
     setLanguage(savedLanguage);
 
   </script>
 
 </body>
+
 </html>
